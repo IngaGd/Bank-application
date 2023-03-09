@@ -1,6 +1,10 @@
 const express = require('express');
+const cors = require('cors'); //isiinstalinam cors, pasirequirinam
+
 const app = express();
 const port = 3003;
+
+app.use(cors()); //pasinaudojam
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
