@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Create from './Components/Bank-App-Server/Create';
-import Filter from './Components/Bank-App-Server/Filter';
-import List from './Components/Bank-App-Server/List';
-import axios from 'axios';
-
+import Create from './Components/U1/Create';
+import Filter from './Components/U1/Filter';
+import List from './Components/U1/List';
+import { create, read, destroy, edit } from './Components/U1/localStorage';
 import './Components/U1/style.scss';
 
-const URL = 'http://localhost:3003/bank';
+const KEY = 'Account';
 
 function App() {
     const [createData, setCreateData] = useState(null);
@@ -23,38 +22,62 @@ function App() {
     const [deleteSuccessMsg, setDeleteSuccessMsg] = useState(null);
     const [editSuccessMsg, setEditSuccessMsg] = useState(null);
 
-    //gaunam duomenis is serverio, kai uzkraunam psl
     useEffect(() => {
-        axios.get(URL) //gaunam duomenis
-        .then(res => {//kai gaunam duomenis, irasom i lista
-            setList(res.data)
-        });
-    }, [lastUpdate]) //nuskaitom last update ir setinam i create ir delete
-
-
-    useEffect(() => {
-        if (null === createData) {//idedam, kai create data yra nulas, kad neprasisukinetu listinimas ir nesiustu null creata
-            return; //kai create yra null, tada nieko nedarom
+        if (deleteSuccessMsg) {
+            setTimeout(() => {
+                setDeleteSuccessMsg(null);
+            }, 2000);
         }
-        axios.post(URL, createData) //issiunciama create data i request body
-        .then(res => {
-            console.log(res.data);
-            setLastUpdate(Date.now());//pasileidzia refresh automatishkai
-        })
-    }, [createData])
+    }, [deleteSuccessMsg]);
+
+
+    useEffect(() => {
+        if (editSuccessMsg) {
+            setTimeout(() => {
+                setEditSuccessMsg(null);
+            }, 2000);
+        }
+    }, [editSuccessMsg]);
+
+
+    useEffect(() => {
+        setList(read(KEY));
+    }, [lastUpdate]);
+
+    useEffect(() => {
+        if (null === createData) {
+            return;
+        }
+        create(KEY, createData);
+        setLastUpdate(Date.now());      
+    }, [createData]);
 
     useEffect(() => {
         if (null === deleteData) {
-            return; 
+            return;
         }
-        axios.delete(URL + '/' + deleteData.id) //naudojam metoda delete
-        //plius deleteData.id, perdavimas per parametrus (trinamo kauliuko id)
-        .then(res => {
-            console.log(res.data);
-            setLastUpdate(Date.now()); //
-        })
-    }, [deleteData])
+        destroy(KEY, deleteData.id);
+        setDeleteSuccessMsg("Account was successfully deleted");
+        setLastUpdate(Date.now());
+    }, [deleteData]);
 
+    useEffect(() => {
+        if (null === editData) {
+            return;
+        }
+        edit(KEY, editData, editData.id);
+        setEditSuccessMsg("Balance was successfully changed");
+        setLastUpdate(Date.now());
+    }, [editData]);
+
+    useEffect(() => {
+        if (null === list) {
+            return;
+        }
+        const balances = list.reduce((sum, { balance }) => sum + balance, 0);
+        setTotalBalances(balances);
+        setNumAccounts(list.length);
+    }, [list]);
 
     return (
         <>
