@@ -31,14 +31,14 @@ function App() {
         });
     }, [lastUpdate]) //nuskaitom last update ir setinam i create ir delete
 
-
+    //paprastas variantas be promisu
     useEffect(() => {
         if (null === createData) {//idedam, kai create data yra nulas, kad neprasisukinetu listinimas ir nesiustu null creata
             return; //kai create yra null, tada nieko nedarom
         }
         axios.post(URL, createData) //issiunciama create data i request body
         .then(res => {
-            console.log(res.data);
+            console.log(res.data);//kai ateina ats, kad padelitinta, setinamLastUpdate
             setLastUpdate(Date.now());//pasileidzia refresh automatishkai
         })
     }, [createData])
@@ -51,9 +51,22 @@ function App() {
         //plius deleteData.id, perdavimas per parametrus (trinamo kauliuko id)
         .then(res => {
             console.log(res.data);
-            setLastUpdate(Date.now()); //
+            setLastUpdate(Date.now()); //issitrina is karto pasileidziant refresui
         })
     }, [deleteData])
+
+    useEffect(() => {
+        if (null === editData) {
+            return; 
+        }
+        axios.put(URL + '/' + editData.id, editData) //naudojam metoda put
+        //plius editData.id, perdavimas per parametrus (trinamo kauliuko id)
+        .then(res => {
+            console.log(res.data);
+            setLastUpdate(Date.now()); 
+        })
+    }, [editData])
+
 
 
     return (

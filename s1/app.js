@@ -41,7 +41,9 @@ app.post('/bank', (req, res) => {//req gaunam info is create data per res.data i
     allData = JSON.stringify(allData);
     //gauta string irasom atgal i duomenis:
     fs.writeFileSync('./data.json', allData, 'utf8');
-    res.json({ message: 'OK' });
+    res.json({
+        message: { text: "New account was created successfully", 'type': "ok" }
+    });
 });
 
 // trinam:
@@ -54,7 +56,35 @@ app.delete('/bank/:id', (req, res) => { //kintamus parametrus rasom :...
     //deleted data sustringifyinta
     deletedData = JSON.stringify(deletedData);
     fs.writeFileSync('./data.json', deletedData, 'utf8');
-    res.json({ message: "OK" });
+    res.json({
+        message: { text: "Account was deleted successfully", 'type': "ok" }
+    });
+})
+
+//edit
+app.put('/bank/:id', (req, res) => { //kintamus parametrus rasom :...
+    //is requesto paimam params, kurio vardas yra id
+    //pradzia kaip ir creato
+    let allData = fs.readFileSync('./data.json', 'utf8');//nuskaitom duomenis is failo (stringa)
+    allData = JSON.parse(allData);
+
+    //nuskaitom senus duomenis, kuriuos gaunam is bodzio
+    const data = {
+        name: req.body.name,
+        surname: req.body.surname,
+        balance: req.body.balance,
+    };
+
+    //mapinam, susirandam is params, ka norm editint, jei norim redaguiti, 
+    //duodam naujus duomenis overraidindamis senus (viska isskyrus id overraidina), 
+    //jei nenorim, perduodam viska
+    let editedData = allData.map(d => req.params.id === d.id ? { ...d, ...data } : { ...d });
+    //edit data sustringifyinta
+    editedData = JSON.stringify(editedData);
+    fs.writeFileSync('./data.json', editedData, 'utf8');
+    res.json({
+        message: { text: "Changes saved", 'type': "ok" }
+    });
 })
 
 
