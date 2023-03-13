@@ -5,7 +5,7 @@ import Filter from './Components/Bank-App-Server/Filter';
 import List from './Components/Bank-App-Server/List';
 import axios from 'axios';
 
-import './Components/U1/style.scss';
+import './Components/Bank-App-Server/style.scss';
 
 const URL = 'http://localhost:3003/bank';
 
@@ -20,8 +20,33 @@ function App() {
     const [totalBalances, setTotalBalances] = useState(0);
     const [numAccounts, setNumAccounts] = useState(0);
     const [filter, setFilter] = useState('all');
+    const [createSuccessMsg, setCreateSuccessMsg] = useState(null);    
     const [deleteSuccessMsg, setDeleteSuccessMsg] = useState(null);
     const [editSuccessMsg, setEditSuccessMsg] = useState(null);
+
+    useEffect(() => {
+        if (createSuccessMsg) {
+            setTimeout(() =>{
+                setCreateSuccessMsg(null);
+            }, 2000)
+        }
+    }, [createSuccessMsg])
+
+    useEffect(() => {
+        if (deleteSuccessMsg) {
+            setTimeout(() => {
+                setDeleteSuccessMsg(null);
+            }, 2000);
+        }
+    }, [deleteSuccessMsg]);
+
+    useEffect(() => {
+        if (editSuccessMsg) {
+            setTimeout(() => {
+                setEditSuccessMsg(null);
+            }, 2000);
+        }
+    }, [editSuccessMsg]);
 
     //gaunam duomenis is serverio, kai uzkraunam psl
     useEffect(() => {
@@ -40,6 +65,7 @@ function App() {
         .then(res => {
             console.log(res.data);//kai ateina ats, kad padelitinta, setinamLastUpdate
             setLastUpdate(Date.now());//pasileidzia refresh automatishkai
+            setCreateSuccessMsg(res.data.message.text);
         })
     }, [createData])
 
@@ -52,6 +78,7 @@ function App() {
         .then(res => {
             console.log(res.data);
             setLastUpdate(Date.now()); //issitrina is karto pasileidziant refresui
+            setDeleteSuccessMsg(res.data.message.text);
         })
     }, [deleteData])
 
@@ -63,11 +90,19 @@ function App() {
         //plius editData.id, perdavimas per parametrus (trinamo kauliuko id)
         .then(res => {
             console.log(res.data);
-            setLastUpdate(Date.now()); 
+            setLastUpdate(Date.now());
+            setEditSuccessMsg(res.data.message.text);
         })
     }, [editData])
 
-
+    useEffect(() => {
+        if (null === list) {
+            return;
+        }
+        const balances = list.reduce((sum, { balance }) => sum + balance, 0);
+        setTotalBalances(balances);
+        setNumAccounts(list.length);
+    }, [list]);
 
     return (
         <>
@@ -90,8 +125,9 @@ function App() {
                             setEditModal={setEditModal}
                             setEditData={setEditData} 
                             filter={filter}
+                            createSuccessMsg={createSuccessMsg}
                             deleteSuccessMsg={deleteSuccessMsg} 
-                            editSuccessMsg={editSuccessMsg}                                                
+                            editSuccessMsg={editSuccessMsg}                                         
                         />
                     </div>
                     <div className='filter'>

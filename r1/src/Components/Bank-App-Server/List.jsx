@@ -1,7 +1,7 @@
 import Delete from "./Delete";
 import Edit from "./Edit";
 
-function List({list, setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, setEditData, filter, deleteSuccessMsg, editSuccessMsg}) {
+function List({list, setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, setEditData, filter, createSuccessMsg, deleteSuccessMsg, editSuccessMsg, errorMessage, setErrorMessage}) {
 
     if (null === list) { //jei useState(null), vadinasi dar negavom is serverio jokiu duomenu
         return (
@@ -50,7 +50,7 @@ function List({list, setDeleteModal, deleteModal, setDeleteData, setEditModal, e
                             deleteModal && deleteModal.id === d.id ? <Delete account={d} setDeleteModal={setDeleteModal} setDeleteData={setDeleteData} /> : null
                         }                        
                         {
-                            editModal && editModal.id === d.id ? <Edit setEditModal={setEditModal} editModal={editModal} setEditData={setEditData} /> : null
+                            editModal && editModal.id === d.id ? <Edit setEditModal={setEditModal} editModal={editModal} setEditData={setEditData} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/> : null
                         }                     
                         
                     </div>)
@@ -60,6 +60,7 @@ function List({list, setDeleteModal, deleteModal, setDeleteData, setEditModal, e
                 {deleteModal && deleteModal.message && <div className="error">{deleteModal.message}</div>}
             </div>
             <div className="positive-msg">
+                {createSuccessMsg && <div className="success">{createSuccessMsg}</div>}                
                 {deleteSuccessMsg && <div className="success">{deleteSuccessMsg}</div>}
                 {editSuccessMsg && <div className="success">{editSuccessMsg}</div>}  
             </div>
