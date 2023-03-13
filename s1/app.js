@@ -37,10 +37,11 @@ app.post('/bank', (req, res) => {//req gaunam info is create data per res.data i
     data.id = uuidv4();
     //viska ipushinam i data:
     allData.push(data);
+    let sortedData = allData.sort((a, b) => (a.surname > b.surname) ? 1 : -1);
     //ipushinta data verchiam i stringa:
-    allData = JSON.stringify(allData);
+    sortedData = JSON.stringify(sortedData);
     //gauta string irasom atgal i duomenis:
-    fs.writeFileSync('./data.json', allData, 'utf8');
+    fs.writeFileSync('./data.json', sortedData, 'utf8');
     res.json({
         message: { text: "New account was created successfully" }
     });
