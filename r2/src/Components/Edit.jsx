@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { GlobalContext } from './GlobalContext';
 
-function Edit({ setEditData, setEditModal, editModal }) {
+function Edit({ setEditModal, editModal }) {
+
+    const {setEditData} = useContext(GlobalContext);
+
     const [name, setName] = useState(editModal.name);
     const [surname, setSurname] = useState(editModal.surname);
     const [balance, setBalance] = useState(editModal.balance);

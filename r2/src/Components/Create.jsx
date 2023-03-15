@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useState } from "react";
+import { GlobalContext } from "./GlobalContext";
 
 
-function Create({setCreateData}) {
+function Create() {
+
+    const {setCreateData} = useContext(GlobalContext);
 
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');  

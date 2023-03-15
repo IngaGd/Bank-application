@@ -1,4 +1,9 @@
-function Delete({setDeleteModal, setDeleteData, account}) {
+import { useContext } from "react";
+import { GlobalContext } from "./GlobalContext";
+
+function Delete({setDeleteModal, account}) {
+
+    const {setDeleteData} = useContext(GlobalContext);
 
     return (
         <div className="delete-modal">
