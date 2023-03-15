@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Create from './Components/Bank-App2/Create';
-import Filter from './Components/Bank-App2/Filter';
-import List from './Components/Bank-App2/List';
+import Create from './Components/Bank-App-Server/Create';
+import Filter from './Components/Bank-App-Server/Filter';
+import List from './Components/Bank-App-Server/List';
 import axios from 'axios';
 
-import './Components/Bank-App2/style.scss';
+import './Components/Bank-App-Server/style.scss';
 
 const URL = 'http://localhost:3003/bank';
 

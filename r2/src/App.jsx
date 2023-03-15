@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import Create from './Components/Bank-App2/Create';
-import Filter from './Components/Bank-App2/Filter';
-import List from './Components/Bank-App2/List';
+import Create from './Components/Create';
+import Filter from './Components/Filter';
+import List from './Components/List';
 import axios from 'axios';
 
-import './Components/Bank-App2/style.scss';
+import './style/app.scss';
+import { GlobalContextProvider } from './Components/GlobalContext';
+import Messages from './Components/Messages';
 
 const URL = 'http://localhost:3003/bank';
 
@@ -20,33 +22,34 @@ function App() {
     const [totalBalances, setTotalBalances] = useState(0);
     const [numAccounts, setNumAccounts] = useState(0);
     const [filter, setFilter] = useState('all');
-    const [createSuccessMsg, setCreateSuccessMsg] = useState(null);    
-    const [deleteSuccessMsg, setDeleteSuccessMsg] = useState(null);
-    const [editSuccessMsg, setEditSuccessMsg] = useState(null);
+    // const [createSuccessMsg, setCreateSuccessMsg] = useState(null);    
+    // const [deleteSuccessMsg, setDeleteSuccessMsg] = useState(null);
+    // const [editSuccessMsg, setEditSuccessMsg] = useState(null);
 
-    useEffect(() => {
-        if (createSuccessMsg) {
-            setTimeout(() =>{
-                setCreateSuccessMsg(null);
-            }, 2000)
-        }
-    }, [createSuccessMsg])
 
-    useEffect(() => {
-        if (deleteSuccessMsg) {
-            setTimeout(() => {
-                setDeleteSuccessMsg(null);
-            }, 2000);
-        }
-    }, [deleteSuccessMsg]);
+    // useEffect(() => {
+    //     if (createSuccessMsg) {
+    //         setTimeout(() =>{
+    //             setCreateSuccessMsg(null);
+    //         }, 2000)
+    //     }
+    // }, [createSuccessMsg])
 
-    useEffect(() => {
-        if (editSuccessMsg) {
-            setTimeout(() => {
-                setEditSuccessMsg(null);
-            }, 2000);
-        }
-    }, [editSuccessMsg]);
+    // useEffect(() => {
+    //     if (deleteSuccessMsg) {
+    //         setTimeout(() => {
+    //             setDeleteSuccessMsg(null);
+    //         }, 2000);
+    //     }
+    // }, [deleteSuccessMsg]);
+
+    // useEffect(() => {
+    //     if (editSuccessMsg) {
+    //         setTimeout(() => {
+    //             setEditSuccessMsg(null);
+    //         }, 2000);
+    //     }
+    // }, [editSuccessMsg]);
 
     //gaunam duomenis is serverio, kai uzkraunam psl
     useEffect(() => {
@@ -65,7 +68,7 @@ function App() {
         .then(res => {
             console.log(res.data);//kai ateina ats, kad padelitinta, setinamLastUpdate
             setLastUpdate(Date.now());//pasileidzia refresh automatishkai
-            setCreateSuccessMsg(res.data.message.text);
+            //addMessage({text: res.data.message.text});
         })
     }, [createData])
 
@@ -78,7 +81,7 @@ function App() {
         .then(res => {
             console.log(res.data);
             setLastUpdate(Date.now()); //issitrina is karto pasileidziant refresui
-            setDeleteSuccessMsg(res.data.message.text);
+            //addMessage({text: res.data.message.text});
         })
     }, [deleteData])
 
@@ -91,7 +94,7 @@ function App() {
         .then(res => {
             console.log(res.data);
             setLastUpdate(Date.now());
-            setEditSuccessMsg(res.data.message.text);
+            //addMessage({text: res.data.message.text});
         })
     }, [editData])
 
@@ -105,7 +108,7 @@ function App() {
     }, [list]);
 
     return (
-        <>
+          <GlobalContextProvider>
             <h1 className='main-title'>Bank application</h1>
             <div className='container'>
                 <div className='totals'>
@@ -125,17 +128,20 @@ function App() {
                             setEditModal={setEditModal}
                             setEditData={setEditData} 
                             filter={filter}
-                            createSuccessMsg={createSuccessMsg}
-                            deleteSuccessMsg={deleteSuccessMsg} 
-                            editSuccessMsg={editSuccessMsg}                                         
+                            // createSuccessMsg={createSuccessMsg}
+                            // deleteSuccessMsg={deleteSuccessMsg} 
+                            // editSuccessMsg={editSuccessMsg}                                         
                         />
                     </div>
                     <div className='filter'>
                         <Filter setFilter={setFilter} />
                     </div>
+                    <div>
+                      <Messages />
+                    </div>
                 </div>
             </div>
-        </>
+          </GlobalContextProvider>
     );
 }
 
