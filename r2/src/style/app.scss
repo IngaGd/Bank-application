@@ -416,6 +416,9 @@ body {
         background-color: lightgray;
         width: 100%;
     }
+    input:focus {
+        outline: none;
+    }
 
     .btn {
         background-color: darkcyan;
