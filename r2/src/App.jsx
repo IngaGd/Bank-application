@@ -7,6 +7,8 @@ import List from './Components/List';
 import './style/app.scss';
 import { GlobalContextProvider } from './Components/GlobalContext';
 import Messages from './Components/Messages';
+import Login from './Components/Login';
+import CookiesSetter from './Components/CookiesSetter';
 
 function App() {
 
@@ -26,6 +28,10 @@ function App() {
 
     return (
           <GlobalContextProvider>
+            <div className='forms'>
+                <CookiesSetter />
+                <Login />
+            </div>
             <h1 className='main-title'>Bank application</h1>
             <div className='container'>
                 <div className='totals'>
