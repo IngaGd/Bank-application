@@ -32,7 +32,7 @@ export const GlobalContextProvider = ({children}) => {
         if (createRes === null) {
             return;
         }
-        addMessage({text: createRes.message.text});    
+        addMessage({text: createRes.message.text});  
         setLastUpdate(Date.now());
     }, [createRes, addMessage, setLastUpdate]);
 

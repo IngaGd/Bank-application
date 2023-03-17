@@ -43,7 +43,7 @@ app.post('/bank', (req, res) => {//req gaunam info is create data per res.data i
     //gauta string irasom atgal i duomenis:
     fs.writeFileSync('./data/bank.json', sortedData, 'utf8');
     res.json({
-        message: { text: "New account was created successfully" }
+        message: { text: "New account was created successfully", type: 'positive' }
     });
 });
 
@@ -58,7 +58,7 @@ app.delete('/bank/:id', (req, res) => { //kintamus parametrus rasom :...
     deletedData = JSON.stringify(deletedData);
     fs.writeFileSync('./data/bank.json', deletedData, 'utf8');
     res.json({
-        message: { text: "Account was deleted successfully" }
+        message: { text: "Account was deleted successfully", type: 'positive' }
     });
 })
 
@@ -84,7 +84,7 @@ app.put('/bank/:id', (req, res) => { //kintamus parametrus rasom :...
     editedData = JSON.stringify(editedData);
     fs.writeFileSync('./data/bank.json', editedData, 'utf8');
     res.json({
-        message: { text: "Changes were saved" },
+        message: { text: "Changes were saved", type: 'positive' },
     });
 })
 

@@ -21,8 +21,6 @@ export const useDeleteData = init => {
 
     }, [data])
 
-
-
     return [response, setDeleteData];
 
 }

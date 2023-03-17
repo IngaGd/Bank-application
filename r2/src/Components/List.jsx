@@ -2,6 +2,8 @@ import { useContext } from "react";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import { GlobalContext } from "./GlobalContext";
+import Messages from "./Messages";
+
 
 function List({  setEditData, filter, errorMessage, setErrorMessage}) {
 
@@ -63,12 +65,7 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
             <div className="negative-msg">
                 {deleteModal && deleteModal.message && <div className="error">{deleteModal.message}</div>}
             </div>
-            {/* <div className="positive-msg">
-                {createSuccessMsg && <div className="success">{createSuccessMsg}</div>}                
-                {deleteSuccessMsg && <div className="success">{deleteSuccessMsg}</div>}
-                {editSuccessMsg && <div className="success">{editSuccessMsg}</div>}  
-            </div> */}
-          
+  
         </>
     );
 }
