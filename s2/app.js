@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 //pasijusinam
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
+const md5 = require('md5');
 
 const app = express();
 const port = 3003;
@@ -106,7 +107,7 @@ app.put('/bank/:id', (req, res) => {
     });
 });
 
-//-----------------------------------------------------
+//-----------------------------------------------------U3
 
 //COOKIES
 app.post('/cookies', (req, res) => {
@@ -117,8 +118,56 @@ app.post('/cookies', (req, res) => {
         res.cookie('Cookies: ', req.body.cookie, { maxAge: 3600 }); //pasiimam info is set funkcijos
     }
 
-    res.json({ msg: 'ok' });
+    res.json({ message: 'ok' });
 });
+
+//LOGIN
+app.post('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+
+    const name = req.body.userName;
+    const password = md5(req.body.userPsw);
+
+    console.log(password);
+
+    const user = users.find(u => u.name === name && u.password === password);
+
+    //jei user yra, generuojam sesijos id
+    if (user) {
+        const sessionId = md5(uuidv4());
+        user.session = sessionId; //priskiriam sesijos id
+        fs.writeFileSync('./data/users.json', JSON.stringify(users), 'utf8')    //isaugom visus userius, vienas bus su spec tokenu
+        //kai useris turi sesijos id, issiunciam cookie
+        res.cookie('cookieSession', sessionId);
+        res.json({
+            status: 'valid',
+            getName: user.name
+        });
+    } else {
+        res.json({
+            status: 'error',
+        });
+    }
+})
+
+app.get('/login', (req, res) => {
+    const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+    const user = req.cookies.cookieSession ?
+        users.find(u => u.session === req.cookies.cookieSession) :
+        null;
+    if (user) {
+        res.json({
+            status: 'valid',
+            getName: user.name
+        });
+    } else {
+        res.json({
+            status: 'error'
+        })
+    }
+})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

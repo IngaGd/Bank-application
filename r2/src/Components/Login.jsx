@@ -1,29 +1,61 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import { useState } from 'react';
 
 function Login() {
 
-    const [userName, setUserName] = useState('');
-    const [user, setUser] = useState('');
-    const [password, setPassword] = useState('');
+    //ateina is servo
+    const [savedUser, setSavedUser] = useState(null);
+    const [error, setError] = useState(null)
 
-    const login = _ => {
-        axios.post('http://localhost:3003/cookies', {user, password}, {withCredentials: true})
+    //suvedam interface
+    const [userName, setUserName] = useState('');
+    const [userPsw, setUserPsw] = useState('');
+
+    //jei atpazistam pagal cookie, paliekam prisijungusi
+    useEffect(() => {
+        axios.get('http://localhost:3003/login', {withCredentials: true})
         .then(res => {
             console.log(res.data);
+            if (res.data.status === 'valid') {
+                setSavedUser(res.data.getName);
+            }
         })
+    }, []);
+
+    const login = _ => {
+        axios.post('http://localhost:3003/login', {userName, userPsw}, {withCredentials: true})
+        .then(res => {
+            console.log(res.data);
+            if (res.data.status === 'valid') {
+                setSavedUser(res.data.getName);
+                setUserName('');
+                setUserPsw('');
+                setError(null);
+            } else {
+                setError(true);
+                setSavedUser(null);
+            }
+        });
     }
 
     return (
         <div className="login-container">
             <div className="body">
-                <h5 className="title">Login</h5>
+                <h5 className="title">
+                    {
+                        savedUser ? <span>Hello, {savedUser}</span> : <span>Login</span>
+                    }
+                    {
+                        error ? <span style={{color: "red"}}> Error</span> : <span></span>
+                    }
+                </h5>                
                 <div className="">
                     <label className="">User</label>
-                    <input type="text" className="" value={user} onChange={(e) => setUser(e.target.value)}
+                    <input type="text" className="" value={userName} onChange={(e) => setUserName(e.target.value)}
                     />
                     <label className="">Password</label>
-                    <input type="password" className="" value={password} onChange={(e) => setPassword(e.target.value)}
+                    <input type="password" className="" value={userPsw} onChange={(e) => setUserPsw(e.target.value)}
                     />
                 </div>
             </div>
