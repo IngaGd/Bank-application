@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useState } from "react";
 import { createContext } from "react";
 import { useCreateData } from "../Use/useCreateData";
 import { useDeleteData } from "../Use/useDeleteData";
@@ -18,6 +19,8 @@ export const GlobalContextProvider = ({children}) => {
     const [deleteModal, setDeleteModal, editModal, setEditModal] = useModal();
     const [createRes, setCreateData] = useCreateData(null);
     const [editRes, setEditData] = useEditData(null);
+
+    const [route, setRoute] = useState('bank');
 
 
     useEffect(() => {
@@ -54,7 +57,9 @@ export const GlobalContextProvider = ({children}) => {
             editModal,
             setEditModal,
             setCreateData,
-            setEditData
+            setEditData,
+            route,
+            setRoute,
         }}>
             {children}
         </GlobalContext.Provider>

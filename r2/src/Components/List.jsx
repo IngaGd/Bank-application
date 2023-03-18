@@ -9,6 +9,7 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
 
     const {setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, list} = useContext(GlobalContext);
 
+
     if (null === list) { //jei useState(null), vadinasi dar negavom is serverio jokiu duomenu
         return (
             <div className="list">

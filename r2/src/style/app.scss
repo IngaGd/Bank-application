@@ -12,6 +12,34 @@ body {
     background-color: rgb(86, 170, 170);
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: darkcyan;
+
+    ul {
+        display: flex;
+        list-style: none;
+
+        li {
+            margin-right: 30px;
+
+            a {
+                text-decoration: none;
+                color: white;
+                font-size: 20px;
+                transition: all 0.3s;
+
+                &:hover {
+                    color: rgb(5, 81, 81);
+                }
+            }
+        }
+    }
+}
+
 .main-title {
     margin-top: 100px;
     display: flex;
@@ -368,7 +396,7 @@ body {
     width: 700px;
     margin-left: calc(50% - 700px / 2);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     .cookie-container {
         color: darkgreen;
