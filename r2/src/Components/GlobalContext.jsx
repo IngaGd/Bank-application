@@ -7,6 +7,7 @@ import { useEditData } from "../Use/useEditData";
 import { useListData } from "../Use/useListData";
 import { useMessages } from "../Use/useMessages";
 import { useModal } from "../Use/useModal";
+import axios from "axios";
 
 
 export const GlobalContext = createContext();
@@ -21,6 +22,15 @@ export const GlobalContextProvider = ({children}) => {
     const [editRes, setEditData] = useEditData(null);
 
     const [route, setRoute] = useState('bank');
+    const [authName, setAuthName] = useState(null);
+
+
+    const logOut = _ => {
+        axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
+        .then(res => {
+            console.log(res.data);
+        });
+    }
 
 
     useEffect(() => {
@@ -58,8 +68,11 @@ export const GlobalContextProvider = ({children}) => {
             setEditModal,
             setCreateData,
             setEditData,
-            route,
-            setRoute,
+            //route
+            route, setRoute,
+            //authorisation
+            authName, setAuthName, logOut
+            
         }}>
             {children}
         </GlobalContext.Provider>

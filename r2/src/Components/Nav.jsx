@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { GlobalContext } from './GlobalContext';
 
 function Nav() {
-    const { route, setRoute } = useContext(GlobalContext);
+    const { route, setRoute, authName, logOut } = useContext(GlobalContext);
 
     return (
         <nav>
@@ -13,10 +13,10 @@ function Nav() {
                         className={route === 'bank' ? 'active' : ''}
                         href="/bank"
                     >
-                        Home
+                        Bank
                     </a>
                 </li>
-                <li>
+                {/* <li>
                     <a
                         onClick={(event) => {
                             event.preventDefault();
@@ -27,7 +27,42 @@ function Nav() {
                     >
                         Login
                     </a>
-                </li>
+                </li> */}
+            </ul>
+            <ul className="navbar-right">
+                {authName ? (
+                    <>
+                        <li className="item">
+                            <span className="nav-link">
+                                <b>{authName}</b>
+                            </span>
+                        </li>
+                        <li className="item">
+                            <span className="link" onClick={logOut}>
+                                Logout
+                            </span>
+                        </li>
+                    </>
+                ) : (
+                    <>
+                        <li className="item">
+                            <span
+                                onClick={(_) => setRoute('login')}
+                                className="link"
+                            >
+                                Login
+                            </span>
+                        </li>
+                        <li className="item">
+                            <span
+                                onClick={(_) => setRoute('register')}
+                                className="link"
+                            >
+                                Register
+                            </span>
+                        </li>
+                    </>
+                )}
             </ul>
         </nav>
     );

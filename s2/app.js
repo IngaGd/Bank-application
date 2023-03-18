@@ -150,6 +150,13 @@ app.post('/login', (req, res) => {
     }
 })
 
+app.post('/logout', (req, res) => {
+    res.cookie('cookieSession', '***');
+    res.json({
+        status: 'logout',
+    });
+});
+
 app.get('/login', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
     const user = req.cookies.cookieSession ?

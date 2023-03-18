@@ -11,10 +11,9 @@ function Login() {
     const [userName, setUserName] = useState('');
     const [userPsw, setUserPsw] = useState('');
 
-    //jei atpazistam pagal cookie, paliekam prisijungusi
+     //jei atpazistam pagal cookie, paliekam prisijungusi. sita vieta eina i interneta ir ima prisijungimo duomenis
     useEffect(() => {
-        axios
-            .get('http://localhost:3003/login', { withCredentials: true })
+        axios.get('http://localhost:3003/login', { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
                 if (res.data.status === 'valid') {
@@ -22,6 +21,8 @@ function Login() {
                 }
             });
     }, []);
+
+
 
     const login = (_) => {
         axios

@@ -9,6 +9,9 @@ export const useListData = init => {
     const [lastUpdate, setLastUpdate] = useState(Date.now());
 
     useEffect(() => {
+        if (null === lastUpdate) {
+            return;
+        }
         axios.get(URL) //gaunam duomenis
             .then(res => {//kai gaunam duomenis, irasom i lista
                 setList(res.data)
