@@ -7,33 +7,18 @@ function Nav() {
     return (
         <nav>
             <ul>
-                <li>
-                    <a
-                        onClick={(_) => setRoute('bank')}
-                        className={route === 'bank' ? 'active' : ''}
-                        href="/bank"
-                    >
-                        Bank
-                    </a>
+                <li className="item">
+                    <span onClick={_ => setRoute('bank')} className={route === 'bank' ? 'active' : ''}>Bank</span>
                 </li>
-                {/* <li>
-                    <a
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setRoute('login');
-                        }}
-                        className={route === 'login' ? 'active' : ''}
-                        href="/login"
-                    >
-                        Login
-                    </a>
-                </li> */}
+                <li className="item">
+                    <span onClick={_ => setRoute('users')} className={route === 'bank' ? 'active' : ''}>Users</span>
+                </li>
             </ul>
             <ul className="navbar-right">
                 {authName ? (
                     <>
                         <li className="item">
-                            <span className="nav-link">
+                            <span className="link">
                                 <b>{authName}</b>
                             </span>
                         </li>

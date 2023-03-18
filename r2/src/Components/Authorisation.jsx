@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Loader from "./Loader";
 import axios from "axios";
 import Login from "./Login";
 import { GlobalContext } from "./GlobalContext";
 
-function Authentication({children}) {
 
-    const [logged, setLogged] = useState(null);
-    const {setAuthName} = useContext(GlobalContext);
+function Authorisation({children}) {
+
+
+    const {setAuthName, logged, setLogged} = useContext(GlobalContext);
 
 
        
@@ -24,7 +24,7 @@ function Authentication({children}) {
                     setAuthName(null);
                 }
             });
-    }, [setLogged,setAuthName]);
+    }, []);
 
 
     if (logged === null) { //jei laukimas, rodom loader
@@ -47,4 +47,4 @@ function Authentication({children}) {
 
 }
 
-export default Authentication;
+export default Authorisation;

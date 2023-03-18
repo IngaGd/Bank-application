@@ -8,6 +8,7 @@ import { useListData } from "../Use/useListData";
 import { useMessages } from "../Use/useMessages";
 import { useModal } from "../Use/useModal";
 import axios from "axios";
+import { useUserData } from "../Use/useUserData";
 
 
 export const GlobalContext = createContext();
@@ -21,14 +22,30 @@ export const GlobalContextProvider = ({children}) => {
     const [createRes, setCreateData] = useCreateData(null);
     const [editRes, setEditData] = useEditData(null);
 
+    const [users, setUpdateUsers] = useUserData();
+
     const [route, setRoute] = useState('bank');
+    const [logged, setLogged] = useState(null);
     const [authName, setAuthName] = useState(null);
+
+    useEffect(() => {
+
+        if (route === 'users') {
+            setUpdateUsers(Date.now());
+        } else if (route === 'bank') {
+            setLastUpdate(Date.now());
+        }
+
+    }, [route])
 
 
     const logOut = _ => {
         axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
         .then(res => {
             console.log(res.data);
+            setLogged(false);
+            setAuthName(false);
+            setRoute('bank');
         });
     }
 
@@ -71,7 +88,9 @@ export const GlobalContextProvider = ({children}) => {
             //route
             route, setRoute,
             //authorisation
-            authName, setAuthName, logOut
+            authName, setAuthName, logOut, logged, setLogged,
+            //users
+            users, setUpdateUsers,
             
         }}>
             {children}

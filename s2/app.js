@@ -30,7 +30,7 @@ app.use(
 );
 app.use(express.json());
 
-// API
+// API BANK
 
 //nuskaitom issilistinkim viska:
 app.get('/bank', (req, res) => {
@@ -150,12 +150,6 @@ app.post('/login', (req, res) => {
     }
 })
 
-app.post('/logout', (req, res) => {
-    res.cookie('cookieSession', '***');
-    res.json({
-        status: 'logout',
-    });
-});
 
 app.get('/login', (req, res) => {
     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
@@ -174,7 +168,23 @@ app.get('/login', (req, res) => {
     }
 })
 
+//LOGOUT
 
+app.post('/logout', (req, res) => {
+    res.cookie('cookieSession', '***');
+    res.json({
+        status: 'logout',
+    });
+});
+
+// USERS
+
+app.get('/users', (req, res) => {
+    // jei ateinam su get metodu, paverciam duomenis i json ir issiunciam i serveri
+    let allData = fs.readFileSync('./data/users.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
+    allData = JSON.parse(allData);
+    res.json(allData); // issiunciam i serveri duomenis, kuiuos gavome nuskaite is failo
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

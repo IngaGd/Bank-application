@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
+import { GlobalContext } from './GlobalContext';
 
 function Login() {
     //ateina is servo
@@ -11,16 +12,18 @@ function Login() {
     const [userName, setUserName] = useState('');
     const [userPsw, setUserPsw] = useState('');
 
+    const {setLogged, setAuthName, setRoute} = useContext(GlobalContext);
+
      //jei atpazistam pagal cookie, paliekam prisijungusi. sita vieta eina i interneta ir ima prisijungimo duomenis
-    useEffect(() => {
-        axios.get('http://localhost:3003/login', { withCredentials: true })
-            .then((res) => {
-                console.log(res.data);
-                if (res.data.status === 'valid') {
-                    setSavedUser(res.data.getName);
-                }
-            });
-    }, []);
+    // useEffect(() => {
+    //     axios.get('http://localhost:3003/login', { withCredentials: true })
+    //         .then((res) => {
+    //             console.log(res.data);
+    //             if (res.data.status === 'valid') {
+    //                 setSavedUser(res.data.getName);
+    //             }
+    //         });
+    // }, []);
 
 
 
@@ -38,6 +41,9 @@ function Login() {
                     setUserName('');
                     setUserPsw('');
                     setError(null);
+                    setLogged(false);
+                    setAuthName(res.data.getName);
+                    setRoute('bank');                    
                 } else {
                     setError(true);
                     setSavedUser(null);
