@@ -435,3 +435,69 @@ body {
         background-color: rgb(5, 81, 81);
     }
 }
+
+//-------------------------------------------------------
+
+// .container {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     background-color: #dfd3d3;
+//     overflow: hidden;
+
+//     .square {
+//         position: absolute;
+//         width: 200px;
+//         height: 200px;
+//         background-color: #333;
+//         transform: translate(-50%, -50%);
+//         animation: move 5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+
+//         &:first-child {
+//             top: 50%;
+//             left: 50%;
+//         }
+
+//         &:last-child {
+//             bottom: 50%;
+//             right: 50%;
+//         }
+//     }
+
+//     .title {
+//         position: relative;
+//         z-index: 1;
+//         font-size: 3rem;
+//         text-align: center;
+//         color: #fff;
+//     }
+
+//     &:hover {
+//         .square {
+//             animation-play-state: paused;
+//         }
+
+//         .square:first-child {
+//             left: 10%;
+//         }
+
+//         .square:last-child {
+//             right: 10%;
+//         }
+//     }
+// }
+
+// @keyframes move {
+//     0% {
+//         transform: translate(-50%, -50%) rotate(0deg);
+//     }
+
+//     50% {
+//         transform: translate(200%, -50%) rotate(45deg);
+//     }
+
+//     100% {
+//         transform: translate(-200%, -50%) rotate(0deg);
+//     }
+// }
