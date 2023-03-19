@@ -31,20 +31,9 @@ function Nav() {
                 ) : (
                     <>
                         <li className="item">
-                            <span
-                                onClick={(_) => setRoute('login')}
-                                className="link"
-                            >
-                                Login
-                            </span>
+                            <span onClick={(_) => setRoute('login')} className="link">Login</span>
                         </li>
-                        <li className="item">
-                            <span
-                                onClick={(_) => setRoute('register')}
-                                className="link"
-                            >
-                                Register
-                            </span>
+                        <li className="item"><span onClick={(_) => setRoute('register')} className="link">Register</span>
                         </li>
                     </>
                 )}

@@ -186,6 +186,38 @@ app.get('/users', (req, res) => {
     res.json(allData); // issiunciam i serveri duomenis, kuiuos gavome nuskaite is failo
 });
 
+app.post('/register', (req, res) => {
+    let allData = fs.readFileSync('./data/users.json', 'utf8');
+    allData = JSON.parse(allData);
+    const id = uuidv4();
+    const data = {
+        name: req.body.userName,
+        password: md5(req.body.userPsw),
+        id
+    };
+    allData.push(data);
+    allData = JSON.stringify(allData);
+    fs.writeFileSync('./data/users.json', allData, 'utf8');
+    res.json({
+        status: 'valid'
+    });
+});
+
+app.delete('/users/:id', (req, res) => {
+    //kintamus parametrus rasom :...
+    //is requesto paimam params, kurio vardas yra id
+    //pradzia kaip ir creato
+    let allData = fs.readFileSync('./data/users.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
+    allData = JSON.parse(allData);
+    let deletedData = allData.filter((d) => req.params.id !== d.id);
+    //deleted data sustringifyinta
+    deletedData = JSON.stringify(deletedData);
+    fs.writeFileSync('./data/users.json', deletedData, 'utf8');
+    res.json({
+        message: { text: 'User was deleted successfully', type: 'positive' },
+    });
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });

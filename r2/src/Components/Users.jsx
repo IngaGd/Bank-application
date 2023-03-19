@@ -4,7 +4,7 @@ import { GlobalContext } from "./GlobalContext";
 
 function Users() {
 
-    const {users, setUsers} = useContext(GlobalContext);
+    const {users, setDeleteUser} = useContext(GlobalContext);
 
     useEffect(() => {
 
@@ -23,7 +23,7 @@ function Users() {
                                         <h2>{u.name}</h2>
                                     </div>
                                     <div>
-                                        <button type="button" className="btn">Delete</button>
+                                        <button type="button" className="btn" onClick={_=> setDeleteUser(u)}>Delete</button>
                                     </div>
                                 </div>
                             </li>))

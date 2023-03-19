@@ -13,7 +13,7 @@ export const useDeleteData = init => {
             return;
         }
         axios.delete(URL + '/' + data.id) //naudojam metoda delete
-            //plius deleteData.id, perdavimas per parametrus (trinamo kauliuko id)
+            //plius data.id, perdavimas per parametrus 
             .then(res => {
                 console.log(res.data);
                 setResponse(res.data);

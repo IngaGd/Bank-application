@@ -9,6 +9,7 @@ import { useMessages } from "../Use/useMessages";
 import { useModal } from "../Use/useModal";
 import axios from "axios";
 import { useUserData } from "../Use/useUserData";
+import { useDeleteUser } from "../Use/useDeleteUsers";
 
 
 export const GlobalContext = createContext();
@@ -23,6 +24,7 @@ export const GlobalContextProvider = ({children}) => {
     const [editRes, setEditData] = useEditData(null);
 
     const [users, setUpdateUsers] = useUserData();
+    const [userRes, setDeleteUser] = useDeleteUser();
 
     const [route, setRoute] = useState('bank');
     const [logged, setLogged] = useState(null);
@@ -30,11 +32,12 @@ export const GlobalContextProvider = ({children}) => {
 
     useEffect(() => {
 
-        if (route === 'users') {
-            setUpdateUsers(Date.now());
-        } else if (route === 'bank') {
-            setLastUpdate(Date.now());
-        }
+        // if (route === 'users') {
+        //     setUpdateUsers(Date.now());
+        // } else if (route === 'bank') {
+        //     setLastUpdate(Date.now());
+        // }
+        setLogged(null);
 
     }, [route])
 
@@ -90,7 +93,7 @@ export const GlobalContextProvider = ({children}) => {
             //authorisation
             authName, setAuthName, logOut, logged, setLogged,
             //users
-            users, setUpdateUsers,
+            users, setUpdateUsers, userRes, setDeleteUser,
             
         }}>
             {children}
