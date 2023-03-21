@@ -8,6 +8,9 @@ function Nav() {
         <nav>
             <ul>
                 <li className="item">
+                    <span onClick={_ => setRoute('home')} className={route === 'home' ? 'active' : ''}>Home</span>
+                </li>
+                <li className="item">
                     <span onClick={_ => setRoute('bank')} className={route === 'bank' ? 'active' : ''}>Bank</span>
                 </li>
                 <li className="item">

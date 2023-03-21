@@ -143,6 +143,7 @@ app.post('/login', (req, res) => {
             status: 'valid',
             getName: user.name
         });
+        res.redirect('/home');
     } else {
         res.json({
             status: 'error',
@@ -159,7 +160,8 @@ app.get('/login', (req, res) => {
     if (user) {
         res.json({
             status: 'valid',
-            getName: user.name
+            getName: user.name,
+            role: user.role
         });
     } else {
         res.json({
@@ -191,6 +193,7 @@ app.post('/register', (req, res) => {
     allData = JSON.parse(allData);
     const id = uuidv4();
     const data = {
+        role: 'manager',
         name: req.body.userName,
         password: md5(req.body.userPsw),
         id
@@ -203,19 +206,65 @@ app.post('/register', (req, res) => {
     });
 });
 
+//USER role:---------------------
+// Middleware function to check user's role
+// function checkUserRole(req, res, next) {
+//     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
+//     const user = users.find(u => u.session === req.cookies.cookieSession);
+//     if (user && user.role === 'manager') {
+//         // User has the required role, grant access
+//         next();
+//     } else {
+//         // User does not have the required role, deny access
+//         res.status(403).json({ message: 'Access denied' });
+//     }
+// }
+
+// // Bank route with middleware function to check user's role
+// app.get('/bank', checkUserRole, (req, res) => {
+//     let allData = fs.readFileSync('./data/bank.json', 'utf8');
+//     allData = JSON.parse(allData);
+//     res.json(allData);
+// });
+//----------------------------------
+
+//Total balances:
+// app.get('/', (req, res) => {
+//     // Read the bank data from the file
+//     let bankData = fs.readFileSync('./data/bank.json', 'utf8');
+//     bankData = JSON.parse(bankData);
+
+//     // Calculate the total balance and number of accounts
+//     const totalBalance = bankData.reduce((acc, curr) => acc + curr.balance, 0);
+//     const numOfAccounts = bankData.length;
+
+//     // Send the response with the home page and the calculated data
+//     res.send(`
+//         <h1>Welcome to the Bank!</h1>
+//         <p>Total Balance: ${totalBalance}</p>
+//         <p>Number of Accounts: ${numOfAccounts}</p>
+//         <p><a href="/bank">Bank</a></p>
+//     `);
+// });
+
 app.delete('/users/:id', (req, res) => {
     //kintamus parametrus rasom :...
     //is requesto paimam params, kurio vardas yra id
     //pradzia kaip ir creato
     let allData = fs.readFileSync('./data/users.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
     allData = JSON.parse(allData);
-    let deletedData = allData.filter((d) => req.params.id !== d.id);
-    //deleted data sustringifyinta
-    deletedData = JSON.stringify(deletedData);
-    fs.writeFileSync('./data/users.json', deletedData, 'utf8');
-    res.json({
-        message: { text: 'User was deleted successfully', type: 'positive' },
-    });
+    const userToDelete = allData.find(d => req.params.id === d.id);
+    if (userToDelete.role === 'admin') {
+        res.status(400).json({});
+    } else {
+        let deletedData = allData.filter((d) => req.params.id !== d.id);
+        //deleted data sustringifyinta
+        deletedData = JSON.stringify(deletedData);
+        fs.writeFileSync('./data/users.json', deletedData, 'utf8');
+        res.json({
+            message: { text: 'User was deleted successfully', type: 'positive' },
+        });
+    }
 });
 
 app.listen(port, () => {

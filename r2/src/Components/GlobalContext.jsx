@@ -26,9 +26,10 @@ export const GlobalContextProvider = ({children}) => {
     const [users, setUpdateUsers] = useUserData();
     const [userRes, setDeleteUser] = useDeleteUser();
 
-    const [route, setRoute] = useState('bank');
+    const [route, setRoute] = useState('home');
     const [logged, setLogged] = useState(null);
     const [authName, setAuthName] = useState(null);
+    const [authRole, setAuthRole] = useState(null);
 
     useEffect(() => {
 
@@ -91,7 +92,7 @@ export const GlobalContextProvider = ({children}) => {
             //route
             route, setRoute,
             //authorisation
-            authName, setAuthName, logOut, logged, setLogged,
+            authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
             //users
             users, setUpdateUsers, userRes, setDeleteUser,
             
