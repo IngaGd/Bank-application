@@ -206,46 +206,6 @@ app.post('/register', (req, res) => {
     });
 });
 
-//USER role:---------------------
-// Middleware function to check user's role
-// function checkUserRole(req, res, next) {
-//     const users = JSON.parse(fs.readFileSync('./data/users.json', 'utf8'));
-//     const user = users.find(u => u.session === req.cookies.cookieSession);
-//     if (user && user.role === 'manager') {
-//         // User has the required role, grant access
-//         next();
-//     } else {
-//         // User does not have the required role, deny access
-//         res.status(403).json({ message: 'Access denied' });
-//     }
-// }
-
-// // Bank route with middleware function to check user's role
-// app.get('/bank', checkUserRole, (req, res) => {
-//     let allData = fs.readFileSync('./data/bank.json', 'utf8');
-//     allData = JSON.parse(allData);
-//     res.json(allData);
-// });
-//----------------------------------
-
-//Total balances:
-// app.get('/', (req, res) => {
-//     // Read the bank data from the file
-//     let bankData = fs.readFileSync('./data/bank.json', 'utf8');
-//     bankData = JSON.parse(bankData);
-
-//     // Calculate the total balance and number of accounts
-//     const totalBalance = bankData.reduce((acc, curr) => acc + curr.balance, 0);
-//     const numOfAccounts = bankData.length;
-
-//     // Send the response with the home page and the calculated data
-//     res.send(`
-//         <h1>Welcome to the Bank!</h1>
-//         <p>Total Balance: ${totalBalance}</p>
-//         <p>Number of Accounts: ${numOfAccounts}</p>
-//         <p><a href="/bank">Bank</a></p>
-//     `);
-// });
 
 app.delete('/users/:id', (req, res) => {
     //kintamus parametrus rasom :...
