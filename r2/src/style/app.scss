@@ -585,6 +585,10 @@ nav {
     height: 80vh;
     background-color: lightgray;
     overflow: hidden;
+    background-image: url('../images/sky.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     .square {
         position: absolute;
@@ -597,7 +601,7 @@ nav {
         &:first-child {
             top: 55%;
             left: 55%;
-            background-color: rgb(8, 93, 93);;
+            background-color: rgb(8, 93, 93);
         }
 
         &:last-child {
