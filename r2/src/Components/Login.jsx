@@ -43,7 +43,7 @@ function Login() {
                     setError(null);
                     setLogged(false);
                     setAuthName(res.data.getName);
-                    setRoute('bank');                    
+                    setRoute('home');                    
                 } else {
                     setError(true);
                     setSavedUser(null);

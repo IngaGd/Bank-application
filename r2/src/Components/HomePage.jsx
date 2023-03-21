@@ -1,7 +1,11 @@
+import Totals from './Totals';
+
 function HomePage() {
-    
     return (
         <>
+            <div className="home-totals">
+                <Totals />
+            </div>
             <div class="container-home">
                 <div class="square"></div>
                 <div class="square"></div>

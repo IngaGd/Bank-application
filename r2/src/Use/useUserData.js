@@ -12,7 +12,7 @@ export const useUserData = init => {
         if (null === lastUpdate) {
             return;
         }
-        axios.get(URL) //gaunam duomenis
+        axios.get(URL, { withCredentials: true }) //gaunam duomenis
             .then(res => {//kai gaunam duomenis, irasom i lista
                 setList(res.data)
             });

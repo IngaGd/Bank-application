@@ -1,7 +1,7 @@
 function RoleError() {
 
     return (
-        <h1>You do not have a permision</h1>
+        <h1 className="role-error">You do not have a permission</h1>
     );
 }
 

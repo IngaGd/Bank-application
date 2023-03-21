@@ -31,6 +31,20 @@ export const GlobalContextProvider = ({children}) => {
     const [authName, setAuthName] = useState(null);
     const [authRole, setAuthRole] = useState(null);
 
+    //totals:
+    const [totalBalances, setTotalBalances] = useState(0);
+    const [numAccounts, setNumAccounts] = useState(0);
+
+        useEffect(() => {
+        if (null === list) {
+            return;
+        }
+        const balances = list.reduce((sum, { balance }) => sum + balance, 0);
+        setTotalBalances(balances);
+        setNumAccounts(list.length);
+    }, [list]);
+
+
     useEffect(() => {
 
         // if (route === 'users') {
@@ -42,6 +56,16 @@ export const GlobalContextProvider = ({children}) => {
 
     }, [route])
 
+    //users
+
+    useEffect(() => {
+        if (null === userRes) {
+            return;
+        }
+        setUpdateUsers(Date.now());
+
+    }, [userRes, setUpdateUsers]);
+
 
     const logOut = _ => {
         axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
@@ -49,7 +73,7 @@ export const GlobalContextProvider = ({children}) => {
             console.log(res.data);
             setLogged(false);
             setAuthName(false);
-            setRoute('bank');
+            setRoute('home');
         });
     }
 
@@ -78,6 +102,8 @@ export const GlobalContextProvider = ({children}) => {
         setLastUpdate(Date.now());
     }, [editRes, addMessage, setLastUpdate])
 
+
+
     return (
         <GlobalContext.Provider value={{
             messages,
@@ -95,6 +121,8 @@ export const GlobalContextProvider = ({children}) => {
             authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
             //users
             users, setUpdateUsers, userRes, setDeleteUser,
+            //totals
+            totalBalances, setTotalBalances, numAccounts, setNumAccounts,
             
         }}>
             {children}

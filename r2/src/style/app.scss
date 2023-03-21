@@ -582,7 +582,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     background-color: lightgray;
     overflow: hidden;
 
@@ -592,7 +592,7 @@ nav {
         height: 250px;
         background-color: #333;
         transform: translate(-35%, -35%);
-        animation: move 7s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+        animation: move 7s infinite;
 
         &:first-child {
             top: 55%;
@@ -627,6 +627,26 @@ nav {
     //         right: 10%;
     //     }
     // }
+}
+
+.home-totals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background-color: white;
+    font-size: 20px;
+    color: rgb(8, 93, 93);
+    font-weight: 700;
+}
+
+.role-error {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(8, 93, 93);
+    height: 50px;
 }
 
 // @keyframes move {
