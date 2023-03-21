@@ -12,13 +12,13 @@ function Users() {
 
     return (
         <>
-        <div className="container">
-            <div className="content">
-                <div className="list">
-                    <ul>
+        <div className="container-users">
+            <div className="content-users">
+                <div className="list-users">
+                    <ul className="users">
                         {
                             users?.map(u => (<li key={u.id} className="">
-                                <div>
+                                <div className="users-display">
                                     <div>
                                         <h2>{u.name}</h2>
                                     </div>
