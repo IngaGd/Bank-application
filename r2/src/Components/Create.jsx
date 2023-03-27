@@ -5,12 +5,11 @@ import { GlobalContext } from "./GlobalContext";
 
 function Create() {
 
-    const {setCreateData} = useContext(GlobalContext);
-
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');  
     const [balance, setBalance] = useState(0);  
-    
+
+    const {setCreateData} = useContext(GlobalContext);    
 
     const create = _ => {
         setCreateData(
