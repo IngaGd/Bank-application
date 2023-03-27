@@ -43,6 +43,31 @@ app.get('/users', (req, res) => {
     })
 });
 
+app.get('/accounts', (req, res) => {
+    const sql = `
+    SELECT name, surname, balance
+    FROM accounts
+    `
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.json(result);
+
+    })
+})
+
+app.post('/accounts', (req, res) => {
+    const sql = `
+    INSERT INTO accounts (name, surname, balance)
+    VALUES (?, ?, ?)
+    `;
+    connection.query(sql, [req.body.name, req.body.surname, req.body.balance], (err) => {
+        if (err) throw err;
+        res.json({});
+
+    })
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

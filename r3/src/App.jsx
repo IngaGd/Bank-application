@@ -1,14 +1,15 @@
 import './style/app.scss';
 import { GlobalContextProvider } from './Components/GlobalContext';
-import Users from './Components/Users';
-import ListOfUsers from './Components/ListOfUsers';
+import ListOfAccounts from './Components/ListOfAccount';
+import CreateAccount from './Components/CreateAccount';
+import Bank from './Components/Bank';
 
 
 
 function App() {
     return (
           <GlobalContextProvider>
-            <ListOfUsers />
+            <Bank />
           </GlobalContextProvider>
     );
 }

@@ -1,14 +1,10 @@
-import { useState } from "react";
-import Create from "./Create";
-import Filter from "./Filter";
-import List from "./List";
-import Messages from "./Messages";
-import Totals from "./Totals";
+import ListOfAccount from './ListOfAccount';
+import CreateAccount from "./CreateAccount";
 
 
 function Bank() {
 
-    const [filter, setFilter] = useState('all');
+    // const [filter, setFilter] = useState('all');
 
 
     return (
@@ -17,10 +13,10 @@ function Bank() {
             <div className="container">
                 <div className="content">
                     <div className="create">
-                        <Create />
+                        <CreateAccount />
                     </div>
                     <div className="list">
-                        <List filter={filter} />
+                        <ListOfAccount />
                     </div>
                 </div>
             </div>

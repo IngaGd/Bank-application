@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-const URL = 'http://localhost:3003/users'
+const URL = 'http://localhost:3003/accounts';
 
-export const useRead = _ => {
+export const useReadAccounts = _ => {
 
     const [list, setList] = useState(null);
-    const [update, setUpdate] = useState()
+    const [update, setUpdate] = useState();
 
     useEffect(() => {
         axios.get(URL, { withCredentials: true })
