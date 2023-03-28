@@ -5,13 +5,13 @@ const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
 
 const app = express();
-const port = 3003;
+const port = 3006;
 
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'bank'
+    database: 'bankApplication'
 })
 
 //pasinaudojam, sutikimas, kad serveris gautu js is narsykles
@@ -32,20 +32,20 @@ app.use(
 );
 app.use(express.json());
 
-app.get('/users', (req, res) => {
-    const sql = `
-        SELECT name
-        FROM users
-    `
-    connection.query(sql, (err, result) => { //result yra rezultatas querio, kuri perdavem is sql
-        if (err) throw err; //jei nutinka erroras, parodo errora ir viskas nutruksta
-        res.json(result);
-    })
-});
+// app.get('/users', (req, res) => {
+//     const sql = `
+//         SELECT name
+//         FROM users
+//     `
+//     connection.query(sql, (err, result) => { //result yra rezultatas querio, kuri perdavem is sql
+//         if (err) throw err; //jei nutinka erroras, parodo errora ir viskas nutruksta
+//         res.json(result);
+//     });
+// });
 
 app.get('/accounts', (req, res) => {
     const sql = `
-    SELECT name, surname, balance
+    SELECT id, name, surname, balance
     FROM accounts
     `
     connection.query(sql, (err, result) => {
@@ -53,8 +53,8 @@ app.get('/accounts', (req, res) => {
         console.log(result);
         res.json(result);
 
-    })
-})
+    });
+});
 
 app.post('/accounts', (req, res) => {
     const sql = `
@@ -64,10 +64,20 @@ app.post('/accounts', (req, res) => {
     connection.query(sql, [req.body.name, req.body.surname, req.body.balance], (err) => {
         if (err) throw err;
         res.json({});
+    });
+});
 
-    })
-})
-
+//DELETE FROM table_name WHERE condition;
+app.delete('/accounts/:id', (req, res) => {
+    const deleteSql = `
+    DELETE FROM accounts
+    WHERE id = ?
+    `;
+    connection.query(deleteSql, [req.params.id], (err) => {
+        if (err) throw err;
+        res.json({});
+    });
+});
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

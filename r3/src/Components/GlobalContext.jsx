@@ -10,7 +10,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [users, updateUsers] = useReadUsers();
     const [accounts, updateAccounts] = useReadAccounts();
-    const [createRes, setCreateAccount] = useWriteAccount(null);
+    const [response, setCreateAccount, setEditAccount, setDeleteAccount] = useWriteAccount();
 
     useEffect(() => {
         updateUsers(Date.now())
@@ -18,7 +18,7 @@ export const GlobalContextProvider = ({ children }) => {
 
     useEffect(() => {
         updateAccounts(Date.now())
-    }, [updateAccounts, createRes]);
+    }, [updateAccounts, response]);
 
     return (
         <GlobalContext.Provider
@@ -28,7 +28,7 @@ export const GlobalContextProvider = ({ children }) => {
                 //list of accounts
                 accounts, updateAccounts,
                 //create accounts
-                createRes, setCreateAccount
+                setCreateAccount, setDeleteAccount
             }}
         >
             {children}

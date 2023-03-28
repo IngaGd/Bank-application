@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-const URL = 'http://localhost:3003/accounts';
+const URL = 'http://localhost:3006/accounts';
 
 export const useReadAccounts = _ => {
 
