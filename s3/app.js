@@ -79,6 +79,21 @@ app.delete('/accounts/:id', (req, res) => {
     });
 });
 
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
+app.put('/accounts/:id', (req, res) => {
+    const editSql = `
+    UPDATE accounts
+    SET name = ?, surname = ?, balance = ?
+    WHERE id = ?
+    `;
+    connection.query(editSql, [req.body.name, req.body.surname, req.body.balance, req.params.id], (err) => {
+        if (err) throw err;
+        res.json({});
+    });
+});
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
