@@ -85,7 +85,7 @@ nav {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 800px;
+            width: 1200px;
             border: none;
             border-radius: 3px;
             background-color: white;
@@ -653,16 +653,7 @@ nav {
     height: 50px;
 }
 
-// @keyframes move {
-//     0% {
-//         transform: translate(-50%, -50%) rotate(0deg);
-//     }
-
-//     50% {
-//         transform: translate(200%, -50%) rotate(45deg);
-//     }
-
-//     100% {
-//         transform: translate(-200%, -50%) rotate(0deg);
-//     }
-// }
+.image {
+    width: 200px;
+    height: auto;
+}
