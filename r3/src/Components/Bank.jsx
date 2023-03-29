@@ -1,5 +1,6 @@
 import ListOfAccount from './ListOfAccount';
 import CreateAccount from "./CreateAccount";
+import EditAccount from './EditAccount';
 
 
 function Bank() {
@@ -13,13 +14,14 @@ function Bank() {
             <div className="container">
                 <div className="content">
                     <div className="create">
-                        <CreateAccount />
+                        <CreateAccount />  
                     </div>
                     <div className="list">
                         <ListOfAccount />
-                    </div>
+                    </div>              
                 </div>
             </div>
+            <EditAccount />
         </>
     );
 }

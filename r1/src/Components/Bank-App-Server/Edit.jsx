@@ -35,6 +35,24 @@ function Edit({ setEditData, setEditModal, editModal }) {
     setEditModal(null);
   };
 
+      const handleAddFunds = () => {
+        setBalance(balance + amount);
+        setAmount(0);
+    };
+
+    const handleWithdrawFunds = () => {
+        if (balance - amount < 0) {
+            setErrorMessage('There is not enough money in account.');
+            setTimeout(() => {
+                setErrorMessage(null);
+            }, 2000);
+        } else {
+            setBalance(balance - amount);
+            setAmount(0);
+            setErrorMessage('');
+        }
+    };
+
   return (
     <>
       <div className="edit-modal">

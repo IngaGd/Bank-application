@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { GlobalContext } from './GlobalContext';
 
 function ListOfAccount() {
-    const { accounts, setDeleteAccount } = useContext(GlobalContext);
+    const { accounts, setDeleteAccount, setEditModalAccount } = useContext(GlobalContext);
 
     return (
         <>
@@ -16,7 +16,8 @@ function ListOfAccount() {
                         <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{a.name}</span></div>
                         <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{a.surname}</span></div>
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
-                        <button className="" onClick={() => setDeleteAccount(a)}>Delete account</button>
+                        <button className="" onClick={() => setEditModalAccount(a)}>Edit account</button>  
+                        <button className="" onClick={() => setDeleteAccount(a)}>Delete account</button>  
                     </div>)
                 }
 

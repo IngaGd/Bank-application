@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { createContext } from 'react';
+import { useModal } from '../Use/useModal';
 import { useReadAccounts } from '../Use/useReadAccounts';
 import { useReadUsers } from '../Use/useReadUsers';
 import { useWriteAccount } from '../Use/useWriteAccount';
@@ -11,6 +12,7 @@ export const GlobalContextProvider = ({ children }) => {
     const [users, updateUsers] = useReadUsers();
     const [accounts, updateAccounts] = useReadAccounts();
     const [response, setCreateAccount, setEditAccount, setDeleteAccount] = useWriteAccount();
+    const [editModalAccount, setEditModalAccount] = useModal();
 
     useEffect(() => {
         updateUsers(Date.now())
@@ -28,7 +30,8 @@ export const GlobalContextProvider = ({ children }) => {
                 //list of accounts
                 accounts, updateAccounts,
                 //create accounts
-                setCreateAccount, setDeleteAccount
+                setCreateAccount, setDeleteAccount, setEditAccount,
+                editModalAccount, setEditModalAccount
             }}
         >
             {children}
