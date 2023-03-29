@@ -3,6 +3,8 @@ const cors = require('cors'); //isiinstalinam cors, pasirequirinam
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
+const { v4: uuidv4 } = require('uuid');
+const md5 = require('md5');
 
 const app = express();
 const port = 3006;
@@ -93,6 +95,70 @@ app.put('/accounts/:id', (req, res) => {
         res.json({});
     });
 });
+
+//LOGIN-------------------------
+
+app.post('/login', (req, res) => {
+    const sessionId = uuidv4();
+    //updatinam sesija
+    const sql = `
+    UPDATE users
+    SET session = ?
+    WHERE name = ? AND password = ?
+    `;
+    //sesija yra uuid sugeneruota
+    connection.query(sql, [sessionId, req.body.userName, md5(req.body.userPsw)], (err, result) => {
+        if (err) throw err;
+        //tikrinam, ar yra pas mus kazkas pasikeite
+        //
+        if (result.affectedRows) {//jei yra pasikeitimas, setinam cookie
+            res.cookie('bankSession', sessionId);
+            res.json({
+                status: 'valid',
+                getName: req.body.userName
+            });
+        } else { //jei neupdatina, siunciam errora
+            res.json({
+                status: 'error',
+            });
+        }
+    })
+});
+
+app.post('/logout', (req, res) => {
+    res.cookie('bankSession', '');
+    res.json({
+        status: 'logout',
+    });
+});
+
+//selektinam is db userius, kurie turi sesija 'banksession'
+app.get('/login', (req, res) => {
+
+    const sql = `
+    SELECT name
+    FROM users
+    WHERE session = ?
+    `;
+    connection.query(sql, [req.cookies.bankSession || ''], (err, result) => {
+        if (err) throw err;
+
+        if (result.length) {//jei rezultatas yra masyvas
+            res.json({
+                status: 'valid',
+                getName: result[0].name, //jei radom, tai paimam pirm1 objekto reiksme
+            });
+        } else {
+            res.json({
+                status: 'error'
+            });
+        }
+    });
+});
+
+
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

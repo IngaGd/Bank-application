@@ -2,12 +2,13 @@ import { useContext } from 'react';
 import { GlobalContext } from './GlobalContext';
 
 function ListOfAccount() {
-    const { accounts, setDeleteAccount, setEditModalAccount } = useContext(GlobalContext);
+    const { accounts, setDeleteAccount, setEditModalAccount, logOut } = useContext(GlobalContext);
 
     return (
         <>
             <div className="title">
                 List of accounts
+            <button className="" onClick={logOut}>Logout</button>  
             </div>
             <div className="client-list">
                 {
