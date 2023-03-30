@@ -10,7 +10,7 @@ function CreateAccount() {
     const [surname, setSurname] = useState('');  
     const [balance, setBalance] = useState(0);  
     const {setCreateAccount} = useContext(GlobalContext);
-    const [file, readFile] = useFile();//nuskaitytas failas
+    const [file, readFile, remFile] = useFile();//nuskaitytas failas
     
 
    const createAccount = _ => {
@@ -18,11 +18,13 @@ function CreateAccount() {
             {
                 name: name, 
                 surname: surname, 
-                balance: parseInt(balance)
+                balance: parseInt(balance),
+                file
             }); 
             setName('');
             setSurname('');
             setBalance(0);
+            remFile();
     }
 
 
@@ -40,6 +42,7 @@ return (
                         : null
                     }
                 </div>
+                <button className="btn" onClick={remFile}>Remove image</button>
                 <label className="label">Set name</label>
                 <input className="input" type="text" value={name} onChange={e => setName(e.target.value)} />
 

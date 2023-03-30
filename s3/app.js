@@ -8,6 +8,8 @@ const md5 = require('md5');
 
 const app = express();
 const port = 3006;
+app.use(express.json({ limit: '10mb' })); //pasididinom uploadinamo failo dydzio limita
+app.use(express.static('public')); //nurodom, kur laikom statinius failus
 
 const connection = mysql.createConnection({
     host: 'localhost',
