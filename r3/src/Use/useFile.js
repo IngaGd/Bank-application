@@ -1,13 +1,13 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export const useFile = _ => {
 
     const [file, setFile] = useState();
     const uploadInput = useRef(null);
 
-    // useEffect(() => {
-    //     console.log(file);
-    // }, [file]);
+    useEffect(() => {
+        //console.log(file);
+    }, [file]);
 
     const fileReader = file => {
         //failo skaitymas uztrunka, del to reikia asinchroninio laukimo
