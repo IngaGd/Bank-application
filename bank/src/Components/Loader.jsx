@@ -2,7 +2,7 @@ function Loader() {
 
     return (
         <div>
-            <span class="loader"></span>
+            <span className="loader"></span>
         </div>
     )
 }

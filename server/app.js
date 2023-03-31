@@ -1,16 +1,23 @@
 const express = require('express');
 const cors = require('cors'); //isiinstalinam cors, pasirequirinam
-//susiintstaliuojam uuid (cd s1, npm i uuid)
-// const paimam is cia: https://github.com/uuidjs/uuid#readme
-const { v4: uuidv4 } = require('uuid');
-//naudojam sinchronini skaityma: https://nodejs.dev/en/learn/reading-files-with-nodejs/
-//pasijusinam
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
+const mysql = require('mysql');
+const { v4: uuidv4 } = require('uuid');
 const md5 = require('md5');
 
 const app = express();
 const port = 3003;
+
+app.use(express.json({ limit: '10mb' })); //pasididinom uploadinamo failo dydzio limita
+app.use(express.static('public')); //nurodom, kur laikom statinius failus
+
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'bankApplication'
+})
 
 //pasinaudojam, sutikimas, kad serveris gautu js is narsykles
 app.use(
@@ -32,78 +39,83 @@ app.use(express.json());
 
 // API BANK
 
+//LIST---------------------------------------------------
 //nuskaitom issilistinkim viska:
 app.get('/bank', (req, res) => {
-    // jei ateinam su get metodu, paverciam duomenis i json ir issiunciam i serveri
-    let allData = fs.readFileSync('./data/bank.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
-    allData = JSON.parse(allData);
-    res.json(allData); // issiunciam i serveri duomenis, kuiuos gavome nuskaite is failo
+    const sql = `
+    SELECT id, image, name, surname, balance
+    FROM accounts
+    `
+    connection.query(sql, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.json(result);
+
+    });
 });
 
+//CREATE----------------------------------------------
 app.post('/bank', (req, res) => {
-    //req gaunam info is create data per res.data is app
-    let allData = fs.readFileSync('./data/bank.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
-    allData = JSON.parse(allData); //paverciam stringa i objekta, bodyje yra pas mus info su duomenimis, kuriuos siunciam
-    const data = { ...req.body }; //gaunam data, persikopijuojam tuos duomenis in case, data yra tai, ka siuntem is create
-    //panaudojam uuid, prie account duomenu dar pridedam id:
-    data.id = uuidv4();
-    //viska ipushinam i data:
-    allData.push(data);
-    let sortedData = allData.sort((a, b) => (a.surname > b.surname ? 1 : -1));
-    //ipushinta data verchiam i stringa:
-    sortedData = JSON.stringify(sortedData);
-    //gauta string irasom atgal i duomenis:
-    fs.writeFileSync('./data/bank.json', sortedData, 'utf8');
-    res.json({
-        message: {
-            text: 'New account was created successfully',
-            type: 'positive',
-        },
+    //Buffer - iskodavomas is base64 i binarini faila
+    //paimam img stringo koda, nuimdami 'galva', kuri kartojasi visur
+    //irasom failo varda (padarem ji random su uuid) ir pati faila
+    // const fileName = req.body.file ? uuidv4() + '.png' : null;
+
+    // if (fileName) {
+    //     const file = Buffer.from(req.body.file.replace('data:image/png;base64,', ''), 'base64');
+    //     fs.writeFileSync('./public/img/' + fileName, file);
+    // }
+
+    // console.log('fileName:', fileName);
+
+    const sql = `
+    INSERT INTO accounts (name, surname, balance)
+    VALUES (?, ?, ?)
+    `;
+    connection.query(sql, [req.body.name, req.body.surname, req.body.balance], (err) => {
+        if (err) throw err;
+        res.json({ message: 'Account created successfully!' });
     });
 });
 
-//trinam:
+//DELETE----------------------------------------------
 app.delete('/bank/:id', (req, res) => {
-    //kintamus parametrus rasom :...
-    //is requesto paimam params, kurio vardas yra id
-    //pradzia kaip ir creato
-    let allData = fs.readFileSync('./data/bank.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
-    allData = JSON.parse(allData);
-    let deletedData = allData.filter((d) => req.params.id !== d.id);
-    //deleted data sustringifyinta
-    deletedData = JSON.stringify(deletedData);
-    fs.writeFileSync('./data/bank.json', deletedData, 'utf8');
-    res.json({
-        message: { text: 'Account was deleted successfully', type: 'positive' },
+    // let sql = `
+    // SELECT image
+    // FROM accounts
+    // WHERE id = ?
+    // `
+    // connection.query(sql, [req.params.id], (err, result) => {
+    //     if (err) throw err;
+    //     console.log(result);
+    //     if (result[0].image) {
+    //         fs.unlinkSync('./public/img/' + result[0].image);
+    //     }
+    // });
+
+    const deleteSql = `
+    DELETE FROM accounts
+    WHERE id = ?
+    `;
+    connection.query(deleteSql, [req.params.id], (err) => {
+        if (err) throw err;
+        res.json({ message: 'Account created successfully!' });
     });
 });
 
-//edit
+//EDIT----------------------------------------------
+// UPDATE table_name
+// SET column1 = value1, column2 = value2, ...
+// WHERE condition;
 app.put('/bank/:id', (req, res) => {
-    //kintamus parametrus rasom :...
-    //is requesto paimam params, kurio vardas yra id
-    //pradzia kaip ir creato
-    let allData = fs.readFileSync('./data/bank.json', 'utf8'); //nuskaitom duomenis is failo (stringa)
-    allData = JSON.parse(allData);
-
-    //nuskaitom senus duomenis, kuriuos gaunam is bodzio
-    const data = {
-        name: req.body.name,
-        surname: req.body.surname,
-        balance: req.body.balance,
-    };
-
-    //mapinam, susirandam is params, ka norm editint, jei norim redaguiti,
-    //duodam naujus duomenis overraidindamis senus (viska isskyrus id overraidina),
-    //jei nenorim, perduodam viska
-    let editedData = allData.map((d) =>
-        req.params.id === d.id ? { ...d, ...data } : { ...d }
-    );
-    //edit data sustringifyinta
-    editedData = JSON.stringify(editedData);
-    fs.writeFileSync('./data/bank.json', editedData, 'utf8');
-    res.json({
-        message: { text: 'Changes were saved', type: 'positive' },
+    const editSql = `
+    UPDATE accounts
+    SET name = ?, surname = ?, balance = ?
+    WHERE id = ?
+    `;
+    connection.query(editSql, [req.body.name, req.body.surname, req.body.balance, req.params.id], (err) => {
+        if (err) throw err;
+        res.json({ message: 'Account was changed successfully!' });
     });
 });
 

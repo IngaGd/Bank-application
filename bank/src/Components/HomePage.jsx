@@ -6,10 +6,10 @@ function HomePage() {
             <div className="home-totals">
                 <Totals />
             </div>
-            <div class="container-home">
-                <div class="square"></div>
-                <div class="square"></div>
-                <h1 class="title">Welcome to the Bank</h1>
+            <div className="container-home">
+                <div className="square"></div>
+                <div className="square"></div>
+                <h1 className="title">Welcome to the Bank</h1>
             </div>
         </>
     );
