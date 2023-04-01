@@ -34,14 +34,25 @@ export const GlobalContextProvider = ({children}) => {
     //totals:
     const [totalBalances, setTotalBalances] = useState(0);
     const [numAccounts, setNumAccounts] = useState(0);
+    const [numWithImages, setNumWithImages] = useState(0);
+    const [numWithDefaultImage, setNumWithDefaultImage] = useState(0);
 
-        useEffect(() => {
+
+    useEffect(() => {
         if (null === list) {
             return;
         }
         const balances = list.reduce((sum, { balance }) => sum + balance, 0);
         setTotalBalances(balances);
         setNumAccounts(list.length);
+
+        // Count number of accounts with uploaded images
+        const numWithImages = list.filter((account) => account.image).length;
+        setNumWithImages(numWithImages);
+
+        // Count number of accounts with default image
+        const numWithDefaultImage = list.filter((account) => !account.image).length;
+        setNumWithDefaultImage(numWithDefaultImage);
     }, [list]);
 
 
@@ -122,7 +133,8 @@ export const GlobalContextProvider = ({children}) => {
             //users
             users, setUpdateUsers, userRes, setDeleteUser,
             //totals
-            totalBalances, setTotalBalances, numAccounts, setNumAccounts,
+            totalBalances, setTotalBalances, numAccounts, setNumAccounts, 
+            numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage
             
         }}>
             {children}
