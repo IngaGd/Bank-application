@@ -47,22 +47,22 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
             </div>
             <div className="client-list">
                 {
-                    filteredList.map(d => <div key={d.id} className="client">
+                    filteredList.map(a => <div key={a.id} className="client">
                         <div>
                             {
-                                d.image ? <img className='profile' src={IMG + d.image} /> : <img className='profile' src={IMG + 'portal.png'} />
+                                a.image ? <img className='profile' src={IMG + a.image} /> : <img className='profile' src={IMG + 'portal.png'} />
                             }
                         </div>
-                        <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{d.name}</span></div>
-                        <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{d.surname}</span></div>
-                        <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{d.balance}</span></div>
-                        <div className="delete-button" onClick={() => handleDelete(d)}></div>
-                        <div className="edit-button" onClick={() => setEditModal(d)}></div>
+                        <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{a.name}</span></div>
+                        <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{a.surname}</span></div>
+                        <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
+                        <div className="delete-button" onClick={() => handleDelete(a)}></div>
+                        <div className="edit-button" onClick={() => setEditModal(a)}></div>
                         {
-                            deleteModal && deleteModal.id === d.id ? <Delete account={d} setDeleteModal={setDeleteModal} setDeleteData={setDeleteData} /> : null
+                            deleteModal && deleteModal.id === a.id ? <Delete account={a} setDeleteModal={setDeleteModal} setDeleteData={setDeleteData} /> : null
                         }                        
                         {
-                            editModal && editModal.id === d.id ? <Edit setEditModal={setEditModal} editModal={editModal} setEditData={setEditData} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/> : null
+                            editModal && editModal.id === a.id ? <Edit setEditModal={setEditModal} editModal={editModal} setEditData={setEditData} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/> : null
                         }                     
                         
                     </div>)
