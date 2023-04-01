@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useState } from "react";
+import { useFile } from "../Use/useFile";
 import { GlobalContext } from "./GlobalContext";
 
 
@@ -8,6 +9,7 @@ function Create() {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');  
     const [balance, setBalance] = useState(0);  
+    const [file, readFile, remFile] = useFile();//nuskaitytas failas
 
     const {setCreateData} = useContext(GlobalContext);    
 
@@ -16,11 +18,13 @@ function Create() {
             {
                 name: name, 
                 surname: surname, 
-                balance: parseInt(balance)
+                balance: parseInt(balance),
+                file
             }); 
             setName('');
             setSurname('');
             setBalance(0);
+            remFile();
     }
 
 return (
@@ -29,6 +33,18 @@ return (
                 Create account
             </div>
             <div className="account">
+                <div>
+                    {
+                        file
+                        ? <img className="img" src={file} alt="upload" />
+                        : null
+                    }
+                </div>
+
+                <label className="label">Choose image</label>
+                <input className="input" type="file" onChange={readFile} />
+
+
                 <label className="label">Set name</label>
                 <input className="input" type="text" value={name} onChange={e => setName(e.target.value)} />
 

@@ -3,7 +3,7 @@ import Delete from "./Delete";
 import Edit from "./Edit";
 import { GlobalContext } from "./GlobalContext";
 import Messages from "./Messages";
-
+const IMG = 'http://localhost:3003/img/';
 
 function List({  setEditData, filter, errorMessage, setErrorMessage}) {
 
@@ -48,6 +48,11 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
             <div className="client-list">
                 {
                     filteredList.map(d => <div key={d.id} className="client">
+                        <div>
+                            {
+                                d.image ? <img className='profile' src={IMG + d.image} /> : <img className='profile' src={IMG + 'portal.png'} />
+                            }
+                        </div>
                         <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{d.name}</span></div>
                         <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{d.surname}</span></div>
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{d.balance}</span></div>

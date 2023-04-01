@@ -56,23 +56,23 @@ app.get('/bank', (req, res) => {
 
 //CREATE----------------------------------------------
 app.post('/bank', (req, res) => {
-    //Buffer - iskodavomas is base64 i binarini faila
-    //paimam img stringo koda, nuimdami 'galva', kuri kartojasi visur
-    //irasom failo varda (padarem ji random su uuid) ir pati faila
-    // const fileName = req.body.file ? uuidv4() + '.png' : null;
+    // Buffer - iskodavomas is base64 i binarini faila
+    // paimam img stringo koda, nuimdami 'galva', kuri kartojasi visur
+    // irasom failo varda (padarem ji random su uuid) ir pati faila
+    const fileName = req.body.file ? uuidv4() + '.png' : null;
 
-    // if (fileName) {
-    //     const file = Buffer.from(req.body.file.replace('data:image/png;base64,', ''), 'base64');
-    //     fs.writeFileSync('./public/img/' + fileName, file);
-    // }
+    if (fileName) {
+        const file = Buffer.from(req.body.file.replace('data:image/png;base64,', ''), 'base64');
+        fs.writeFileSync('./public/img/' + fileName, file);
+    }
 
-    // console.log('fileName:', fileName);
+    console.log('fileName:', fileName);
 
     const sql = `
-    INSERT INTO accounts (name, surname, balance)
-    VALUES (?, ?, ?)
+    INSERT INTO accounts (image, name, surname, balance)
+    VALUES (?, ?, ?, ?)
     `;
-    connection.query(sql, [req.body.name, req.body.surname, req.body.balance], (err) => {
+    connection.query(sql, [fileName, req.body.name, req.body.surname, req.body.balance], (err) => {
         if (err) throw err;
         res.json({ message: 'Account created successfully!' });
     });
@@ -80,18 +80,18 @@ app.post('/bank', (req, res) => {
 
 //DELETE----------------------------------------------
 app.delete('/bank/:id', (req, res) => {
-    // let sql = `
-    // SELECT image
-    // FROM accounts
-    // WHERE id = ?
-    // `
-    // connection.query(sql, [req.params.id], (err, result) => {
-    //     if (err) throw err;
-    //     console.log(result);
-    //     if (result[0].image) {
-    //         fs.unlinkSync('./public/img/' + result[0].image);
-    //     }
-    // });
+    let sql = `
+    SELECT image
+    FROM accounts
+    WHERE id = ?
+    `
+    connection.query(sql, [req.params.id], (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        if (result[0].image) {
+            fs.unlinkSync('./public/img/' + result[0].image);
+        }
+    });
 
     const deleteSql = `
     DELETE FROM accounts
