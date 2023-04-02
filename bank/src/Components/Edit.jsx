@@ -1,5 +1,8 @@
 import { useContext, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
+import { useFile } from "../Use/useFile";
+
+const IMG = 'http://localhost:3003/img/';
 
 function Edit({ setEditModal, editModal }) {
 
@@ -11,6 +14,8 @@ function Edit({ setEditModal, editModal }) {
     const [amount, setAmount] = useState(0);
     const [errorMessage, setErrorMessage] = useState('');
     const [confirmLargeAmount, setConfirmLargeAmount] = useState(false);
+
+    const [file, readFile, remFile] = useFile();
 
     const handleAddFunds = () => {
         if (amount > 1000) {
@@ -46,6 +51,7 @@ function Edit({ setEditModal, editModal }) {
             surname,
             balance,
             id: editModal.id,
+            file
         });
         setEditModal(null);
     };
@@ -75,6 +81,20 @@ function Edit({ setEditModal, editModal }) {
                         <button onClick={() => setConfirmLargeAmount(false)}>No</button>
                     </div>
                 }
+                <div className="input-group">
+                    <label className="label">Choose image</label>
+                    <input className="input" type="file" onChange={readFile} />
+                </div>
+                {
+                    file
+                    ? <img className='img' src={file} alt="upload" />
+                    : (
+                        editModal.image
+                        ? <img className='img' src={IMG + editModal.image} alt="upload" />
+                        : <img className='img' src={IMG + 'portal.png'} alt="upload" />
+                    )
+                }
+
                 <button className="bottom-btn" onClick={saveChanges}>
                     Save changes
                 </button>
