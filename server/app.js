@@ -123,18 +123,23 @@ app.delete('/bank/:id', (req, res) => {
 app.put('/bank/:id', (req, res) => {
     const fileName = req.body.file ? uuidv4() + '.png' : null;
 
+    let updateFields = 'name = ?, surname = ?, balance = ?';
+    let queryParams = [req.body.name, req.body.surname, req.body.balance, req.params.id];
+
     if (fileName) {
         const file = Buffer.from(req.body.file.replace('data:image/png;base64,', ''), 'base64');
         fs.writeFileSync('./public/img/' + fileName, file);
+        updateFields = 'image = ?, ' + updateFields;
+        queryParams.unshift(fileName);
     }
 
     console.log('fileName:', fileName);
     const editSql = `
     UPDATE accounts
-    SET image = ?, name = ?, surname = ?, balance = ?
+    SET ${updateFields}
     WHERE id = ?
     `;
-    connection.query(editSql, [fileName, req.body.name, req.body.surname, req.body.balance, req.params.id], (err) => {
+    connection.query(editSql, queryParams, (err) => {
         if (err) throw err;
         res.json({ message: 'Account was changed successfully!' });
     });
