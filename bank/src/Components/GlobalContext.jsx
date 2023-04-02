@@ -111,7 +111,16 @@ export const GlobalContextProvider = ({children}) => {
         }
         addMessage({text: editRes.message.text});
         setLastUpdate(Date.now());
-    }, [editRes, addMessage, setLastUpdate])
+    }, [editRes, addMessage, setLastUpdate]);
+
+    const reduceBalances = async () => {
+        try {
+            const updatedAccounts = await axios.put('http://localhost:3003/reduceBalances', {}, { withCredentials: true });
+            setLastUpdate(Date.now());
+        } catch (error) {
+        console.error(error);
+        }
+    };
 
 
 
@@ -134,7 +143,8 @@ export const GlobalContextProvider = ({children}) => {
             users, setUpdateUsers, userRes, setDeleteUser,
             //totals
             totalBalances, setTotalBalances, numAccounts, setNumAccounts, 
-            numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage
+            numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage,
+            reduceBalances
             
         }}>
             {children}

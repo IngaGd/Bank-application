@@ -39,6 +39,19 @@ app.use(express.json());
 
 // API BANK
 
+// Reduce balances by 5
+app.put('/reduceBalances', (req, res) => {
+    const sql = `
+    UPDATE accounts
+    SET balance = balance - 5
+    `;
+
+    connection.query(sql, (err) => {
+        if (err) throw err;
+        res.json({ message: 'Balances reduced successfully!' });
+    });
+});
+
 //LIST---------------------------------------------------
 //nuskaitom issilistinkim viska:
 app.get('/bank', (req, res) => {
