@@ -56,7 +56,7 @@ app.put('/reduceBalances', (req, res) => {
 //nuskaitom issilistinkim viska:
 app.get('/bank', (req, res) => {
     const sql = `
-    SELECT id, image, name, surname, balance
+    SELECT id, image, name, surname, balance, blocked
     FROM accounts
     `
     connection.query(sql, (err, result) => {
@@ -64,6 +64,32 @@ app.get('/bank', (req, res) => {
         console.log(result);
         res.json(result);
 
+    });
+});
+
+// BLOCK ACCOUNT
+app.put('/bank/block/:id', (req, res) => {
+    const sql = `
+    UPDATE accounts
+    SET blocked = 1
+    WHERE id = ?
+    `;
+    connection.query(sql, [req.params.id], (err) => {
+        if (err) throw err;
+        res.json({ message: 'Account blocked successfully!' });
+    });
+});
+
+// UNBLOCK ACCOUNT
+app.put('/bank/unblock/:id', (req, res) => {
+    const sql = `
+    UPDATE accounts
+    SET blocked = 0
+    WHERE id = ?
+    `;
+    connection.query(sql, [req.params.id], (err) => {
+        if (err) throw err;
+        res.json({ message: 'Account unblocked successfully!' });
     });
 });
 

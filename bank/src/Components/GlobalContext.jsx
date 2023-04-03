@@ -36,6 +36,9 @@ export const GlobalContextProvider = ({children}) => {
     const [numAccounts, setNumAccounts] = useState(0);
     const [numWithImages, setNumWithImages] = useState(0);
     const [numWithDefaultImage, setNumWithDefaultImage] = useState(0);
+    const [numWithZeroBalance, setNumWithZeroBalance] = useState(0);
+    const [numWithPositiveBalance, setNumWithPositiveBalance] = useState(0);
+    const [numWithNegativeBalance, setNumWithNegativeBalance] = useState(0);
 
 
     useEffect(() => {
@@ -53,6 +56,16 @@ export const GlobalContextProvider = ({children}) => {
         // Count number of accounts with default image
         const numWithDefaultImage = list.filter((account) => !account.image).length;
         setNumWithDefaultImage(numWithDefaultImage);
+
+        const zeroBalanceCount = list.filter(account => account.balance === 0).length;
+        setNumWithZeroBalance(zeroBalanceCount);
+
+        const positiveBalanceCount = list.filter(account => account.balance > 0).length;
+        setNumWithPositiveBalance(positiveBalanceCount);
+
+        const negativeBalanceCount = list.filter(account => account.balance < 0).length;
+        setNumWithNegativeBalance(negativeBalanceCount);
+
     }, [list]);
 
 
@@ -144,7 +157,9 @@ export const GlobalContextProvider = ({children}) => {
             //totals
             totalBalances, setTotalBalances, numAccounts, setNumAccounts, 
             numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage,
-            reduceBalances
+            numWithZeroBalance, numWithPositiveBalance, numWithNegativeBalance,
+            reduceBalances,
+            setLastUpdate
             
         }}>
             {children}

@@ -1,13 +1,18 @@
-import { useContext } from "react";
+import axios from "axios";
+import { useContext, useState } from "react";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import { GlobalContext } from "./GlobalContext";
 import Messages from "./Messages";
+
 const IMG = 'http://localhost:3003/img/';
+
 
 function List({  setEditData, filter, errorMessage, setErrorMessage}) {
 
-    const {setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, list} = useContext(GlobalContext);
+    const {setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, list, setLastUpdate} = useContext(GlobalContext);
+
+    const [blockedAccountError, setBlockedAccountError] = useState('');
 
 
     if (null === list) { //jei useState(null), vadinasi dar negavom is serverio jokiu duomenu
@@ -39,6 +44,35 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
         }
     };
 
+    const handleBlockAccount = async (accountId) => {
+        try {
+        await axios.put(`http://localhost:3003/bank/block/${accountId}`, {}, { withCredentials: true });
+            setLastUpdate(Date.now()); // Trigger a refresh of the account list
+        } catch (error) {
+        console.error(error);
+        }
+    };
+
+    const handleUnblockAccount = async (accountId) => {
+        try {
+        await axios.put(`http://localhost:3003/bank/unblock/${accountId}`, {}, { withCredentials: true });
+            setLastUpdate(Date.now()); // Trigger a refresh of the account list
+        } catch (error) {
+        console.error(error);
+        }
+    };
+
+    const handleActionIfNotBlocked = (account, action) => {
+        if (account.blocked) {
+            setBlockedAccountError('Account is blocked. Please unblock it first.');
+            setTimeout(() => {
+                setBlockedAccountError('');
+            }, 2000);
+        } else {
+            action();
+        }
+    };
+
 
     return (
         <>
@@ -56,8 +90,13 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
                         <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{a.name}</span></div>
                         <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{a.surname}</span></div>
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
-                        <div className="delete-button" onClick={() => handleDelete(a)}></div>
-                        <div className="edit-button" onClick={() => setEditModal(a)}></div>
+
+                        <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block Account</button>
+                        <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock Account</button>
+
+                        <div className="delete-button" onClick={() => handleActionIfNotBlocked(a, () => handleDelete(a))}></div>
+                        <div className="edit-button" onClick={() => handleActionIfNotBlocked(a, () => setEditModal(a))}></div>
+
                         {
                             deleteModal && deleteModal.id === a.id ? <Delete account={a} setDeleteModal={setDeleteModal} setDeleteData={setDeleteData} /> : null
                         }                        
@@ -70,6 +109,7 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
             </div>
             <div className="negative-msg">
                 {deleteModal && deleteModal.message && <div className="error">{deleteModal.message}</div>}
+                {blockedAccountError && <div className="error">{blockedAccountError}</div>}
             </div>
   
         </>
