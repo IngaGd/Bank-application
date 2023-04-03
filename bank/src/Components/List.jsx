@@ -103,8 +103,8 @@ function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
                         <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{a.surname}</span></div>
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
 
-                        <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block Account</button>
-                        <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock Account</button>
+                        <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block</button>
+                        <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock</button>
 
                         <div className="delete-button" onClick={() => handleActionIfNotBlocked(a, () => handleDelete(a))}></div>
                         <div className="edit-button" onClick={() => handleActionIfNotBlocked(a, () => setEditModal(a))}></div>

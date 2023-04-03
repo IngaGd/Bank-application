@@ -16,11 +16,14 @@ function Bank() {
 
 
     return (
-        <>
+        <>  
+            <div className="taxes-container">
+                <button className="taxes-btn" onClick={reduceBalances}>Reduce All Balances by 5</button>
+            </div>
+
             <h1 className="main-title">Bank application</h1>
             <div className="container">
                 <Totals />
-                <button onClick={reduceBalances}>Reduce All Balances by 5</button>
                 <div className="content">
                     <div className="create">
                         <Create />

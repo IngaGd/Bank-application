@@ -34,22 +34,30 @@ return (
             </div>
             <div className="account">
                 <div>
-                    {
-                        file
-                        ? <img className="img" src={file} alt="upload" />
-                        : null
-                    }
+                    <div className="file-uplodad">
+                        {
+                            file
+                            ? <img className="img" src={file} alt="upload" />
+                            : null
+                        }
+                    </div>
                 </div>
 
-                <label className="label">Choose image</label>
-                <input className="input" type="file" onChange={readFile} />
+                <div className="create-input">
+                    <label className="label">Choose image</label>
+                    <input className="input" type="file" onChange={readFile} />
+                </div>
 
 
-                <label className="label">Set name</label>
-                <input className="input" type="text" value={name} onChange={e => setName(e.target.value)} />
+                <div className="create-input">
+                    <label className="label">Set name</label>
+                    <input className="input" type="text" value={name} onChange={e => setName(e.target.value)} />
+                </div>
 
-                <label className="label">Set surname</label>
-                <input className="input" type="text" value={surname} onChange={e => setSurname(e.target.value)} />
+                <div className="create-input">
+                    <label className="label">Set surname</label>
+                    <input className="input" type="text" value={surname} onChange={e => setSurname(e.target.value)} />
+                </div>
 
                 {/* <label className="label">Balance</label>
                 <input className="input" type="text" value={balance} onChange={e => setBalance(e.target.value)}/> */}

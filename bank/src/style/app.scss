@@ -9,7 +9,7 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     letter-spacing: 0.5px;
-    background-color: rgb(86, 170, 170);
+    background-color: rgb(9, 10, 9);
 }
 
 nav {
@@ -17,7 +17,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: darkcyan;
+    background-color: rgb(172, 179, 167);
 
     ul {
         display: flex;
@@ -26,36 +26,66 @@ nav {
         li {
             margin-right: 30px;
             text-decoration: none;
-            color: white;
+            color: black;
             font-size: 20px;
-            transition: all 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s;
             &:hover {
-                color: rgb(5, 81, 81);
+                color: rgb(162, 208, 94);
+                background-color: #333;
             }
         }
     }
     .navbar-right {
         li {
             text-decoration: none;
-            color: white;
+            color: black;
             font-size: 20px;
-            transition: all 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
-
+            transition: all 0.3s;
             &:hover {
-                color: rgb(5, 81, 81);
+                color: rgb(162, 208, 94);
+                background-color: #333;
             }
         }
     }
 }
 
+.taxes-container {
+    display: flex;
+    width: 1300px;
+    align-items: center;
+    justify-content: flex-end;
+    .taxes-btn {
+        margin-top: 20px;
+        background-color: lightgrey;
+        padding: 5px 10px;
+        margin-left: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgb(8, 93, 93);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: rgb(8, 93, 93);
+            color: white;
+        }
+    }
+}
+
 .main-title {
-    margin-top: 100px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: rgb(162, 208, 94);
     font-size: 40px;
 }
 
@@ -66,9 +96,11 @@ nav {
 
     .totals {
         display: flex;
+        flex-direction: column;
+        width: 100%;
         align-items: center;
         justify-content: center;
-        color: white;
+        color: rgb(172, 179, 167);
         font-size: 20px;
         font-weight: 600;
     }
@@ -86,9 +118,9 @@ nav {
             flex-direction: column;
             align-items: center;
             width: 1200px;
-            border: none;
+            border: 2px solid rgb(162, 208, 94);
             border-radius: 3px;
-            background-color: white;
+            background-color: rgb(28, 36, 16);
             padding-bottom: 30px;
         }
 
@@ -99,9 +131,9 @@ nav {
             flex-direction: column;
             align-items: center;
             width: 1100px;
-            background-color: white;
+            background-color: rgb(28, 36, 16);
             padding-bottom: 30px;
-            color: darkgreen;
+            color: rgb(172, 179, 167);
             font-size: 16px;
         }
 
@@ -137,7 +169,7 @@ nav {
         justify-content: center;
         padding-top: 10px;
         padding-bottom: 10px;
-        color: darkcyan;
+        color: rgb(162, 208, 94);
         font-size: 22px;
         font-weight: 600;
     }
@@ -145,29 +177,42 @@ nav {
     .account {
         border: none;
         width: 100%;
-        display: flex;;
-        .label {
-            color: darkgreen;
-            font-weight: 600;
-            margin-right: 20px;
-            font-size: 18px;
-            font-weight: 400;
-        }
-
-        .input {
-            color: darkgreen;
-            border: none;
-            width: 200px;
-            height: 30px;
-            border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .file-uplodad {
+            border: 1px solid rgb(162, 208, 94);
+            width: 100px;
+            height: 100px;
             margin-right: 30px;
-            padding: 5px;
-            font-size: 16px;
-            background-color: lightgray;
         }
+        .create-input {
+            display: flex;
+            flex-direction: column;
+            .label {
+                color: rgb(162, 208, 94);
+                font-weight: 600;
+                margin-bottom: 10px;
+                margin-right: 20px;
+                font-size: 18px;
+                font-weight: 400;
+            }
 
-        input:focus {
-            outline: none;
+            .input {
+                color: black;
+                border: none;
+                width: 200px;
+                height: 30px;
+                border-radius: 3px;
+                margin-right: 30px;
+                padding: 5px;
+                font-size: 16px;
+                background-color: rgb(172, 179, 167);
+            }
+
+            input:focus {
+                outline: none;
+            }
         }
     }
 
@@ -178,7 +223,7 @@ nav {
             margin-top: 10px;
             width: 1000px;
             display: flex;
-            border: 1px dashed green;
+            border: 1px dashed rgb(162, 208, 94);
             padding: 10px 5px;
 
             .client-data {
@@ -208,7 +253,7 @@ nav {
     transition: all 0.3s;
 
     &::after {
-        content: 'Delete account';
+        content: 'Delete';
         display: block;
         padding: 8px 12px;
         background-color: darkcyan;
@@ -270,7 +315,7 @@ nav {
     transition: all 0.3s;
 
     &::after {
-        content: 'Edit balance';
+        content: 'Edit';
         display: block;
         padding: 8px 12px;
         background-color: darkcyan;
@@ -660,7 +705,8 @@ nav {
 }
 
 .profile {
-    width: 100px;
+    width: 120px;
+    border: 5px solid black;
 }
 
 .img {
