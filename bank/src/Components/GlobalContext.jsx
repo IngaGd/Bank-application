@@ -8,8 +8,8 @@ import { useListData } from "../Use/useListData";
 import { useMessages } from "../Use/useMessages";
 import { useModal } from "../Use/useModal";
 import axios from "axios";
-import { useUserData } from "../Use/useUserData";
-import { useDeleteUser } from "../Use/useDeleteUsers";
+// import { useUserData } from "../Use/useUserData";
+// import { useDeleteUser } from "../Use/useDeleteUsers";
 
 
 export const GlobalContext = createContext();
@@ -23,8 +23,8 @@ export const GlobalContextProvider = ({children}) => {
     const [createRes, setCreateData] = useCreateData(null);
     const [editRes, setEditData] = useEditData(null);
 
-    const [users, setUpdateUsers] = useUserData();
-    const [userRes, setDeleteUser] = useDeleteUser();
+    // const [users, setUpdateUsers] = useUserData();
+    // const [userRes, setDeleteUser] = useDeleteUser();
 
     const [route, setRoute] = useState('home');
     const [logged, setLogged] = useState(null);
@@ -82,13 +82,13 @@ export const GlobalContextProvider = ({children}) => {
 
     //users
 
-    useEffect(() => {
-        if (null === userRes) {
-            return;
-        }
-        setUpdateUsers(Date.now());
+    // useEffect(() => {
+    //     if (null === userRes) {
+    //         return;
+    //     }
+    //     setUpdateUsers(Date.now());
 
-    }, [userRes, setUpdateUsers]);
+    // }, [userRes, setUpdateUsers]);
 
 
     const logOut = _ => {
@@ -153,7 +153,7 @@ export const GlobalContextProvider = ({children}) => {
             //authorisation
             authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
             //users
-            users, setUpdateUsers, userRes, setDeleteUser,
+            //users, setUpdateUsers, userRes, setDeleteUser,
             //totals
             totalBalances, setTotalBalances, numAccounts, setNumAccounts, 
             numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage,

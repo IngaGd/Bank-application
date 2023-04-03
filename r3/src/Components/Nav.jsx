@@ -1,48 +1,48 @@
-import { useContext } from 'react';
-import { GlobalContext } from './GlobalContext';
+// import { useContext } from 'react';
+// import { GlobalContext } from './GlobalContext';
 
-function Nav() {
-    const { route, setRoute, authName, logOut } = useContext(GlobalContext);
+// function Nav() {
+//     const { route, setRoute, authName, logOut } = useContext(GlobalContext);
 
-    return (
-        <nav>
-            <ul>
-                <li className="item">
-                    <span onClick={_ => setRoute('home')} className={route === 'home' ? 'active' : ''}>Home</span>
-                </li>
-                <li className="item">
-                    <span onClick={_ => setRoute('bank')} className={route === 'bank' ? 'active' : ''}>Bank</span>
-                </li>
-                <li className="item">
-                    <span onClick={_ => setRoute('users')} className={route === 'bank' ? 'active' : ''}>Users</span>
-                </li>
-            </ul>
-            <ul className="navbar-right">
-                {authName ? (
-                    <>
-                        <li className="item">
-                            <span className="link">
-                                <b>{authName}</b>
-                            </span>
-                        </li>
-                        <li className="item">
-                            <span className="link" onClick={logOut}>
-                                Logout
-                            </span>
-                        </li>
-                    </>
-                ) : (
-                    <>
-                        <li className="item">
-                            <span onClick={(_) => setRoute('login')} className="link">Login</span>
-                        </li>
-                        <li className="item"><span onClick={(_) => setRoute('register')} className="link">Register</span>
-                        </li>
-                    </>
-                )}
-            </ul>
-        </nav>
-    );
-}
+//     return (
+//         <nav>
+//             <ul>
+//                 <li className="item">
+//                     <span onClick={_ => setRoute('home')} className={route === 'home' ? 'active' : ''}>Home</span>
+//                 </li>
+//                 <li className="item">
+//                     <span onClick={_ => setRoute('bank')} className={route === 'bank' ? 'active' : ''}>Bank</span>
+//                 </li>
+//                 <li className="item">
+//                     <span onClick={_ => setRoute('users')} className={route === 'bank' ? 'active' : ''}>Users</span>
+//                 </li>
+//             </ul>
+//             <ul className="navbar-right">
+//                 {authName ? (
+//                     <>
+//                         <li className="item">
+//                             <span className="link">
+//                                 <b>{authName}</b>
+//                             </span>
+//                         </li>
+//                         <li className="item">
+//                             <span className="link" onClick={logOut}>
+//                                 Logout
+//                             </span>
+//                         </li>
+//                     </>
+//                 ) : (
+//                     <>
+//                         <li className="item">
+//                             <span onClick={(_) => setRoute('login')} className="link">Login</span>
+//                         </li>
+//                         <li className="item"><span onClick={(_) => setRoute('register')} className="link">Register</span>
+//                         </li>
+//                     </>
+//                 )}
+//             </ul>
+//         </nav>
+//     );
+// }
 
-export default Nav;
+// export default Nav;

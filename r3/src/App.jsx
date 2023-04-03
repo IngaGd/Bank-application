@@ -2,14 +2,14 @@ import './style/app.scss';
 import { GlobalContextProvider } from './Components/GlobalContext';
 import Bank from './Components/Bank';
 import Authorisation from './Components/Authorisation';
-import Nav from './Components/Nav';
+//import Nav from './Components/Nav';
 
 
 
 function App() {
     return (
           <GlobalContextProvider>
-            <Nav />
+            {/* <Nav /> */}
             <Authorisation>
               <>
               <Bank />

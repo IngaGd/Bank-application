@@ -1,31 +1,16 @@
+import { useContext, useState } from "react";
 import axios from 'axios';
-import { useContext } from 'react';
-import { useState } from 'react';
-import { GlobalContext } from './GlobalContext';
+import { GlobalContext } from "./GlobalContext";
 
 function Login() {
-    //ateina is servo
-    const [savedUser, setSavedUser] = useState(null);
-    const [error, setError] = useState(null);
+
+const [error, setError] = useState(null);
 
     //suvedam interface
     const [userName, setUserName] = useState('');
     const [userPsw, setUserPsw] = useState('');
 
-    const {setLogged, setAuthName, setRoute} = useContext(GlobalContext);
-
-     //jei atpazistam pagal cookie, paliekam prisijungusi. sita vieta eina i interneta ir ima prisijungimo duomenis
-    // useEffect(() => {
-    //     axios.get('http://localhost:3003/login', { withCredentials: true })
-    //         .then((res) => {
-    //             console.log(res.data);
-    //             if (res.data.status === 'valid') {
-    //                 setSavedUser(res.data.getName);
-    //             }
-    //         });
-    // }, []);
-
-
+    const {setLogged, setAuthName, updateAccounts, setRoute} = useContext(GlobalContext);
 
     const login = (_) => {
         axios
@@ -37,19 +22,19 @@ function Login() {
             .then((res) => {
                 console.log(res.data);
                 if (res.data.status === 'valid') {
-                    setSavedUser(res.data.getName);
                     setUserName('');
                     setUserPsw('');
                     setError(null);
-                    setLogged(false);
+                    setLogged(1);//kai prisijunge loginas = 1
                     setAuthName(res.data.getName);
-                    setRoute('home');                    
+                    updateAccounts(Date.now()); //po login updatinam accounta    
+                    setRoute('home')         
                 } else {
                     setError(true);
-                    setSavedUser(null);
                 }
             });
     };
+
 
     return (
         <div className="container">
@@ -57,11 +42,6 @@ function Login() {
                 <div className="login-container">
                     <div className="body">
                         <h5 className="title">
-                            {savedUser ? (
-                                <span>Hello, {savedUser}</span>
-                            ) : (
-                                <span>Login</span>
-                            )}
                             {error ? (
                                 <span style={{ color: 'red' }}> Error</span>
                             ) : (
