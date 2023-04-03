@@ -31,6 +31,12 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
         filteredList = list.filter((account) => account.balance > 0);
     } else if (filter === 'empty') {
         filteredList = list.filter((account) => account.balance === 0);
+    } else if (filter === 'blocked') {
+        filteredList = list.filter((account) => account.blocked === 1);
+    } else if (filter === 'unblocked') {
+        filteredList = list.filter((account) => account.blocked === 0);
+    } else if (filter === 'negative') {
+        filteredList = list.filter((account) => account.balance < 0);
     }
 
     const handleDelete = (account) => {
