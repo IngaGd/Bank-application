@@ -4,6 +4,7 @@ import Filter from "./Filter";
 import { GlobalContext } from "./GlobalContext";
 import List from "./List";
 import Messages from "./Messages";
+import Sort from "./Sort";
 import Totals from "./Totals";
 
 
@@ -11,6 +12,7 @@ function Bank() {
 
     const [filter, setFilter] = useState('all');
     const { reduceBalances } = useContext(GlobalContext);
+    const [sort, setSort] = useState('unsort');
 
 
     return (
@@ -24,11 +26,14 @@ function Bank() {
                         <Create />
                     </div>
                     <div className="list">
-                        <List filter={filter} />
+                        <List filter={filter} sort={sort}/>
                         <Messages />
                     </div>
                     <div className="filter">
                         <Filter setFilter={setFilter} />
+                    </div>
+                    <div className="sort">
+                        <Sort setSort={setSort} />
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ import Messages from "./Messages";
 const IMG = 'http://localhost:3003/img/';
 
 
-function List({  setEditData, filter, errorMessage, setErrorMessage}) {
+function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
 
     const {setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, list, setLastUpdate} = useContext(GlobalContext);
 
@@ -78,6 +78,12 @@ function List({  setEditData, filter, errorMessage, setErrorMessage}) {
             action();
         }
     };
+
+    if (sort === 'name') {
+        filteredList.sort((a, b) => a.surname.localeCompare(b.surname));
+    } else if (sort === 'balance') {
+        filteredList.sort((a, b) => a.balance - b.balance);
+    }
 
 
     return (
