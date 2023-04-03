@@ -135,6 +135,18 @@ export const GlobalContextProvider = ({children}) => {
         }
     };
 
+    const handleReduceBalances = async () => {
+        try {
+            await axios.put('http://localhost:3003/reduceBalances', {}, { withCredentials: true });
+            setLastUpdate(Date.now()); // Trigger a refresh of the account list
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    <button onClick={handleReduceBalances}>Reduce Balances</button>
+
+
 
 
     return (
