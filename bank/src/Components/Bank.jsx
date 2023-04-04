@@ -18,7 +18,7 @@ function Bank() {
     return (
         <>  
             <div className="main-title-container">
-                <h1 className="main-title">Multydimensional Bank</h1>
+                <h1 className="main-title">Multidimensional Bank</h1>
 
                 <div className="totals-container">
                     <div className="row-left">
