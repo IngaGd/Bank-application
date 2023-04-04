@@ -9,13 +9,13 @@ function Totals() {
     return (
         
         <div className="totals">
-            Total balances: {totalBalances} <br/>
-            Number of accounts: {numAccounts} <br/>
-            Number of accounts with uploaded images: {numWithImages} <br/>
-            Number of accounts with default image: {numWithDefaultImage} <br/>
-            Number of accounts with zero balance: {numWithZeroBalance} <br/>
-            Number of accounts with positive balance: {numWithPositiveBalance} <br/>
-            Number of accounts with negative balance: {numWithNegativeBalance} <br/>
+            Total balances: <span>{totalBalances}</span><br/>
+            Number of accounts: <span>{numAccounts}</span><br/>
+            Number of accounts with uploaded images: <span>{numWithImages}</span><br/>
+            Number of accounts with default image: <span>{numWithDefaultImage}</span><br/>
+            Number of accounts with zero balance: <span>{numWithZeroBalance}</span> <br/>
+            Number of accounts with positive balance: <span>{numWithPositiveBalance}</span><br/>
+            Number of accounts with negative balance: <span>{numWithNegativeBalance}</span><br/>
         </div>
     );
 }

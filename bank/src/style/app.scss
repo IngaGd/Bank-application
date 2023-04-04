@@ -97,6 +97,9 @@ nav {
         color: rgb(172, 179, 167);
         font-size: 20px;
         font-weight: 600;
+        span {
+            color: rgb(162, 208, 94);
+        }
     }
 }
 
@@ -240,7 +243,21 @@ nav {
             }
         }
     }
+    .btn {
+        padding: 8px 12px;
+        background-color: rgb(172, 179, 167);
+        border: none;
+        border-radius: 5px;
+        color: black;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
 
+        &:hover {
+            background-color: rgb(162, 208, 94);
+        }
+    }
     .client-list {
         border: none;
 
@@ -253,45 +270,111 @@ nav {
 
             .client-data {
                 font-size: 18px;
-                width: 180px;
+                width: 160px;
                 padding: 5px;
-
+                display: flex;
+                align-items: center;
                 .label-text {
                     padding: 5px;
                 }
-
                 .input-text {
                     width: 120px;
                 }
             }
+            .list-buttons {
+                display: flex;
+                align-items: center;
+                .delete-button {
+                    height: 30px;
+                    margin-left: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+
+                    &::after {
+                        content: 'Delete';
+                        display: block;
+                        padding: 8px 12px;
+                        background-color: rgb(172, 179, 167);
+                        border: none;
+                        border-radius: 5px;
+                        color: black;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                    &:hover {
+                        box-shadow: 0px 3px 10px rgb(162, 208, 94);
+                    }
+                }
+                .edit-button {
+                    margin-left: 20px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+
+                    &::after {
+                        content: 'Edit';
+                        display: block;
+                        padding: 8px 12px;
+                        background-color: rgb(172, 179, 167);
+                        border-radius: 5px;
+                        color: black;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                    &:hover {
+                        box-shadow: 0px 3px 10px rgb(162, 208, 94);
+                    }
+                }
+                .block-btn {
+                    height: 30px;
+                    margin-left: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+                    padding: 8px 12px;
+                    background-color: rgb(172, 179, 167);
+                    border: none;
+                    border-radius: 5px;
+                    color: black;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    &:hover {
+                        box-shadow: 0px 3px 10px rgb(162, 208, 94);
+                    }
+                }
+                .unblock-btn {
+                    height: 30px;
+                    margin-left: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 5px;
+                    transition: all 0.3s;
+                    padding: 8px 12px;
+                    background-color: rgb(172, 179, 167);
+                    border: none;
+                    border-radius: 5px;
+                    color: black;
+                    font-size: 14px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    &:hover {
+                        box-shadow: 0px 3px 10px rgb(162, 208, 94);
+                    }
+                }
+            }
         }
-    }
-}
-
-.delete-button {
-    height: 30px;
-    margin-left: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    transition: all 0.3s;
-
-    &::after {
-        content: 'Delete';
-        display: block;
-        padding: 8px 12px;
-        background-color: rgb(172, 179, 167);
-        border: none;
-        border-radius: 5px;
-        color: black;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    &:hover {
-        box-shadow: 0px 3px 10px rgb(162, 208, 94);
     }
 }
 
@@ -327,32 +410,6 @@ nav {
         margin-left: 20px;
         padding: 2px 5px;
         border: 2px solid black;
-    }
-}
-
-.edit-button {
-    margin-left: 20px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    transition: all 0.3s;
-
-    &::after {
-        content: 'Edit';
-        display: block;
-        padding: 8px 12px;
-        background-color: rgb(172, 179, 167);
-        border-radius: 5px;
-        color: black;
-        font-size: 14px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    &:hover {
-        box-shadow: 0px 3px 10px rgb(162, 208, 94);
     }
 }
 
@@ -466,22 +523,6 @@ nav {
         color: red;
         font-size: 18px;
         font-weight: 600;
-    }
-}
-
-.btn {
-    padding: 8px 12px;
-    background-color: rgb(172, 179, 167);
-    border: none;
-    border-radius: 5px;
-    color: black;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-        background-color: rgb(162, 208, 94);
     }
 }
 

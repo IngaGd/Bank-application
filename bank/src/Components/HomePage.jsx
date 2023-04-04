@@ -8,7 +8,7 @@ function HomePage() {
                 <div className="home-totals">
                     <Totals />
                 </div>
-                <h1 className="title">Welcome to Multidimenttional <br/> Bank</h1>
+                <h1 className="title">Welcome to the Multidimenttional <br/> BANK</h1>
             </div>
         </>
     );

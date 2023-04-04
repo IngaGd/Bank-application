@@ -102,12 +102,16 @@ function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
                         <div className="client-data"><span className="label-text">Name:</span> <span className="input-text">{a.name}</span></div>
                         <div className="client-data"><span className="label-text">Surname:</span> <span className="input-text">{a.surname}</span></div>
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
+                        <div className="list-buttons">
 
-                        <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block</button>
-                        <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock</button>
+                            <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block</button>
+                            <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock</button>
 
-                        <div className="delete-button" onClick={() => handleActionIfNotBlocked(a, () => handleDelete(a))}></div>
-                        <div className="edit-button" onClick={() => handleActionIfNotBlocked(a, () => setEditModal(a))}></div>
+                            <div className="delete-button" onClick={() => handleActionIfNotBlocked(a, () => handleDelete(a))}></div>
+                            <div className="edit-button" onClick={() => handleActionIfNotBlocked(a, () => setEditModal(a))}></div>
+
+                        </div>
+
 
                         {
                             deleteModal && deleteModal.id === a.id ? <Delete account={a} setDeleteModal={setDeleteModal} setDeleteData={setDeleteData} /> : null
