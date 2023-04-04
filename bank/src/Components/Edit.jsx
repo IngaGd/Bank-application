@@ -83,8 +83,9 @@ function Edit({ setEditModal, editModal }) {
                 }
                 <div className="input-group">
                     <label className="label">Choose image</label>
-                    <input className="input" type="file" onChange={readFile} />
+                    <input className="input-file" type="file" onChange={readFile} />
                 </div>
+                <div className='edit-img'>
                 {
                     file
                     ? <img className='img' src={file} alt="upload" />
@@ -94,6 +95,9 @@ function Edit({ setEditModal, editModal }) {
                         : <img className='img' src={IMG + 'portal.png'} alt="upload" />
                     )
                 }
+
+                </div>
+
 
                 <button className="bottom-btn" onClick={saveChanges}>
                     Save changes

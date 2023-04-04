@@ -9,7 +9,7 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     letter-spacing: 0.5px;
-    background-color: rgb(9, 10, 9);
+    background-color: black;
 }
 
 nav {
@@ -55,55 +55,81 @@ nav {
     }
 }
 
-.taxes-container {
-    display: flex;
-    width: 1300px;
-    align-items: center;
-    justify-content: flex-end;
-    .taxes-btn {
-        margin-top: 20px;
-        background-color: lightgrey;
-        padding: 5px 10px;
-        margin-left: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: 600;
-        color: rgb(8, 93, 93);
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s;
-
-        &:hover {
-            background-color: rgb(8, 93, 93);
-            color: white;
-        }
-    }
-}
-
-.main-title {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(162, 208, 94);
-    font-size: 40px;
-}
-
-.container {
+.main-title-container {
+    background-image: url('../images/space.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     width: 100%;
     padding-top: 35px;
     padding-bottom: 50px;
-
-    .totals {
+    display: flex;
+    flex-direction: column;
+    .title-img {
+        width: 30%;
+    }
+    .main-title {
+        margin-top: 20px;
+        margin-bottom: 50px;
         display: flex;
-        flex-direction: column;
-        width: 100%;
+        align-items: center;
+        justify-content: center;
+        color: rgb(162, 208, 94);
+        font-size: 40px;
+    }
+}
+
+.totals-container {
+    // width: 100%;
+    // display: inline-block;
+    width: 100%;
+    margin-left: 200px;
+    .title-img {
+        width: 30%;
+        float: left;
+    }
+    .totals {
+        margin-top: 50px;
+        float: right;
+        width: 65%;
         align-items: center;
         justify-content: center;
         color: rgb(172, 179, 167);
         font-size: 20px;
         font-weight: 600;
     }
+}
+
+.taxes-container {
+    display: flex;
+    width: 1300px;
+    align-items: center;
+    justify-content: flex-end;
+
+    .taxes-btn {
+        margin-top: 20px;
+        background-color: rgb(162, 208, 94);
+        padding: 5px 10px;
+        margin-left: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: 600;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: rgb(172, 179, 167);
+            color: black;
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 50px;
 
     .content {
         display: flex;
@@ -144,20 +170,19 @@ nav {
             margin-top: 30px;
 
             .filter-btn {
-                background-color: lightgrey;
+                background-color: rgb(172, 179, 167);
                 padding: 5px 10px;
                 margin-left: 10px;
                 border: none;
                 font-size: 14px;
                 font-weight: 600;
-                color: rgb(8, 93, 93);
+                color: black;
                 border-radius: 5px;
                 cursor: pointer;
                 transition: all 0.3s;
 
                 &:hover {
-                    background-color: rgb(8, 93, 93);
-                    color: white;
+                    background-color: rgb(162, 208, 94);
                 }
             }
         }
@@ -256,17 +281,17 @@ nav {
         content: 'Delete';
         display: block;
         padding: 8px 12px;
-        background-color: darkcyan;
+        background-color: rgb(172, 179, 167);
         border: none;
         border-radius: 5px;
-        color: white;
+        color: black;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
     }
 
     &:hover {
-        box-shadow: 0px 5px 10px rgb(5, 81, 81);
+        box-shadow: 0px 3px 10px rgb(162, 208, 94);
     }
 }
 
@@ -274,19 +299,19 @@ nav {
     transition: all 0.3s;
 
     &:hover {
-        background-color: rgb(5, 81, 81);
+        background-color: rgb(162, 208, 94);
     }
 }
 
 .delete-modal {
     position: absolute;
     left: 600px;
-    top: 500px;
+    top: 800px;
     width: 300px;
     height: 80px;
-    background-color: darkcyan;
+    background-color: rgb(172, 179, 167);
     z-index: 200;
-    color: white;
+    color: black;
     font-size: 18px;
     display: flex;
     justify-content: flex-start;
@@ -301,7 +326,7 @@ nav {
         cursor: pointer;
         margin-left: 20px;
         padding: 2px 5px;
-        border: 1px solid white;
+        border: 2px solid black;
     }
 }
 
@@ -318,32 +343,31 @@ nav {
         content: 'Edit';
         display: block;
         padding: 8px 12px;
-        background-color: darkcyan;
-        border: none;
+        background-color: rgb(172, 179, 167);
         border-radius: 5px;
-        color: white;
+        color: black;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
     }
 
     &:hover {
-        box-shadow: 0px 5px 10px rgb(5, 81, 81);
+        box-shadow: 0px 3px 10px rgb(162, 208, 94);
     }
 }
 
 .edit-modal {
     position: absolute;
-    background-color: white;
+    background-color: rgb(172, 179, 167);
     left: 550px;
-    top: 400px;
-    width: 500px;
+    top: 1000px;
+    width: 450px;
     height: 500px;
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: center;
-    border: 3px solid darkcyan;
+    border: 3px solid rgb(162, 208, 94);
     padding: 10px 10px;
 
     .buttons {
@@ -357,41 +381,51 @@ nav {
             padding: 5px 10px;
             margin-bottom: 10px;
             margin-right: 40px;
-            background-color: darkcyan;
+            background-color: rgb(162, 208, 94);
             border: none;
             border-radius: 5px;
-            color: white;
+            color: black;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
 
             &:hover {
-                background-color: rgb(5, 81, 81);
+                background-color: rgb(162, 208, 94);
             }
         }
     }
-
+    .input-file {
+        margin-left: 20px;
+        background-color: rgb(162, 208, 94);
+        color: #333;
+    }
+    .edit-img {
+        margin-top: 20px;
+        margin-left: 150px;
+        width: 120px;
+        border: 2px solid rgb(162, 208, 94);
+    }
     .bottom-btn {
         margin-top: 15px;
-        margin-left: 100px;
+        margin-left: 130px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         width: 150px;
-        background-color: darkcyan;
+        background-color: rgb(162, 208, 94);
         border: none;
         padding: 5px 5px;
         border-radius: 5px;
-        color: white;
+        color: black;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s;
 
         &:hover {
-            background-color: rgb(5, 81, 81);
+            background-color: rgb(162, 208, 94);
         }
     }
 
@@ -399,24 +433,30 @@ nav {
         margin-left: 15px;
         margin-top: 10px;
         font-size: 18px;
-
+        color: #333;
         .label-amount {
             margin-right: 12px;
+            color: #333;
         }
-
         .label-balance {
             margin-right: 30px;
+            color: #333;
         }
 
         .input-grey {
+            border-radius: 3px;
             background-color: lightgray;
-            border: 1px solid rgb(86, 170, 170);
+            border: lightgray;
             padding: 3px;
         }
 
         .input-white {
-            border: 1px solid rgb(86, 170, 170);
+            border-radius: 3px;
+            border: white;
             padding: 3px;
+        }
+        input:focus {
+            outline: none;
         }
     }
 
@@ -431,17 +471,17 @@ nav {
 
 .btn {
     padding: 8px 12px;
-    background-color: darkcyan;
+    background-color: rgb(172, 179, 167);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
 
     &:hover {
-        background-color: rgb(5, 81, 81);
+        background-color: rgb(162, 208, 94);
     }
 }
 
@@ -510,10 +550,10 @@ nav {
     }
 
     .btn {
-        background-color: darkcyan;
+        background-color: rgb(172, 179, 167);
         border: none;
         border-radius: 3px;
-        color: #fff;
+        color: black;
         cursor: pointer;
         font-size: 0.9rem;
         padding: 5px 10px;
@@ -631,68 +671,32 @@ nav {
 
 .container-home {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 80vh;
     background-color: lightgray;
     overflow: hidden;
-    background-image: url('../images/sky.jpg');
+    background-image: url('../images/cosmos.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    .square {
-        position: absolute;
-        width: 250px;
-        height: 250px;
-        background-color: #333;
-        transform: translate(-35%, -35%);
-        animation: move 7s infinite;
-
-        &:first-child {
-            top: 55%;
-            left: 55%;
-            background-color: rgb(8, 93, 93);
-        }
-
-        &:last-child {
-            bottom: 50%;
-            right: 50%;
-        }
+    .home-totals {
+        margin-top: -50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        font-size: 20px;
+        color: rgb(172, 179, 167);
+        font-weight: 700;
     }
-
     .title {
-        position: relative;
-        z-index: 1;
+        margin-top: 100px;
         font-size: 4rem;
         text-align: center;
-        color: #fff;
+        color: rgb(162, 208, 94);
     }
-
-    // &:hover {
-    //     .square {
-    //         animation-play-state: paused;
-    //     }
-
-    //     .square:first-child {
-    //         left: 10%;
-    //     }
-
-    //     .square:last-child {
-    //         right: 10%;
-    //     }
-    // }
-}
-
-.home-totals {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 50px;
-    background-color: white;
-    font-size: 20px;
-    color: rgb(8, 93, 93);
-    font-weight: 700;
 }
 
 .role-error {
@@ -706,9 +710,9 @@ nav {
 
 .profile {
     width: 120px;
-    border: 5px solid black;
+    border: 2px solid rgb(162, 208, 94);
 }
 
 .img {
-    width: 100px;
+    width: 120px;
 }

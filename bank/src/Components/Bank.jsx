@@ -17,13 +17,21 @@ function Bank() {
 
     return (
         <>  
-            <div className="taxes-container">
-                <button className="taxes-btn" onClick={reduceBalances}>Reduce All Balances by 5</button>
-            </div>
+            <div className="main-title-container">
+                <h1 className="main-title">Multydimensional Bank</h1>
 
-            <h1 className="main-title">Bank application</h1>
+                <div className="totals-container">
+                    <div className="row-left">
+                        <img className="title-img" src={'http://localhost:3003/img/spaceship.png'}/>
+                    </div>
+                    <Totals />
+                </div>   
+                <div className="taxes-container">
+                    <button className="taxes-btn" onClick={reduceBalances}>Reduce All Balances by 5</button>
+                </div>         
+            </div>
             <div className="container">
-                <Totals />
+
                 <div className="content">
                     <div className="create">
                         <Create />
