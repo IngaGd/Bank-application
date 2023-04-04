@@ -232,9 +232,10 @@ nav {
         justify-content: center;
         .file-uplodad {
             border: 1px solid rgb(162, 208, 94);
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             margin-right: 30px;
+            margin-bottom: 30px;
         }
         .create-input {
             display: flex;
@@ -416,8 +417,8 @@ nav {
 
 .delete-modal {
     position: absolute;
-    left: 600px;
-    top: 800px;
+    left: 800px;
+    top: 1300px;
     width: 300px;
     height: 80px;
     background-color: rgb(172, 179, 167);
@@ -454,7 +455,27 @@ nav {
     justify-content: center;
     border: 3px solid rgb(162, 208, 94);
     padding: 10px 10px;
-
+    .confirmation {
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: 600;
+        color: crimson;
+        text-align: center;
+        button {
+            border: none;
+            background-color: rgb(162, 208, 94);
+            padding: 10px 10px;
+            margin-top: 5px;
+            margin-right: 20px;
+            font-size: 16px;
+            font-weight: 400;
+            border-radius: 3px;
+            &:hover {
+                background-color: black;
+                color: rgb(162, 208, 94);
+            }
+        }
+    }
     .buttons {
         display: flex;
         width: 100%;
