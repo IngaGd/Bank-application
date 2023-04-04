@@ -16,7 +16,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 5px 50px;
     background-color: rgb(172, 179, 167);
 
     ul {
@@ -65,9 +65,6 @@ nav {
     padding-bottom: 50px;
     display: flex;
     flex-direction: column;
-    .title-img {
-        width: 30%;
-    }
     .main-title {
         margin-top: 20px;
         margin-bottom: 50px;
@@ -83,7 +80,7 @@ nav {
     // width: 100%;
     // display: inline-block;
     width: 100%;
-    margin-left: 200px;
+    margin-left: 330px;
     .title-img {
         width: 30%;
         float: left;
