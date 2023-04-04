@@ -11,9 +11,9 @@ const IMG = 'http://localhost:3003/img/';
 function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
 
     const {setDeleteModal, deleteModal, setDeleteData, setEditModal, editModal, list, setLastUpdate} = useContext(GlobalContext);
-
+    
     const [blockedAccountError, setBlockedAccountError] = useState('');
-
+    const [activeButtons, setActiveButtons] = useState({});
 
     if (null === list) { //jei useState(null), vadinasi dar negavom is serverio jokiu duomenu
         return (
@@ -50,23 +50,25 @@ function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
         }
     };
 
-    const handleBlockAccount = async (accountId) => {
-        try {
+const handleBlockAccount = async (accountId) => {
+    try {
         await axios.put(`http://localhost:3003/bank/block/${accountId}`, {}, { withCredentials: true });
-            setLastUpdate(Date.now()); // Trigger a refresh of the account list
-        } catch (error) {
+        setLastUpdate(Date.now()); // Trigger a refresh of the account list
+        setActiveButtons({ ...activeButtons, [accountId]: 'block' });
+    } catch (error) {
         console.error(error);
-        }
-    };
+    }
+};
 
-    const handleUnblockAccount = async (accountId) => {
-        try {
+const handleUnblockAccount = async (accountId) => {
+    try {
         await axios.put(`http://localhost:3003/bank/unblock/${accountId}`, {}, { withCredentials: true });
-            setLastUpdate(Date.now()); // Trigger a refresh of the account list
-        } catch (error) {
+        setLastUpdate(Date.now()); // Trigger a refresh of the account list
+        setActiveButtons({ ...activeButtons, [accountId]: 'unblock' });
+    } catch (error) {
         console.error(error);
-        }
-    };
+    }
+};
 
     const handleActionIfNotBlocked = (account, action) => {
         if (account.blocked) {
@@ -104,8 +106,8 @@ function List({  setEditData, filter, sort, errorMessage, setErrorMessage}) {
                         <div className="client-data"><span className="label-text">Balance:</span> <span className="input-text">{a.balance}</span></div>
                         <div className="list-buttons">
 
-                            <button className="block-btn" onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Block</button>
-                            <button className="unblock-btn" onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblock</button>
+                            <button className={`block-btn${activeButtons[a.id] === 'block' ? " active" : ""}`} onClick={() => handleBlockAccount(a.id)} disabled={a.blocked}>Blocked</button>
+                            <button className={`unblock-btn${activeButtons[a.id] === 'unblock' ? " active" : ""}`} onClick={() => handleUnblockAccount(a.id)} disabled={!a.blocked}>Unblocked</button>
 
                             <div className="delete-button" onClick={() => handleActionIfNotBlocked(a, () => handleDelete(a))}></div>
                             <div className="edit-button" onClick={() => handleActionIfNotBlocked(a, () => setEditModal(a))}></div>

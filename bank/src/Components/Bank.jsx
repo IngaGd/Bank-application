@@ -27,7 +27,7 @@ function Bank() {
                     <Totals />
                 </div>   
                 <div className="taxes-container">
-                    <button className="taxes-btn" onClick={reduceBalances}>Reduce All Balances by 5</button>
+                    <button className="taxes-btn" onClick={reduceBalances}>TAXES: Reduce All Balances by 5</button>
                 </div>         
             </div>
             <div className="container">
