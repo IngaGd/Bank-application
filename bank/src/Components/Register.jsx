@@ -52,9 +52,9 @@ export default function Register() {
 
     return (
         <div className="container">
-            <div className="login-form">
-                <div className="login-form_box">
-                    <div className="login-form_box-content">
+            <div className="forms">
+                <div className="login-container">
+                    <div className="body">
                         <h5 className="title">
                             {error && (
                                 <span style={{ color: 'red' }}>
@@ -83,7 +83,7 @@ export default function Register() {
                             />
                         </div>
                     </div>
-                    <button className="btn_login" onClick={register}>
+                    <button className="btn" onClick={register}>
                         Register
                     </button>
                 </div>
