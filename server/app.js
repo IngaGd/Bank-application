@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const mysql = require('mysql');
 const { v4: uuidv4 } = require('uuid');
 const md5 = require('md5');
+const winston = require('winston');
 
 const app = express();
 const port = 3003;
@@ -36,6 +37,34 @@ app.use(
     })
 );
 app.use(express.json());
+
+//LOGGER
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    defaultMeta: { service: 'bank-app' },
+    transports: [
+        new winston.transports.File({
+            filename: './backend/logs/application.log',
+            level: 'error',
+            format: winston.format.combine(
+                winston.format.timestamp(),
+                winston.format.printf(({ timestamp, level, message }) => {
+                    return `${timestamp} [${level}]: ${message}`;
+                })
+            ),
+        }),
+        new winston.transports.Console({
+            level: 'info',
+            format: winston.format.combine(
+                winston.format.timestamp(),
+                winston.format.printf(({ timestamp, level, message }) => {
+                    return `${timestamp} [${level}]: ${message}`;
+                })
+            ),
+        })
+    ]
+});
 
 // API BANK
 
@@ -183,6 +212,59 @@ app.post('/cookies', (req, res) => {
     }
 
     res.json({ message: 'ok' });
+});
+//REGISTER----------------------
+
+//REGISTER
+app.post('/register', (req, res) => {
+    const sql1 = `
+    SELECT * FROM users
+    WHERE name = ?
+    `
+    const sessionId = uuidv4();
+
+    logger.info(`Checking availability for username: ${req.body.userName}`);
+
+    connection.query(sql1, [req.body.userName], (err, result) => {
+        if (err) {
+            logger.error(`Database error during username check: ${err.message}`);
+            res.status(500).json({
+                status: 'error',
+                message: 'An internal server error occured.'
+            });
+        } else if (result.length > 0) {
+            logger.warn(`Registration attempt with existing username: ${req.body.userName}`);
+            res.status(409).json({
+                status: 'error',
+                message: 'Username is already taken'
+            });
+        } else {
+            logger.info(`Username available for registration: ${req.body.userName}`);
+            const sql2 = `
+            INSERT INTO users (name, password, session)
+            VALUES (?, ?, ?)
+            `
+            connection.query(sql2, [req.body.userName, md5(req.body.userPsw), sessionId], (err, result) => {
+                if (err) {
+                    // Log the database error
+                    logger.error(`Database error during user registration: ${err.message}`);
+                    res.status(500).json({
+                        status: 'error',
+                        message: 'Registration failed due to a server error.'
+                    });
+                } else if (result.affectedRows) {
+                    logger.info(`User registered successfully: ${req.body.userName}`);
+                    res.json({ status: 'valid', message: 'Registration successful' });
+                } else {
+                    logger.warn(`Unexpected result during registration for user: ${req.body.userName}`);
+                    res.status(500).json({
+                        status: 'error',
+                        message: 'Registration failed due to an unexpected error.'
+                    });
+                }
+            })
+        }
+    });
 });
 
 //LOGIN-------------------------

@@ -14,12 +14,10 @@ Design:
 
 ## 🎯 Project features/goals
 
--   Github pages
--   design
--   React components
--   React useState
--   React useEffect
--   App functionalities - elements creation and removal, list sorting and filtering, add, delete and edit values
+-   CRUD - 4 different approaches (r1, r2, r3, bank - client side with ReactJS, s1, s2, s3, server - server side with ExpressJS)
+-   References to mysql database
+-   Design with SASS
+-   File uploading finctionality
 
 ## 🧰 Getting Started
 

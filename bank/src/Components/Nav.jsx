@@ -8,10 +8,20 @@ function Nav() {
         <nav>
             <ul>
                 <li className="item">
-                    <span onClick={_ => setRoute('home')} className={route === 'home' ? 'active' : ''}>Home</span>
+                    <span
+                        onClick={(_) => setRoute('home')}
+                        className={route === 'home' ? 'active' : ''}
+                    >
+                        Home
+                    </span>
                 </li>
                 <li className="item">
-                    <span onClick={_ => setRoute('bank')} className={route === 'bank' ? 'active' : ''}>Bank</span>
+                    <span
+                        onClick={(_) => setRoute('bank')}
+                        className={route === 'bank' ? 'active' : ''}
+                    >
+                        Bank
+                    </span>
                 </li>
             </ul>
             <ul className="navbar-right">
@@ -31,7 +41,20 @@ function Nav() {
                 ) : (
                     <>
                         <li className="item">
-                            <span onClick={(_) => setRoute('login')} className="link">Login</span>
+                            <span
+                                onClick={(_) => setRoute('login')}
+                                className="link"
+                            >
+                                Login
+                            </span>
+                        </li>
+                        <li className="item">
+                            <span
+                                onClick={(_) => setRoute('register')}
+                                className="link"
+                            >
+                                Register
+                            </span>
                         </li>
                     </>
                 )}
@@ -41,4 +64,3 @@ function Nav() {
 }
 
 export default Nav;
-
