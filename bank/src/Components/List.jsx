@@ -118,8 +118,8 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 />
                             ) : (
                                 <img
-                                    className="profile"
-                                    src={IMG + 'portal.png'}
+                                    className="client-image"
+                                    src={IMG + 'default-profile-photo.png'}
                                 />
                             )}
                         </div>
