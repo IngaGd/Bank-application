@@ -15,7 +15,7 @@ function Bank() {
     return (
         <>
             <div className="main-title-container">
-                <h1 className="main-title">Your account</h1>
+                <h1 className="main-title">Your accounts</h1>
                 <div className="totals-container">
                     <div className="row-left">
                         {/* <img
