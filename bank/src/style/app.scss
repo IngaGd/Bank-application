@@ -90,6 +90,9 @@ nav {
         color: rgb(204, 72, 169);
         font-size: 40px;
     }
+    @media (max-width: 827px) {
+        padding-bottom: 500px;
+    }
 }
 
 .totals-container {
@@ -148,6 +151,9 @@ nav {
     width: 100%;
     padding-top: 10px;
     padding-bottom: 50px;
+    @media (max-width: 827px) {
+        padding-bottom: 500px;
+    }
 
     .content {
         display: flex;
@@ -155,6 +161,9 @@ nav {
         width: 100%;
         align-items: center;
         justify-content: center;
+        @media (max-width: 827px) {
+            // margin-top: 500px;
+        }
 
         .create {
             margin-top: 20px;
@@ -166,6 +175,17 @@ nav {
             border-radius: 3px;
             background-color: var(--list-background);
             padding-bottom: 30px;
+            @media (max-width: 1220px) {
+                width: 1000px;
+            }
+            @media (max-width: 1041px) {
+                width: 800px;
+                padding-left: 5px;
+            }
+            @media (max-width: 827px) {
+                flex-direction: column;
+                width: 360px;
+            }
         }
 
         .list {
@@ -872,4 +892,51 @@ nav {
             /* 70% black */ rgba(27, 5, 64, 0.3) 70%,
             /* 30% blue */ rgba(255, 192, 203, 1) 100% /* 40% pink */
         );
+}
+
+.file-upload-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // @media (max-width: 1220px) {
+    //     width: 1000px;
+    // }
+    @media (max-width: 1041px) {
+        flex-direction: column;
+        .label {
+            text-align: center;
+        }
+    }
+}
+
+.create-input-box {
+    display: flex;
+    @media (max-width: 1041px) {
+        margin-top: 50px;
+    }
+}
+
+.inputs-and-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 1041px) {
+        flex-direction: column;
+        .btn {
+            margin-top: 60px;
+        }
+    }
+}
+
+.account {
+    @media (max-width: 827px) {
+        flex-direction: column;
+        margin-bottom: 100px;
+    }
+}
+
+.root-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

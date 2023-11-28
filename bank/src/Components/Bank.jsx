@@ -14,41 +14,43 @@ function Bank() {
 
     return (
         <>
-            <div className="main-title-container">
-                <h1 className="main-title">Your accounts</h1>
-                <div className="totals-container">
-                    <div className="row-left">
-                        {/* <img
+            <div className="root-container">
+                <div className="main-title-container">
+                    <h1 className="main-title">Your accounts</h1>
+                    <div className="totals-container">
+                        <div className="row-left">
+                            {/* <img
                             className="title-img"
                             src={'http://localhost:3003/img/spaceship.png'}
                         /> */}
+                        </div>
+                        <Totals />
                     </div>
-                    <Totals />
-                </div>
-                <div className="taxes-container">
-                    <button className="taxes-btn" onClick={reduceBalances}>
-                        TAXES: Reduce All Balances by 5
-                    </button>
-                </div>
-                <div className="container">
-                    <div className="content">
-                        <div className="create">
-                            <Create />
+                    <div className="taxes-container">
+                        <button className="taxes-btn" onClick={reduceBalances}>
+                            TAXES: Reduce All Balances by 5
+                        </button>
+                    </div>
+                    <div className="container">
+                        <div className="content">
+                            <div className="create">
+                                <Create />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="container list">
-                <div className="content">
-                    <div className="list">
-                        <List filter={filter} sort={sort} />
-                        <Messages />
-                    </div>
-                    <div className="filter">
-                        <Filter setFilter={setFilter} />
-                    </div>
-                    <div className="sort">
-                        <Sort setSort={setSort} />
+                <div className="container list">
+                    <div className="content">
+                        <div className="list">
+                            <List filter={filter} sort={sort} />
+                            <Messages />
+                        </div>
+                        <div className="filter">
+                            <Filter setFilter={setFilter} />
+                        </div>
+                        <div className="sort">
+                            <Sort setSort={setSort} />
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,16 +1,16 @@
-import { useContext, useState } from "react";
+import { useContext, useState } from 'react';
 import axios from 'axios';
-import { GlobalContext } from "./GlobalContext";
+import { GlobalContext } from './GlobalContext';
 
 function Login() {
-
-const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     //suvedam interface
     const [userName, setUserName] = useState('');
     const [userPsw, setUserPsw] = useState('');
 
-    const {setLogged, setAuthName, updateAccounts, setRoute} = useContext(GlobalContext);
+    const { setLogged, setAuthName, updateAccounts, setRoute } =
+        useContext(GlobalContext);
 
     const login = (_) => {
         axios
@@ -25,16 +25,15 @@ const [error, setError] = useState(null);
                     setUserName('');
                     setUserPsw('');
                     setError(null);
-                    setLogged(1);//kai prisijunge loginas = 1
+                    setLogged(1); //kai prisijunge loginas = 1
                     setAuthName(res.data.getName);
-                    updateAccounts(Date.now()); //po login updatinam accounta    
-                    setRoute('home')         
+                    setRoute('bank');
+                    updateAccounts(Date.now()); //po login updatinam accounta
                 } else {
                     setError(true);
                 }
             });
     };
-
 
     return (
         <div className="container">

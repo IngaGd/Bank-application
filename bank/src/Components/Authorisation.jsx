@@ -1,46 +1,45 @@
-import { useContext, useEffect } from "react";
-import Loader from "./Loader";
-import axios from "axios";
-import Login from "./Login";
-import { GlobalContext } from "./GlobalContext";
-
-
+import { useContext, useEffect } from 'react';
+import Loader from './Loader';
+import axios from 'axios';
+import Login from './Login';
+import { GlobalContext } from './GlobalContext';
 
 function Authorisation({ children, allowUnauthenticated }) {
-  const { setAuthName, logged, setLogged } = useContext(GlobalContext);
+    const { setAuthName, logged, setLogged } = useContext(GlobalContext);
 
-  useEffect(() => {
+    useEffect(() => {
+        if (logged === null) {
+            axios
+                .get('http://localhost:3003/login', { withCredentials: true })
+                .then((res) => {
+                    if (res.data.status === 'valid') {
+                        setAuthName(res.data.getName);
+                        setLogged(1);
+                    } else {
+                        setAuthName(null);
+                        setLogged(2);
+                    }
+                })
+                .catch((_) => {
+                    setAuthName(null);
+                    setLogged(2);
+                });
+        }
+        console.log('Logged state:', logged);
+    }, [setAuthName, setLogged, logged]);
+
     if (logged === null) {
-      axios
-        .get("http://localhost:3003/login", { withCredentials: true })
-        .then((res) => {
-          if (res.data.status === "valid") {
-            setAuthName(res.data.getName);
-            setLogged(1);
-          } else {
-            setAuthName(null);
-            setLogged(2);
-          }
-        })
-        .catch((_) => {
-          setAuthName(null);
-          setLogged(2);
-        });
+        // If loading, show loader
+        return <Loader />;
     }
-  }, [setAuthName, setLogged, logged]);
 
-  if (logged === null) {
-    // If loading, show loader
-    return <Loader />;
-  }
+    if (logged === 1) {
+        // If logged in, show children
+        return <>{children}</>;
+    }
 
-  if (logged === 1) {
-    // If logged in, show children
-    return <>{children}</>;
-  }
-
-  // If not logged in and allowUnauthenticated is true, show children, otherwise show login
-  return allowUnauthenticated ? <>{children}</> : <Login />;
+    // If not logged in and allowUnauthenticated is true, show children, otherwise show login
+    return allowUnauthenticated ? <>{children}</> : <Login />;
 }
 
 export default Authorisation;
