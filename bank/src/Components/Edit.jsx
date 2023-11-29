@@ -1,12 +1,11 @@
 import { useContext, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
-import { useFile } from "../Use/useFile";
+import { useFile } from '../Use/useFile';
 
 const IMG = 'http://localhost:3003/img/';
 
 function Edit({ setEditModal, editModal }) {
-
-    const {setEditData} = useContext(GlobalContext);
+    const { setEditData } = useContext(GlobalContext);
 
     const [name, setName] = useState(editModal.name);
     const [surname, setSurname] = useState(editModal.surname);
@@ -51,7 +50,7 @@ function Edit({ setEditModal, editModal }) {
             surname,
             balance,
             id: editModal.id,
-            file
+            file,
         });
         setEditModal(null);
     };
@@ -60,56 +59,94 @@ function Edit({ setEditModal, editModal }) {
         <>
             <div className="edit-modal">
                 <div className="buttons">
-                    <button className='edit-btn' onClick={handleAddFunds}>Add amount</button>
-                    <button className='edit-btn' onClick={handleWithdrawFunds}>Withdraw</button>
+                    <button className="edit-btn" onClick={handleAddFunds}>
+                        Add amount
+                    </button>
+                    <button className="edit-btn" onClick={handleWithdrawFunds}>
+                        Withdraw
+                    </button>
                 </div>
-                <div className='input-container'>
+                <div className="input-container">
                     <div className="input-group">
-                        <label className='label-amount'>Amount to change:</label>
-                        <input className='input-white' type="text" value={amount} onChange={(e) => setAmount(parseInt(e.target.value))} />
+                        <label className="label-amount">
+                            Amount to change:
+                        </label>
+                        <input
+                            className="input-white"
+                            type="text"
+                            value={amount}
+                            onChange={(e) =>
+                                setAmount(parseInt(e.target.value))
+                            }
+                        />
                     </div>
                     <div className="input-group">
-                        <label className='label-balance'>Current balance:</label>
-                        <input className='input-grey' type="text" value={balance} onChange={(e) => setBalance(parseInt(e.target.value))} />
+                        <label className="label-balance">
+                            Current balance:
+                        </label>
+                        <input
+                            className="input-grey"
+                            type="text"
+                            value={balance}
+                            onChange={(e) =>
+                                setBalance(parseInt(e.target.value))
+                            }
+                        />
                     </div>
                 </div>
-                {
-                    confirmLargeAmount &&
-                    <div className='confirmation'>
-                        <p>Are you sure you want to add ${amount} to the account?</p>
+                {confirmLargeAmount && (
+                    <div className="confirmation">
+                        <p>
+                            Are you sure you want to add ${amount} to the
+                            account?
+                        </p>
                         <button onClick={handleConfirmLargeAmount}>Yes</button>
-                        <button onClick={() => setConfirmLargeAmount(false)}>No</button>
+                        <button onClick={() => setConfirmLargeAmount(false)}>
+                            No
+                        </button>
                     </div>
-                }
+                )}
                 <div className="input-group">
                     <label className="label">Choose image</label>
-                    <input className="input-file" type="file" onChange={readFile} />
+                    <input
+                        className="input-file"
+                        type="file"
+                        onChange={readFile}
+                    />
                 </div>
-                <div className='edit-img'>
-                {
-                    file
-                    ? <img className='img' src={file} alt="upload" />
-                    : (
-                        editModal.image
-                        ? <img className='img' src={IMG + editModal.image} alt="upload" />
-                        : <img className='img' src={IMG + 'portal.png'} alt="upload" />
-                    )
-                }
-
+                <div className="edit-img">
+                    {file ? (
+                        <img className="img" src={file} alt="upload" />
+                    ) : editModal.image ? (
+                        <img
+                            className="img"
+                            src={IMG + editModal.image}
+                            alt="upload"
+                        />
+                    ) : (
+                        <img
+                            className="img"
+                            src={IMG + 'default-profile-photo.png'}
+                            alt="upload"
+                        />
+                    )}
                 </div>
-
 
                 <button className="bottom-btn" onClick={saveChanges}>
                     Save changes
                 </button>
-                <button className="bottom-btn" onClick={() => setEditModal(null)}>
+                <button
+                    className="bottom-btn"
+                    onClick={() => setEditModal(null)}
+                >
                     Cancel
                 </button>
 
-                <div className='msg'>
-                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                <div className="msg">
+                    {errorMessage && (
+                        <div className="error-message">{errorMessage}</div>
+                    )}
                 </div>
-
             </div>
         </>
     );
