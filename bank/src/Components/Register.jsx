@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
 
+const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
+const registerURL = `${URL}register`;
+
 export default function Register() {
     const [error, setError] = useState(null);
     const [userName, setUserName] = useState('');
@@ -24,7 +27,7 @@ export default function Register() {
         }
         const postData = async () => {
             try {
-                const response = await fetch('http://localhost:3003/register', {
+                const response = await fetch(registerURL, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

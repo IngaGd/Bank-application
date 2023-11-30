@@ -5,7 +5,7 @@ import Edit from './Edit';
 import { GlobalContext } from './GlobalContext';
 import Messages from './Messages';
 
-const IMG = 'http://localhost:3003/img/';
+const IMG = process.env.REACT_APP_IMG_URL;
 
 function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
     const {

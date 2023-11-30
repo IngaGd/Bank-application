@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
 import { useFile } from '../Use/useFile';
 
-const IMG = 'http://localhost:3003/img/';
+const IMG = process.env.REACT_APP_IMG_URL;
 
 function Edit({ setEditModal, editModal }) {
     const { setEditData } = useContext(GlobalContext);

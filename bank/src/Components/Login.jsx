@@ -2,6 +2,9 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { GlobalContext } from './GlobalContext';
 
+const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
+const loginURL = `${URL}login`;
+
 function Login() {
     const [error, setError] = useState(null);
 
@@ -14,11 +17,7 @@ function Login() {
 
     const login = (_) => {
         axios
-            .post(
-                'http://localhost:3003/login',
-                { userName, userPsw },
-                { withCredentials: true }
-            )
+            .post(loginURL, { userName, userPsw }, { withCredentials: true })
             .then((res) => {
                 console.log(res.data);
                 if (res.data.status === 'valid') {

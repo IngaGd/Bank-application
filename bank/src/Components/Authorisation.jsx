@@ -4,13 +4,16 @@ import axios from 'axios';
 import Login from './Login';
 import { GlobalContext } from './GlobalContext';
 
+const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
+const loginURL = `${URL}login`;
+
 function Authorisation({ children, allowUnauthenticated }) {
     const { setAuthName, logged, setLogged } = useContext(GlobalContext);
 
     useEffect(() => {
         if (logged === null) {
             axios
-                .get('http://localhost:3003/login', { withCredentials: true })
+                .get(loginURL, { withCredentials: true })
                 .then((res) => {
                     if (res.data.status === 'valid') {
                         setAuthName(res.data.getName);

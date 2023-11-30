@@ -1,23 +1,25 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { createContext } from "react";
-import { useCreateData } from "../Use/useCreateData";
-import { useDeleteData } from "../Use/useDeleteData";
-import { useEditData } from "../Use/useEditData";
-import { useListData } from "../Use/useListData";
-import { useMessages } from "../Use/useMessages";
-import { useModal } from "../Use/useModal";
-import axios from "axios";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { createContext } from 'react';
+import { useCreateData } from '../Use/useCreateData';
+import { useDeleteData } from '../Use/useDeleteData';
+import { useEditData } from '../Use/useEditData';
+import { useListData } from '../Use/useListData';
+import { useMessages } from '../Use/useMessages';
+import { useModal } from '../Use/useModal';
+import axios from 'axios';
 // import { useUserData } from "../Use/useUserData";
 // import { useDeleteUser } from "../Use/useDeleteUsers";
 
+const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
+const logoutURL = `${URL}logout`;
+const reduceBalancesURL = `${URL}reduceBalances`;
 
 export const GlobalContext = createContext();
 
-export const GlobalContextProvider = ({children}) => {
-
+export const GlobalContextProvider = ({ children }) => {
     const [messages, addMessage] = useMessages([]);
-    const [deleteRes, setDeleteData] = useDeleteData(null)
+    const [deleteRes, setDeleteData] = useDeleteData(null);
     const [list, setLastUpdate] = useListData(null);
     const [deleteModal, setDeleteModal, editModal, setEditModal] = useModal();
     const [createRes, setCreateData] = useCreateData(null);
@@ -40,7 +42,6 @@ export const GlobalContextProvider = ({children}) => {
     const [numWithPositiveBalance, setNumWithPositiveBalance] = useState(0);
     const [numWithNegativeBalance, setNumWithNegativeBalance] = useState(0);
 
-
     useEffect(() => {
         if (null === list) {
             return;
@@ -54,31 +55,35 @@ export const GlobalContextProvider = ({children}) => {
         setNumWithImages(numWithImages);
 
         // Count number of accounts with default image
-        const numWithDefaultImage = list.filter((account) => !account.image).length;
+        const numWithDefaultImage = list.filter(
+            (account) => !account.image
+        ).length;
         setNumWithDefaultImage(numWithDefaultImage);
 
-        const zeroBalanceCount = list.filter(account => account.balance === 0).length;
+        const zeroBalanceCount = list.filter(
+            (account) => account.balance === 0
+        ).length;
         setNumWithZeroBalance(zeroBalanceCount);
 
-        const positiveBalanceCount = list.filter(account => account.balance > 0).length;
+        const positiveBalanceCount = list.filter(
+            (account) => account.balance > 0
+        ).length;
         setNumWithPositiveBalance(positiveBalanceCount);
 
-        const negativeBalanceCount = list.filter(account => account.balance < 0).length;
+        const negativeBalanceCount = list.filter(
+            (account) => account.balance < 0
+        ).length;
         setNumWithNegativeBalance(negativeBalanceCount);
-
     }, [list]);
 
-
     useEffect(() => {
-
         // if (route === 'users') {
         //     setUpdateUsers(Date.now());
         // } else if (route === 'bank') {
         //     setLastUpdate(Date.now());
         // }
         setLogged(null);
-
-    }, [route])
+    }, [route]);
 
     //users
 
@@ -90,91 +95,105 @@ export const GlobalContextProvider = ({children}) => {
 
     // }, [userRes, setUpdateUsers]);
 
-
-    const logOut = _ => {
-        axios.post('http://localhost:3003/logout', {}, { withCredentials: true })
-        .then(res => {
+    const logOut = (_) => {
+        axios.post(logoutURL, {}, { withCredentials: true }).then((res) => {
             console.log(res.data);
             setLogged(false);
             setAuthName(false);
             setRoute('home');
         });
-    }
-
+    };
 
     useEffect(() => {
         if (deleteRes === null) {
             return;
         }
-        addMessage({text: deleteRes.message.text});
+        addMessage({ text: deleteRes.message.text });
         setLastUpdate(Date.now());
-    }, [deleteRes, addMessage, setLastUpdate])
+    }, [deleteRes, addMessage, setLastUpdate]);
 
     useEffect(() => {
         if (createRes === null) {
             return;
         }
-        addMessage({text: createRes.message.text});  
+        addMessage({ text: createRes.message.text });
         setLastUpdate(Date.now());
     }, [createRes, addMessage, setLastUpdate]);
 
     useEffect(() => {
-        if(editRes === null){
+        if (editRes === null) {
             return;
         }
-        addMessage({text: editRes.message.text});
+        addMessage({ text: editRes.message.text });
         setLastUpdate(Date.now());
     }, [editRes, addMessage, setLastUpdate]);
 
     const reduceBalances = async () => {
         try {
-            const updatedAccounts = await axios.put('http://localhost:3003/reduceBalances', {}, { withCredentials: true });
+            const updatedAccounts = await axios.put(
+                reduceBalancesURL,
+                {},
+                { withCredentials: true }
+            );
             setLastUpdate(Date.now());
         } catch (error) {
-        console.error(error);
+            console.error(error);
         }
     };
 
     const handleReduceBalances = async () => {
         try {
-            await axios.put('http://localhost:3003/reduceBalances', {}, { withCredentials: true });
+            await axios.put(reduceBalancesURL, {}, { withCredentials: true });
             setLastUpdate(Date.now()); // Trigger a refresh of the account list
         } catch (error) {
             console.error(error);
         }
     };
 
-    <button onClick={handleReduceBalances}>Reduce Balances</button>
-
-
-
+    <button onClick={handleReduceBalances}>Reduce Balances</button>;
 
     return (
-        <GlobalContext.Provider value={{
-            messages,
-            setDeleteData,
-            list, 
-            deleteModal,
-            setDeleteModal,
-            editModal,
-            setEditModal,
-            setCreateData,
-            setEditData,
-            //route
-            route, setRoute,
-            //authorisation
-            authName, setAuthName, logOut, logged, setLogged, authRole, setAuthRole,
-            //users
-            //users, setUpdateUsers, userRes, setDeleteUser,
-            //totals
-            totalBalances, setTotalBalances, numAccounts, setNumAccounts, 
-            numWithImages, setNumWithImages, numWithDefaultImage, setNumWithDefaultImage,
-            numWithZeroBalance, numWithPositiveBalance, numWithNegativeBalance,
-            reduceBalances,
-            setLastUpdate
-            
-        }}>
+        <GlobalContext.Provider
+            value={{
+                messages,
+                setDeleteData,
+                list,
+                deleteModal,
+                setDeleteModal,
+                editModal,
+                setEditModal,
+                setCreateData,
+                setEditData,
+                //route
+                route,
+                setRoute,
+                //authorisation
+                authName,
+                setAuthName,
+                logOut,
+                logged,
+                setLogged,
+                authRole,
+                setAuthRole,
+                //users
+                //users, setUpdateUsers, userRes, setDeleteUser,
+                //totals
+                totalBalances,
+                setTotalBalances,
+                numAccounts,
+                setNumAccounts,
+                numWithImages,
+                setNumWithImages,
+                numWithDefaultImage,
+                setNumWithDefaultImage,
+                numWithZeroBalance,
+                numWithPositiveBalance,
+                numWithNegativeBalance,
+                reduceBalances,
+                setLastUpdate,
+            }}
+        >
             {children}
         </GlobalContext.Provider>
-    )
-}
+    );
+};
