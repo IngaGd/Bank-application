@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const URL = 'http://localhost:3003/bank';
+const URL = process.env.REACT_APP_URL + 'bank';
 
 export const useDeleteData = init => {
 

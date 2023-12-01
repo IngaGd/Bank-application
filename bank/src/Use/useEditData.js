@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react"
 
-const URL = 'http://localhost:3003/bank';
+const URL = process.env.REACT_APP_URL + 'bank';
 
 export const useEditData = init => {
 

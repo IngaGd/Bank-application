@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
 
-const URL = 'http://localhost:3003/bank';
+const URL = process.env.REACT_APP_URL + 'bank';
 
 export const useCreateData = init => {
 

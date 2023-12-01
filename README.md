@@ -1,16 +1,14 @@
 # Bank-application
 
 _website application project_
+One of 4 projects (folders bank and server) is deployed on Linux server, feel free to play on:
+http://wdp.lt:3003/
 
 <br>
 
 ## 🌟 About
 
 This project is for educational porpuses only. Pull request are welcome, but priority for project authors! Thank you for your cooperation!
-
-Site published at:
-
-Design:
 
 ## 🎯 Project features/goals
 

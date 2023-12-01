@@ -6,6 +6,7 @@ const mysql = require('mysql');
 const { v4: uuidv4 } = require('uuid');
 const md5 = require('md5');
 const winston = require('winston');
+const path = require('path');
 
 const app = express();
 const port = 3003;
@@ -20,6 +21,7 @@ const connection = mysql.createConnection({
     database: process.env.DB_DATABASE,
     port: process.env.DB_PORT,
 })
+
 console.log('Connecting to the database with host:', process.env.DB_HOST);
 //pasinaudojam, sutikimas, kad serveris gautu js is narsykles
 app.use(
@@ -326,6 +328,14 @@ app.get('/login', (req, res) => {
             });
         }
     });
+});
+
+app.use(express.static('public'));
+
+app.use(express.static(path.join(__dirname, '../bank/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../bank/build', 'index.html'));
 });
 
 app.listen(port, () => {
