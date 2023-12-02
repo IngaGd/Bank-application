@@ -5,6 +5,7 @@ import Edit from './Edit';
 import { GlobalContext } from './GlobalContext';
 import Messages from './Messages';
 
+const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
 const IMG = process.env.REACT_APP_IMG_URL;
 
 function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
@@ -60,7 +61,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
     const handleBlockAccount = async (accountId) => {
         try {
             await axios.put(
-                `http://localhost:3003/bank/block/${accountId}`,
+                `${URL}bank/block/${accountId}`,
                 {},
                 { withCredentials: true }
             );
@@ -74,7 +75,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
     const handleUnblockAccount = async (accountId) => {
         try {
             await axios.put(
-                `http://localhost:3003/bank/unblock/${accountId}`,
+                `${URL}bank/unblock/${accountId}`,
                 {},
                 { withCredentials: true }
             );
