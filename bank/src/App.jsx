@@ -1,4 +1,5 @@
 import './style/app.scss';
+// import './style/main.scss';
 import { GlobalContextProvider } from './Components/GlobalContext';
 // import Nav from './Components/Nav';
 // import Route from './Components/Route';
@@ -7,21 +8,16 @@ import Nav from './Components/Nav';
 //import Authorisation from './Components/Authorisation';
 import Route from './Components/Route';
 
-
-
 function App() {
-
-
     return (
-          <GlobalContextProvider>
+        <GlobalContextProvider>
             {/* <Nav />
             <Authorisation>
               <Bank />
             </Authorisation> */}
             <Nav />
             <Route />
-
-          </GlobalContextProvider>
+        </GlobalContextProvider>
     );
 }
 

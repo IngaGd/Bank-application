@@ -1,0 +1,65 @@
+.container-home {
+    .title {
+        display: flex;
+        flex-direction: column;
+        .title-part1 {
+            &.animated {
+                animation: apperance 2s ease-in;
+                animation-fill-mode: backwards;
+            }
+        }
+        .title-part2 {
+            &.animated {
+                animation-name: moveInBottom;
+                animation-duration: 1.5s;
+                animation-timing-function: ease-out;
+                animation-fill-mode: backwards;
+                animation-delay: 1.5s;
+            }
+        }
+    }
+    .login-offer {
+        width: 25rem;
+        margin-top: 5rem;
+        font-size: 2rem;
+        display: flex;
+        justify-content: space-between;
+        // .word-1 {
+        //     &.animated {
+        //         animation: apperance 1s ease-in;
+        //         animation-fill-mode: backwards;
+        //         animation-delay: 3.5s;
+        //     }
+        // }
+        // .word-2 {
+        //     &.animated {
+        //         animation: apperance 1s ease-in;
+        //         animation-fill-mode: backwards;
+        //         animation-delay: 4s;
+        //     }
+        // }
+        // .word-3 {
+        //     &.animated {
+        //         animation: apperance 1s ease-in;
+        //         animation-fill-mode: backwards;
+        //         animation-delay: 4.5s;
+        //     }
+        // }
+        // .word-4 {
+        //     &.animated {
+        //         animation: apperance 1s ease-in;
+        //         animation-fill-mode: backwards;
+        //         animation-delay: 5s;
+        //     }
+        // }
+        @for $i from 1 through 21 {
+            .sp-#{$i} {
+                &.animated {
+                    animation: apperance 0.1s;
+                    animation-fill-mode: backwards;
+                    animation-delay: #{3.5s + 0.1s * ($i - 1)};
+                }
+            }
+        }
+    }
+}
