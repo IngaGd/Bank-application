@@ -1,0 +1,32 @@
+.info {
+    display: grid;
+    grid-template-rows: 10rem 20rem 3.5rem;
+    @include respond(phone) {
+        grid-template-rows: 8rem 16rem 3.5rem;
+    }
+    &__main-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__totals-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 20rem;
+        align-items: center;
+        @include respond(phone) {
+            margin-right: 0;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    &__taxes-container {
+        display: flex;
+        margin-left: 20rem;
+        @include respond(phone) {
+            margin-left: 0;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}

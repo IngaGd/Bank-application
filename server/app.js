@@ -14,12 +14,19 @@ const port = 3003;
 app.use(express.json({ limit: '10mb' })); //pasididinom uploadinamo failo dydzio limita
 app.use(express.static('public')); //nurodom, kur laikom statinius failus
 
+// const connection = mysql.createConnection({
+//     host: process.env.DB_HOST,
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_DATABASE,
+//     port: process.env.DB_PORT,
+// })
+
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    port: process.env.DB_PORT,
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'bankApplication'
 })
 
 console.log('Connecting to the database with host:', process.env.DB_HOST);
