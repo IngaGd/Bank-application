@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { GlobalContext } from './GlobalContext';
+import Nav from './Nav';
 
 const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
 const loginURL = `${URL}login`;
@@ -36,37 +37,36 @@ function Login() {
 
     return (
         <div className="container">
-            <div className="forms">
-                <div className="login-container">
-                    <div className="body">
-                        <h5 className="title">
-                            {error ? (
-                                <span style={{ color: 'red' }}> Error</span>
-                            ) : (
-                                <span></span>
-                            )}
-                        </h5>
-                        <div className="">
-                            <label className="">User</label>
-                            <input
-                                type="text"
-                                className=""
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                            />
-                            <label className="">Password</label>
-                            <input
-                                type="password"
-                                className=""
-                                value={userPsw}
-                                onChange={(e) => setUserPsw(e.target.value)}
-                            />
-                        </div>
+            <Nav />
+            <div className="login">
+                <div className="body">
+                    <h5 className="title">
+                        {error ? (
+                            <span style={{ color: 'red' }}> Error</span>
+                        ) : (
+                            <span></span>
+                        )}
+                    </h5>
+                    <div className="">
+                        <label className="">User</label>
+                        <input
+                            type="text"
+                            className=""
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                        />
+                        <label className="">Password</label>
+                        <input
+                            type="password"
+                            className=""
+                            value={userPsw}
+                            onChange={(e) => setUserPsw(e.target.value)}
+                        />
                     </div>
-                    <button className="btn" onClick={login}>
-                        Login
-                    </button>
                 </div>
+                <button className="btn" onClick={login}>
+                    Login
+                </button>
             </div>
         </div>
     );

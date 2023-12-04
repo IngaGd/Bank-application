@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from './GlobalContext';
+import Nav from './Nav';
 
 const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
 const registerURL = `${URL}register`;
@@ -55,41 +56,38 @@ export default function Register() {
 
     return (
         <div className="container">
-            <div className="forms">
-                <div className="login-container">
-                    <div className="body">
-                        <h5 className="title">
-                            {error && (
-                                <span style={{ color: 'red' }}>
-                                    Error: {error}
-                                </span>
-                            )}
-                        </h5>
-                        <div>
-                            <label className="">User</label>
-                            <input
-                                type="text"
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                            />
-                            <label className="">Password</label>
-                            <input
-                                type="password"
-                                value={userPsw}
-                                onChange={(e) => setUserPsw(e.target.value)}
-                            />
-                            <label className="">Repeat password</label>
-                            <input
-                                type="password"
-                                value={userPsw2}
-                                onChange={(e) => setUserPsw2(e.target.value)}
-                            />
-                        </div>
+            <Nav />
+            <div className="login">
+                <div className="body">
+                    <h5 className="title">
+                        {error && (
+                            <span style={{ color: 'red' }}>Error: {error}</span>
+                        )}
+                    </h5>
+                    <div>
+                        <label className="">User</label>
+                        <input
+                            type="text"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                        />
+                        <label className="">Password</label>
+                        <input
+                            type="password"
+                            value={userPsw}
+                            onChange={(e) => setUserPsw(e.target.value)}
+                        />
+                        <label className="">Repeat password</label>
+                        <input
+                            type="password"
+                            value={userPsw2}
+                            onChange={(e) => setUserPsw2(e.target.value)}
+                        />
                     </div>
-                    <button className="btn" onClick={register}>
-                        Register
-                    </button>
                 </div>
+                <button className="btn" onClick={register}>
+                    Register
+                </button>
             </div>
         </div>
     );

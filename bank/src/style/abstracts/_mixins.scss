@@ -31,3 +31,7 @@
         }
     }
 }
+
+@mixin center-layout {
+    grid-column: center-start / center-end;
+}

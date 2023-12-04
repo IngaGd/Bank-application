@@ -1,5 +1,6 @@
 .info {
     background-color: yellow;
+    @include center-layout;
     &__main-title {
     }
     &__taxes-container {
