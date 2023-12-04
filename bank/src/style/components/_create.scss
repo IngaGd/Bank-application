@@ -1,5 +1,26 @@
 .create {
-    // @include center-layout;
     background-color: coral;
     grid-column: col-start 2 / col-end 7;
+
+    display: grid;
+    grid-template-rows: 5rem 15rem;
+    .title {
+        background-color: grey;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: 45% 45% 10%;
+        .file-upload {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            &__container {
+            }
+            &__input-group {
+            }
+        }
+        .account-details {
+            display: grid;
+            grid-template-columns: 50% 50%;
+        }
+    }
 }
