@@ -5,7 +5,7 @@ function Nav() {
     const { route, setRoute, authName, logOut } = useContext(GlobalContext);
 
     return (
-        <nav>
+        <nav className="navigation">
             <ul>
                 <li className="item">
                     <span

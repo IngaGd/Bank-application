@@ -2,10 +2,13 @@ import React from 'react';
 
 function Sort({ setSort }) {
     return (
-        <div className='sort-container'>
-            <button className="sort-btn" onClick={() => setSort('name')}>Sort by Surame</button>
-            <button className="sort-btn" onClick={() => setSort('balance')}>Sort by Balance</button>
-            {/* <button className="sort-btn" onClick={() => setSort('unsort')}>Unsort</button> */}
+        <div className="sort">
+            <button className="btn--sort" onClick={() => setSort('name')}>
+                Sort by Surame
+            </button>
+            <button className="btn--sort" onClick={() => setSort('balance')}>
+                Sort by Balance
+            </button>
         </div>
     );
 }

@@ -1,3 +1,20 @@
-.client-image {
-    width: 10rem;
+.list {
+    background-color: bisque;
+    .title {
+    }
+    .clients {
+        .client {
+            .client-box {
+                .client-image {
+                    width: 10rem;
+                }
+            }
+            .client-data {
+                .label-text {
+                }
+                .input-text {
+                }
+            }
+        }
+    }
 }

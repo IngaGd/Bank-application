@@ -106,9 +106,9 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
     }
 
     return (
-        <>
+        <div className="list">
             <div className="title">List of accounts</div>
-            <div className="client-list">
+            <div className="clients">
                 {filteredList.map((a) => (
                     <div key={a.id} className="client">
                         <div className="client-box">
@@ -136,7 +136,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             <span className="label-text">Balance:</span>{' '}
                             <span className="input-text">{a.balance}</span>
                         </div>
-                        <div className="list-buttons">
+                        <div className="btn--list">
                             <button
                                 className={`block-btn${
                                     activeButtons[a.id] === 'block'
@@ -149,7 +149,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 Blocked
                             </button>
                             <button
-                                className={`unblock-btn${
+                                className={`btn--block${
                                     activeButtons[a.id] === 'unblock'
                                         ? ' active'
                                         : ''
@@ -161,7 +161,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             </button>
 
                             <div
-                                className="delete-button"
+                                className="btn--delete"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         handleDelete(a)
@@ -169,7 +169,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 }
                             ></div>
                             <div
-                                className="edit-button"
+                                className="btn--edit"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         setEditModal(a)
@@ -205,7 +205,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                     <div className="error">{blockedAccountError}</div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 
