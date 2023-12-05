@@ -71,9 +71,11 @@ function Create() {
                         />
                     </div>
                 </div>
-                <button className="btn--create" onClick={create}>
-                    Create account
-                </button>
+                <div className="btn-box">
+                    <button className="btn--create" onClick={create}>
+                        Create account
+                    </button>
+                </div>
             </div>
         </div>
     );

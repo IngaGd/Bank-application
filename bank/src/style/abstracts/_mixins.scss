@@ -6,8 +6,8 @@
         }
     }
     @if $breakpoint == tablet {
-        @media (max-width: 52em) {
-            //832px
+        @media (max-width: 57em) {
+            //912px
             @content;
         }
     }
