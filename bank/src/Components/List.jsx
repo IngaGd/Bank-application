@@ -17,6 +17,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
         editModal,
         list,
         setLastUpdate,
+        reduceBalances,
     } = useContext(GlobalContext);
 
     const [blockedAccountError, setBlockedAccountError] = useState('');
@@ -107,6 +108,11 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
 
     return (
         <div className="list">
+            <div className="info__taxes-container">
+                <button className="btn--tax" onClick={reduceBalances}>
+                    TAXES: Reduce All Balances by 5
+                </button>
+            </div>
             <div className="title">List of accounts</div>
             <div className="clients">
                 {filteredList.map((a) => (

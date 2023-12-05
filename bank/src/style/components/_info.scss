@@ -1,8 +1,9 @@
 .info {
     background-color: yellow;
     @include center-layout;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &__main-title {
-    }
-    &__taxes-container {
     }
 }
