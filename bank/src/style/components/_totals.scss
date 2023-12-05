@@ -1,4 +1,19 @@
 .totals {
     background-color: aquamarine;
     grid-column: col-start 6 / center-end;
+    @include respond(desktop) {
+        grid-column: col-start 5 / center-end;
+    }
+    @include respond(tablet) {
+        grid-column: center-start / center-end;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__content {
+        @include respond(phone) {
+            padding-top: 2rem;
+            font-size: 1.4rem;
+        }
+    }
 }
