@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import Delete from './Delete';
 import Edit from './Edit';
 import { GlobalContext } from './GlobalContext';
-import Messages from './Messages';
+// import Messages from './Messages';
 
 const URL = process.env.REACT_APP_URL || 'http://localhost:3003/';
 const IMG = process.env.REACT_APP_IMG_URL;
@@ -121,11 +121,13 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             {a.image ? (
                                 <img
                                     className="client-image"
+                                    alt="client"
                                     src={IMG + a.image}
                                 />
                             ) : (
                                 <img
                                     className="client-image"
+                                    alt="default"
                                     src={IMG + 'default-profile-photo.png'}
                                 />
                             )}
@@ -142,11 +144,11 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             <span className="label-text">Balance:</span>{' '}
                             <span className="input-text">{a.balance}</span>
                         </div>
-                        <div className="btn--list">
+                        <div className="btn-list">
                             <button
-                                className={`block-btn${
+                                className={`btn-list__block${
                                     activeButtons[a.id] === 'block'
-                                        ? ' active'
+                                        ? ' btn-list__block--active'
                                         : ''
                                 }`}
                                 onClick={() => handleBlockAccount(a.id)}
@@ -155,9 +157,9 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 Blocked
                             </button>
                             <button
-                                className={`btn--block${
+                                className={`btn-list__unblock${
                                     activeButtons[a.id] === 'unblock'
-                                        ? ' active'
+                                        ? ' btn-list__unblock--active'
                                         : ''
                                 }`}
                                 onClick={() => handleUnblockAccount(a.id)}
@@ -165,23 +167,26 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             >
                                 Unblocked
                             </button>
-
                             <div
-                                className="btn--delete"
+                                className="btn-list__delete"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         handleDelete(a)
                                     )
                                 }
-                            ></div>
+                            >
+                                Delete
+                            </div>
                             <div
-                                className="btn--edit"
+                                className="btn-list__edit"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         setEditModal(a)
                                     )
                                 }
-                            ></div>
+                            >
+                                Edit
+                            </div>
                         </div>
 
                         {deleteModal && deleteModal.id === a.id ? (

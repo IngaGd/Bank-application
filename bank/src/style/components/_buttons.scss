@@ -21,14 +21,29 @@
         width: 11rem;
         padding: 0.6rem 0;
     }
-    &--list {
+    &-list {
+        &__block {
+            border: 1px solid black;
+            &--active {
+                background-color: yellow;
+            }
+        }
+        &__unblock {
+            border: 1px solid black;
+            &--active {
+                background-color: yellow;
+            }
+        }
+        &__delete {
+            border: 1px solid black;
+        }
+        &__edit {
+            border: 1px solid black;
+        }
     }
     &--block {
     }
-    &--delete {
-    }
-    &--edit {
-    }
+
     &--filter {
     }
 }

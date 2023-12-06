@@ -1,5 +1,6 @@
 .list {
     background-color: bisque;
+    display: grid;
     @include center-layout;
     .title {
     }

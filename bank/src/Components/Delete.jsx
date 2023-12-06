@@ -5,13 +5,15 @@ function Delete({ setDeleteModal, account }) {
     const { setDeleteData } = useContext(GlobalContext);
 
     return (
-        <div className="delete-modal">
-            <span className="delete" onClick={() => setDeleteData(account)}>
-                Confirm delete
-            </span>
-            <span className="delete" onClick={() => setDeleteModal(null)}>
-                Cancel
-            </span>
+        <div className="delete-modal-container">
+            <div className="delete-modal">
+                <span className="delete" onClick={() => setDeleteData(account)}>
+                    Confirm delete
+                </span>
+                <span className="delete" onClick={() => setDeleteModal(null)}>
+                    Cancel
+                </span>
+            </div>
         </div>
     );
 }
