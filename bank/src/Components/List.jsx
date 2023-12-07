@@ -113,36 +113,40 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                     TAXES: Reduce All Balances by 5
                 </button>
             </div>
-            <div className="title">List of accounts</div>
-            <div className="clients">
+            <div className="list__title">List of accounts</div>
+            <div className="list__clients">
                 {filteredList.map((a) => (
                     <div key={a.id} className="client">
-                        <div className="client-box">
+                        <div className="client__image-box">
                             {a.image ? (
                                 <img
-                                    className="client-image"
+                                    className="client__image"
                                     alt="client"
                                     src={IMG + a.image}
                                 />
                             ) : (
                                 <img
-                                    className="client-image"
+                                    className="client__image"
                                     alt="default"
                                     src={IMG + 'default-profile-photo.png'}
                                 />
                             )}
                         </div>
-                        <div className="client-data">
-                            <span className="label-text">Name:</span>{' '}
-                            <span className="input-text">{a.name}</span>
+                        <div className="client__data">
+                            <span className="client__label-text">Name:</span>{' '}
+                            <span className="client__input-text">{a.name}</span>
                         </div>
-                        <div className="client-data">
-                            <span className="label-text">Surname:</span>{' '}
-                            <span className="input-text">{a.surname}</span>
+                        <div className="client__data">
+                            <span className="client__label-text">Surname:</span>{' '}
+                            <span className="client__input-text">
+                                {a.surname}
+                            </span>
                         </div>
-                        <div className="client-data">
-                            <span className="label-text">Balance:</span>{' '}
-                            <span className="input-text">{a.balance}</span>
+                        <div className="client__data">
+                            <span className="client__label-text">Balance:</span>{' '}
+                            <span className="client__input-text">
+                                {a.balance}
+                            </span>
                         </div>
                         <div className="btn-list">
                             <button
@@ -207,14 +211,14 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                         ) : null}
                     </div>
                 ))}
-            </div>
-            <div className="negative-msg">
-                {deleteModal && deleteModal.message && (
-                    <div className="error">{deleteModal.message}</div>
-                )}
-                {blockedAccountError && (
-                    <div className="error">{blockedAccountError}</div>
-                )}
+                <div className="negative-msg">
+                    {deleteModal && deleteModal.message && (
+                        <div className="error">{deleteModal.message}</div>
+                    )}
+                    {blockedAccountError && (
+                        <div className="error">{blockedAccountError}</div>
+                    )}
+                </div>
             </div>
         </div>
     );

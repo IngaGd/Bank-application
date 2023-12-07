@@ -22,6 +22,17 @@
         padding: 0.6rem 0;
     }
     &-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 2rem;
+        margin-right: 2rem;
+        &__block,
+        &__unblock,
+        &__delete,
+        &__edit {
+            padding: 0.5rem 1.5rem;
+            border-radius: 2px;
+        }
         &__block {
             border: 1px solid black;
             &--active {
@@ -41,9 +52,6 @@
             border: 1px solid black;
         }
     }
-    &--block {
-    }
-
     &--filter {
     }
 }

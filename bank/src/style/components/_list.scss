@@ -1,29 +1,35 @@
 .list {
     background-color: bisque;
     display: grid;
+
     @include center-layout;
-    .title {
+    &__title {
+        display: grid;
+        justify-self: center;
+        padding: 2rem 0;
     }
-    .clients {
+    &__clients {
+        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+        border: 1px solid black;
         .client {
-            display: flex;
-            .client-box {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            border: 1px solid black;
+            align-items: center;
+            &__image-box {
+                margin: 2rem;
+            }
+            &__image {
                 border-radius: 50%;
                 width: 12rem;
                 height: 12rem;
-                margin: 3rem;
-                .client-image {
-                    border-radius: 50%;
-                    width: 100%;
-                    height: 12rem;
-                    object-fit: cover;
-                }
+                object-fit: cover;
             }
-            .client-data {
-                .label-text {
-                }
-                .input-text {
-                }
+            &__data {
+                display: grid;
+                row-gap: 1rem;
+            }
+            &__label-text {
             }
         }
     }
