@@ -33,6 +33,7 @@
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: 1fr 0.25fr 0.25fr;
                 justify-items: center;
+                padding-right: 0;
             }
             &__image-box {
                 margin: 2rem;
