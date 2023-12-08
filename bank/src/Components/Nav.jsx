@@ -6,59 +6,59 @@ function Nav() {
 
     return (
         <nav className="navigation">
-            <ul>
-                <li className="item">
+            <div className="nav__left">
+                <div className="nav__left--link">
                     <span
                         onClick={(_) => setRoute('home')}
                         className={route === 'home' ? 'active' : ''}
                     >
                         Home
                     </span>
-                </li>
-                <li className="item">
+                </div>
+                <div className="nav__left--link">
                     <span
                         onClick={(_) => setRoute('bank')}
                         className={route === 'bank' ? 'active' : ''}
                     >
                         Bank
                     </span>
-                </li>
-            </ul>
-            <ul className="navbar-right">
+                </div>
+            </div>
+            <div className="nav__right">
                 {authName ? (
                     <>
-                        <li className="item">
-                            <span className="link">
+                        <div className="nav__right--link">
+                            <span className="item">
                                 <b>{authName}</b>
                             </span>
-                        </li>
-                        <li className="item">
-                            <span className="link" onClick={logOut}>
+                        </div>
+                        <div className="nav__right--link">
+                            <span className="item" onClick={logOut}>
                                 Logout
                             </span>
-                        </li>
+                        </div>
                     </>
                 ) : (
                     <>
-                        <li className="item">
+                        <div className="nav__right--link">
                             <span
                                 onClick={(_) => setRoute('login')}
-                                className="link"
+                                className="item"
                             >
                                 Login
                             </span>
-                        </li>
-                        <li className="item">
+                        </div>
+                        <div className="nav__right--link">
                             <span
                                 onClick={(_) => setRoute('register')}
-                                className="link"
+                                className="item"
                             >
                                 Register
                             </span>
-                        </li>
+                        </div>
                     </>
                 )}
-            </ul>
+            </div>
         </nav>
     );
 }

@@ -1,5 +1,36 @@
 .navigation {
-    background-color: skyblue;
-    display: flex;
+    background-color: $color-skyblue;
     grid-column: full-start / full-end;
+
+    display: flex;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.8rem;
+    @include respond(phone) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .nav__left,
+    .nav__right {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        &--link {
+            padding: 0.5rem 1.5rem;
+            border-radius: 2px;
+            transition: all 0.3s;
+            &:hover {
+                background-color: $color-primary-light;
+                color: $color-skyblue;
+            }
+        }
+    }
+    .nav__left {
+        justify-self: flex-start;
+    }
+    .nav__right {
+        justify-self: flex-end;
+    }
 }

@@ -4,11 +4,11 @@ import Totals from './Totals';
 function HomePage() {
     return (
         <>
-            <Nav />
             <div className="container-home">
                 {/* <div className="home-totals">
                     <Totals />
                 </div> */}
+                <Nav />
                 <div className="content-home">
                     <h1 className="title">
                         <span className="title-part1 animated">Welcome</span>{' '}
