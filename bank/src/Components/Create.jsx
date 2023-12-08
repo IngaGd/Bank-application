@@ -72,7 +72,7 @@ function Create() {
                     </div>
                 </div>
                 <div className="btn-box">
-                    <button className="btn--create" onClick={create}>
+                    <button className="btn btn--create" onClick={create}>
                         Create account
                     </button>
                 </div>

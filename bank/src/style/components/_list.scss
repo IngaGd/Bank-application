@@ -1,13 +1,18 @@
 .list {
+    grid-column: center-start / center-end;
+
     display: grid;
     color: $color-grey-light-1;
     font-size: 1.8rem;
 
     @include center-layout;
+    &__taxes-container {
+        margin-top: 10rem;
+    }
     &__title {
         display: grid;
         justify-self: center;
-        padding: 5rem 0;
+        padding: 3rem 0 7rem 0;
         font-size: 2.2rem;
     }
     &__clients {
@@ -25,14 +30,15 @@
                 grid-template-rows: 1fr 0.25fr;
             }
             @include respond(phone) {
-                display: flex;
-                flex-direction: column;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 1fr 0.25fr 0.25fr;
+                justify-items: center;
             }
             &__image-box {
                 margin: 2rem;
                 @include respond(phone) {
-                    // grid-row: 1;
-                    // grid-column: 1 / -1;
+                    grid-row: 1;
+                    grid-column: 1 / -1;
                 }
             }
             &__image {
@@ -41,12 +47,11 @@
                 height: 12rem;
                 object-fit: cover;
                 @include respond(phone) {
-                    border-radius: 2.5rem;
-                    justify-items: center;
-                    align-items: center;
-                    width: 30rem;
-                    height: 30rem;
+                    border-radius: 50%;
+                    width: 20rem;
+                    height: 20rem;
                     object-fit: cover;
+                    justify-self: center;
                 }
             }
             &__data {
