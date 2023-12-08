@@ -8,6 +8,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
     @include respond(phone) {
         // font-size: 1.6rem;
     }
@@ -16,16 +18,19 @@
         background-color: $color-violet;
         margin-left: 10px;
         color: $color-primary-dark;
-        cursor: pointer;
-        transition: all 0.3s;
-
         &:hover {
+            transform: translateY(-4px);
+            background-color: $color-violet-dark;
         }
     }
     &.btn--create {
         width: 11rem;
         background-color: $color-skyblue;
         color: $color-primary-dark;
+        &:hover {
+            transform: translateY(-4px);
+            background-color: $color-skyblue-dark;
+        }
     }
     &.btn-list {
         display: flex;
@@ -50,27 +55,22 @@
         .block,
         .unblock {
             width: 11rem;
+            background-color: $color-yellow;
+            &:hover {
+                transform: translateY(-4px);
+                background-color: $color-yellow-dark;
+            }
+            &--active {
+            }
         }
         .delete,
         .edit {
+            background-color: $color-skyblue;
             width: 4rem;
-        }
-        .block {
-            background-color: $color-yellow;
-            &--active {
+            &:hover {
+                transform: translateY(-4px);
+                background-color: $color-skyblue-dark;
             }
-        }
-        .unblock {
-            background-color: $color-yellow;
-            &--active {
-                background-color: yellow;
-            }
-        }
-        .delete {
-            background-color: $color-skyblue;
-        }
-        .edit {
-            background-color: $color-skyblue;
         }
     }
     &.filter,
@@ -78,12 +78,19 @@
         gap: 1rem;
         margin-bottom: 1rem;
         color: $color-primary-dark;
-        background-color: $color-yellow;
     }
     &.filter {
         background-color: $color-violet;
+        &:hover {
+            transform: translateY(-4px);
+            background-color: $color-violet-dark;
+        }
     }
     &.sort {
         background-color: $color-skyblue;
+        &:hover {
+            transform: translateY(-4px);
+            background-color: $color-skyblue-dark;
+        }
     }
 }
