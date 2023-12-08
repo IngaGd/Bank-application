@@ -11,8 +11,6 @@
         font-size: 2.2rem;
     }
     &__clients {
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-
         .client {
             display: grid;
             background-color: $color-primary-light;
@@ -20,18 +18,41 @@
             align-items: center;
             border-radius: 3rem;
             margin-bottom: 1.5rem;
+            padding-right: 3rem;
+
+            @include respond(tablet-land) {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: 1fr 0.25fr;
+            }
+            @include respond(phone) {
+                display: flex;
+                flex-direction: column;
+            }
             &__image-box {
                 margin: 2rem;
+                @include respond(phone) {
+                    // grid-row: 1;
+                    // grid-column: 1 / -1;
+                }
             }
             &__image {
                 border-radius: 50%;
                 width: 12rem;
                 height: 12rem;
                 object-fit: cover;
+                @include respond(phone) {
+                    border-radius: 2.5rem;
+                    justify-items: center;
+                    align-items: center;
+                    width: 30rem;
+                    height: 30rem;
+                    object-fit: cover;
+                }
             }
             &__data {
                 display: grid;
                 row-gap: 1rem;
+                justify-items: center;
             }
             &__label-text {
             }

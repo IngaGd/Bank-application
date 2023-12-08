@@ -25,11 +25,22 @@
         font-weight: 600;
     }
     &__btn-list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        // display: grid;
+        // grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
         column-gap: 2rem;
-        margin-right: 2rem;
+        margin-right: 3rem;
 
+        @include respond(tablet-land) {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            padding-bottom: 2rem;
+        }
+        @include respond(phone) {
+            grid-row: 3;
+        }
         &--block,
         &--unblock,
         &--delete,
@@ -41,6 +52,16 @@
             font-weight: 600;
             color: $color-primary-dark;
         }
+        // .block,
+        // .unblock {
+        //     border: none;
+        //     width: 8rem;
+        //     padding: 0.6rem 1.5rem;
+        //     border-radius: 2rem;
+        //     font-size: 14px;
+        //     font-weight: 600;
+        //     color: $color-primary-dark;
+        // }
         &--block {
             background-color: $color-yellow;
             &--active {
