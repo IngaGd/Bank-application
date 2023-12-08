@@ -1,13 +1,18 @@
 .create {
-    background-color: coral;
     grid-column: col-start 2 / col-end 7;
 
     display: grid;
     grid-template-rows: repeat(2, min-content);
     margin: 5rem 0;
+    background-color: $color-primary-light;
+    color: $color-grey-light-1;
+    border-radius: 3rem;
+    font-size: 1.8rem;
     .title {
-        background-color: grey;
+        color: $color-grey-light-1;
         text-align: center;
+        font-size: 2.2rem;
+        padding: 3rem;
         @include respond(tablet) {
             padding: 1rem 0;
         }
@@ -40,11 +45,11 @@
                     padding-top: 2rem;
                 }
                 .image-box {
-                    background-color: aquamarine;
+                    background-color: $color-skyblue;
                     width: 17rem;
                     height: 17rem;
                     border-radius: 50%;
-                    margin: 2rem;
+                    margin: 3rem;
                     @include respond(phone) {
                         width: 15rem;
                         height: 15rem;
@@ -52,6 +57,10 @@
                     }
                     .image {
                         background-color: white;
+                        width: 17rem;
+                        height: 17rem;
+                        border-radius: 50%;
+                        object-fit: cover;
                     }
                 }
             }
@@ -71,7 +80,9 @@
                     }
                 }
                 .input {
-                    background-color: aquamarine;
+                    background-color: $color-yellow;
+                    border-radius: 2rem;
+                    color: $color-grey-light-2;
                     @include respond(tablet) {
                         display: flex;
                         align-items: center;
@@ -87,7 +98,6 @@
             align-items: center;
             justify-content: center;
             padding: 2rem 3rem 0 3rem;
-            background-color: pink;
             @include respond(tablet) {
                 padding: 0;
             }
@@ -103,14 +113,16 @@
 
                     align-items: center;
                 }
-                background-color: yellow;
                 .label {
                     padding: 1rem 0;
                 }
                 .input {
+                    background-color: $color-yellow;
                     margin-bottom: 2rem;
                     width: 20rem;
                     height: 2.2rem;
+                    border-radius: 2rem;
+                    border: none;
                 }
             }
         }
@@ -118,7 +130,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1rem 0 1rem;
+            padding: 2rem 3rem 0 1rem;
         }
     }
 }

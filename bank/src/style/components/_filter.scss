@@ -1,4 +1,10 @@
-.filter {
-    background-color: pink;
-    grid-column: col-start 2 / col-end 7;
+.filter,
+.sort {
+    grid-column: center-start / center-end;
+
+    display: flex;
+    justify-content: center;
+    &:not(:last-child) {
+        padding: 3rem 0;
+    }
 }

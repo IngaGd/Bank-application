@@ -148,9 +148,9 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 {a.balance}
                             </span>
                         </div>
-                        <div className="btn-list">
+                        <div className="btn__btn-list">
                             <button
-                                className={`btn-list__block${
+                                className={`btn__btn-list--block${
                                     activeButtons[a.id] === 'block'
                                         ? ' btn-list__block--active'
                                         : ''
@@ -161,7 +161,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 Blocked
                             </button>
                             <button
-                                className={`btn-list__unblock${
+                                className={`btn__btn-list--unblock${
                                     activeButtons[a.id] === 'unblock'
                                         ? ' btn-list__unblock--active'
                                         : ''
@@ -172,7 +172,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 Unblocked
                             </button>
                             <div
-                                className="btn-list__delete"
+                                className="btn__btn-list--delete"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         handleDelete(a)
@@ -182,7 +182,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                                 Delete
                             </div>
                             <div
-                                className="btn-list__edit"
+                                className="btn__btn-list--edit"
                                 onClick={() =>
                                     handleActionIfNotBlocked(a, () =>
                                         setEditModal(a)

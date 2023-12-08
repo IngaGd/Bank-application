@@ -1,21 +1,25 @@
 .list {
-    background-color: bisque;
     display: grid;
+    color: $color-grey-light-1;
+    font-size: 1.8rem;
 
     @include center-layout;
     &__title {
         display: grid;
         justify-self: center;
-        padding: 2rem 0;
+        padding: 5rem 0;
+        font-size: 2.2rem;
     }
     &__clients {
         grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        border: 1px solid black;
+
         .client {
             display: grid;
+            background-color: $color-primary-light;
             grid-template-columns: repeat(5, 1fr);
-            border: 1px solid black;
             align-items: center;
+            border-radius: 3rem;
+            margin-bottom: 1.5rem;
             &__image-box {
                 margin: 2rem;
             }

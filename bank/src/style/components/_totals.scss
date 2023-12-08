@@ -1,6 +1,8 @@
 .totals {
-    background-color: aquamarine;
     grid-column: col-start 6 / center-end;
+    color: $color-skyblue;
+    font-size: 1.8rem;
+    padding: 6rem 0;
     @include respond(desktop) {
         grid-column: col-start 5 / center-end;
     }
