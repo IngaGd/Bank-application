@@ -61,6 +61,11 @@
                         height: 17rem;
                         border-radius: 50%;
                         object-fit: cover;
+                        @include respond(phone) {
+                            width: 15rem;
+                            height: 15rem;
+                            border-radius: 25%;
+                        }
                     }
                 }
             }
@@ -131,6 +136,10 @@
             align-items: center;
             justify-content: center;
             padding: 2rem 3rem 0 1rem;
+            @include respond(phone) {
+                padding-right: 0;
+                margin-right: 0;
+            }
         }
     }
 }

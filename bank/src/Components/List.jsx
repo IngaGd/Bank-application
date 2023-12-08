@@ -108,12 +108,12 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
 
     return (
         <div className="list">
+            <div className="list__title">List of accounts</div>
             <div className="list__taxes-container">
                 <button className="btn btn--tax" onClick={reduceBalances}>
                     TAXES: Reduce All Balances by 5
                 </button>
             </div>
-            <div className="list__title">List of accounts</div>
             <div className="list__clients">
                 {filteredList.map((a) => (
                     <div key={a.id} className="client">
