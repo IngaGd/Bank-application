@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { GlobalContext } from './GlobalContext';
-import { Chart as ChartJS, defaults } from 'chart.js/auto';
+import { defaults } from 'chart.js/auto';
 import { Doughnut } from 'react-chartjs-2';
 
 //defaults.maintainAspectRatio = false;
@@ -25,26 +25,32 @@ function Totals() {
         {
             label: 'Total accounts',
             value: numAccounts,
+            color: '#f2fe8d',
         },
         {
             label: 'Accounts with images',
             value: numWithImages,
+            color: '#a99db6',
         },
         {
             label: 'Accounts without image',
             value: numWithDefaultImage,
+            color: '#b2d0ce',
         },
         {
             label: 'Accounts with 0 balance',
             value: numWithZeroBalance,
+            color: '#ff6b6b',
         },
         {
             label: 'Accounts with positive balance',
             value: numWithPositiveBalance,
+            color: '#98ddca',
         },
         {
             label: 'Accounts with negative balance',
             value: numWithNegativeBalance,
+            color: '#d6a2e8',
         },
     ];
 
@@ -55,7 +61,7 @@ function Totals() {
 
     return (
         <div className="totals">
-            <div className="totals__chart">
+            <div className="totals__chart" style={{ width: '30rem' }}>
                 <Doughnut
                     data={{
                         labels: chartData.map((data) => data.label),
@@ -63,51 +69,82 @@ function Totals() {
                             {
                                 label: 'Count',
                                 data: chartData.map((data) => data.value),
-                                backgroundColor: [
-                                    'yellow',
-                                    'green',
-                                    'crimson',
-                                    'blue',
-                                    'pink',
-                                    'orange',
-                                    'violet',
-                                ],
-                                borderColor: 'rgb(31, 31, 31)',
+                                backgroundColor: chartData.map(
+                                    (data) => data.color
+                                ),
+                                borderColor: 'none',
                             },
                         ],
-                        // options={{
-                        //     layout: {
-                        //         padding: 20,
-                        //     },
-                        // }}
                     }}
-                    // options={{
-                    //     layout: {
-                    //         padding: 20,
-                    //     },
-                    // }}
+                    options={{
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                        },
+                    }}
                 />
             </div>
-            {/* <div className="totals__content">
-                Total balances: <span>{totalBalances}</span>
-                <br />
-                Number of accounts: <span>{numAccounts}</span>
-                <br />
-                Number of accounts with uploaded images:{' '}
-                <span>{numWithImages}</span>
-                <br />
-                Number of accounts with default image:{' '}
-                <span>{numWithDefaultImage}</span>
-                <br />
-                Number of accounts with zero balance:{' '}
-                <span>{numWithZeroBalance}</span> <br />
-                Number of accounts with positive balance:{' '}
-                <span>{numWithPositiveBalance}</span>
-                <br />
-                Number of accounts with negative balance:{' '}
-                <span>{numWithNegativeBalance}</span>
-                <br />
-            </div> */}
+            <div className="totals__content">
+                <div className="totals-data">
+                    {' '}
+                    <p className="chart-legend__text"> Total balances:</p>
+                    <div className="chart-legend__totals">{totalBalances}</div>
+                    <div className="chart-legend__color--0">Color</div>
+                </div>
+                <div className="totals-data">
+                    <p className="chart-legend__text"> Number of accounts:</p>
+                    <div className="chart-legend__totals">{numAccounts}</div>
+                    <div className="chart-legend__color--1">\</div>
+                </div>
+                <div className="totals-data">
+                    {' '}
+                    <p className="chart-legend__text">
+                        Number of accounts with uploaded images:
+                    </p>
+                    <div className="chart-legend__totals">{numWithImages}</div>
+                    <div className="chart-legend__color--2"></div>
+                </div>
+                <div className="totals-data">
+                    <p className="chart-legend__text">
+                        Number of accounts with default image:
+                    </p>
+                    <div className="chart-legend__totals">
+                        {numWithDefaultImage}
+                    </div>
+                    <div className="chart-legend__color--3"></div>
+                </div>
+                <div className="totals-data">
+                    {' '}
+                    <p className="chart-legend__text">
+                        Number of accounts with zero balance:
+                    </p>
+                    <div className="chart-legend__totals">
+                        {numWithZeroBalance}
+                    </div>
+                    <div className="chart-legend__color--4"></div>
+                </div>
+                <div className="totals-data">
+                    {' '}
+                    <p className="chart-legend__text">
+                        Number of accounts with positive balance:
+                    </p>
+                    <div className="chart-legend__totals">
+                        {numWithPositiveBalance}
+                    </div>
+                    <div className="chart-legend__color--5"></div>
+                </div>
+                <div className="totals-data">
+                    {' '}
+                    <p className="chart-legend__text">
+                        Number of accounts with negative balance:
+                    </p>
+                    <div className="chart-legend__totals">
+                        {numWithNegativeBalance}
+                    </div>
+                    <div className="chart-legend__color--6"></div>
+                </div>
+            </div>
         </div>
     );
 }

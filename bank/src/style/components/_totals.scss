@@ -1,3 +1,8 @@
+%size {
+    width: 3rem;
+    height: 2rem;
+}
+
 .totals {
     grid-column: center-start/ center-end;
     color: $color-skyblue;
@@ -5,10 +10,9 @@
     padding: 6rem 0;
 
     display: grid;
-    grid-template-columns: max-content;
-    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
     @include respond(desktop) {
-        grid-column: col-start 5 / center-end;
+        // grid-column: col-start 5 / center-end;
     }
     @include respond(tablet) {
         grid-column: center-start / center-end;
@@ -17,9 +21,53 @@
         justify-content: center;
     }
     &__chart {
-        display: flex;
+        display: grid;
+        justify-self: center;
     }
     &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .totals-data {
+            display: grid;
+            grid-template-columns: 40rem 8rem min-content;
+            grid-template-rows: 3rem;
+            align-items: center;
+            .chart-legend {
+                display: flex;
+                flex-direction: row;
+                &__color--1 {
+                    @extend %size;
+                    background-color: $color-yellow;
+                }
+                &__color--2 {
+                    @extend %size;
+                    background-color: $color-violet;
+                }
+                &__color--3 {
+                    @extend %size;
+                    background-color: $color-skyblue;
+                }
+                &__color--4 {
+                    @extend %size;
+                    background-color: $color-coral;
+                }
+                &__color--5 {
+                    @extend %size;
+                    background-color: $color-mint;
+                }
+                &__color--6 {
+                    @extend %size;
+                    background-color: $color-rose;
+                }
+                &__totals {
+                }
+                &__text {
+                    display: grid;
+                }
+            }
+        }
+
         @include respond(phone) {
             padding-top: 2rem;
         }
