@@ -8,7 +8,7 @@ $default-font-size: 1.6rem;
 
 // COLOR VARIABLES
 $color-primary-light: #28282a;
-$color-primary-dark: #1f1f1f;
+$color-primary-dark: rgb(31, 31, 31);
 
 //$color-secondary: ;
 
@@ -45,7 +45,7 @@ body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
         sans-serif;
     // font-size: $default-font-size;
-    font-size: 1.6rem;
+    font-size: $default-font-size;
 }
 
 .container,
