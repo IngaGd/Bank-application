@@ -14,11 +14,10 @@
     @include respond(desktop) {
         // grid-column: col-start 5 / center-end;
     }
-    @include respond(tablet) {
-        grid-column: center-start / center-end;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    @include respond(tablet-land) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        justify-items: center;
     }
     &__chart {
         display: grid;
@@ -33,6 +32,10 @@
             grid-template-columns: 40rem 8rem min-content;
             grid-template-rows: 3rem;
             align-items: center;
+            @include respond(phone) {
+                grid-template-columns: repeat(3, max-content);
+                gap: 1rem;
+            }
             .chart-legend {
                 display: flex;
                 flex-direction: row;

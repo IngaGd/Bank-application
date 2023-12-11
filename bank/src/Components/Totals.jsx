@@ -88,9 +88,11 @@ function Totals() {
             <div className="totals__content">
                 <div className="totals-data">
                     {' '}
-                    <p className="chart-legend__text"> Total balances:</p>
+                    <p className="chart-legend__text">
+                        {' '}
+                        Total balances in currency:
+                    </p>
                     <div className="chart-legend__totals">{totalBalances}</div>
-                    <div className="chart-legend__color--0">Color</div>
                 </div>
                 <div className="totals-data">
                     <p className="chart-legend__text"> Number of accounts:</p>
