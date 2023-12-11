@@ -30,7 +30,12 @@ function Login() {
                     setRoute('bank');
                     updateAccounts(Date.now()); //po login updatinam accounta
                 } else {
-                    setError(true);
+                    setTimeout(() => {
+                        setError(true);
+                        setTimeout(() => {
+                            setError(false);
+                        }, 3000);
+                    }, 0);
                 }
             });
     };
@@ -39,34 +44,37 @@ function Login() {
         <div className="container">
             <Nav />
             <div className="login">
-                <div className="body">
-                    <h5 className="title">
+                <div className="login__body">
+                    <h5 className="login__title">
                         {error ? (
-                            <span style={{ color: 'red' }}> Error</span>
+                            <span className="error-message">
+                                Error to login
+                            </span>
                         ) : (
                             <span></span>
-                        )}
+                        )}{' '}
+                        Login
                     </h5>
-                    <div className="">
-                        <label className="">User</label>
+                    <div className="login__input-group">
+                        <label className="login__label">User</label>
                         <input
                             type="text"
-                            className=""
+                            className="login__input"
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
                         />
-                        <label className="">Password</label>
+                        <label className="login__label">Password</label>
                         <input
                             type="password"
-                            className=""
+                            className="login__input"
                             value={userPsw}
                             onChange={(e) => setUserPsw(e.target.value)}
                         />
                     </div>
+                    <button className="login__button btn" onClick={login}>
+                        Login
+                    </button>
                 </div>
-                <button className="btn" onClick={login}>
-                    Login
-                </button>
             </div>
         </div>
     );

@@ -1,30 +1,87 @@
-.container-home {
-    .title {
-        .title-part1 {
-            &.animated {
-                animation: apperance 2s ease-in;
-                animation-fill-mode: backwards;
+.home {
+    grid-column: full-start / full-end;
+    height: 92vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    background-image: linear-gradient(
+            to right bottom,
+            rgba(31, 31, 31, 0.8) 70%,
+            /* 30% blue */ rgba(242, 254, 141, 0.3) 100% /* 40% pink */
+        ),
+        linear-gradient(
+            to left top,
+            rgba(31, 31, 31, 0.8) 70%,
+            /* 30% blue */ rgba(242, 254, 141, 1) 100% /* 40% pink */
+        );
+    @include respond(tablet) {
+        grid-template-columns: 1fr;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-self: left;
+        padding-left: 5rem;
+        @include respond(tablet-land) {
+            padding-left: 0;
+        }
+        @include respond(tablet) {
+            justify-self: center;
+        }
+        .title {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            color: $color-grey-light-1;
+            font-size: 5rem;
+            .title-part1 {
+                &.animated {
+                    animation: apperance 2s ease-in;
+                    animation-fill-mode: backwards;
+                }
+            }
+            .title-part2 {
+                &.animated {
+                    animation-name: moveInBottom;
+                    animation-duration: 1.5s;
+                    animation-timing-function: ease-out;
+                    animation-fill-mode: backwards;
+                    animation-delay: 1.5s;
+                }
             }
         }
-        .title-part2 {
-            &.animated {
-                animation-name: moveInBottom;
-                animation-duration: 1.5s;
-                animation-timing-function: ease-out;
-                animation-fill-mode: backwards;
-                animation-delay: 1.5s;
+        .login-offer {
+            display: flex;
+            width: 25rem;
+            justify-content: space-between;
+            color: $color-yellow;
+            font-size: 2.2rem;
+            @for $i from 1 through 21 {
+                .sp-#{$i} {
+                    &.animated {
+                        animation: apperance 0.1s;
+                        animation-fill-mode: backwards;
+                        animation-delay: #{3.5s + 0.1s * ($i - 1)};
+                    }
+                }
             }
         }
     }
-    .login-offer {
-        @for $i from 1 through 21 {
-            .sp-#{$i} {
-                &.animated {
-                    animation: apperance 0.1s;
-                    animation-fill-mode: backwards;
-                    animation-delay: #{3.5s + 0.1s * ($i - 1)};
-                }
-            }
+    &__image {
+        justify-self: right;
+        padding-right: 5rem;
+        @include respond(tablet-land) {
+            padding-left: 0;
+        }
+        @include respond(tablet) {
+            display: none;
+        }
+        img {
+            width: 50rem;
         }
     }
 }

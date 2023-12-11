@@ -1,3 +1,10 @@
+%create-inputs {
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.6rem;
+}
+
 .create {
     grid-column: col-start 2 / col-end 7;
 
@@ -89,6 +96,7 @@
                     background-color: $color-yellow;
                     border-radius: 2rem;
                     color: $color-grey-light-2;
+                    @extend %create-inputs;
                     @include respond(tablet) {
                         display: flex;
                         align-items: center;
@@ -129,6 +137,7 @@
                     height: 2.2rem;
                     border-radius: 2rem;
                     border: none;
+                    @extend %create-inputs;
                 }
             }
         }
@@ -141,6 +150,9 @@
                 padding-right: 0;
                 margin-right: 0;
             }
+        }
+        input:focus {
+            outline: none;
         }
     }
 }

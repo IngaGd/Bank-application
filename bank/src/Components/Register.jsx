@@ -58,36 +58,40 @@ export default function Register() {
         <div className="container">
             <Nav />
             <div className="login">
-                <div className="body">
-                    <h5 className="title">
+                <div className="login__body">
+                    <h5 className="login__title">
                         {error && (
                             <span style={{ color: 'red' }}>Error: {error}</span>
-                        )}
+                        )}{' '}
+                        Register
                     </h5>
-                    <div>
-                        <label className="">User</label>
+                    <div className="login__input-group">
+                        <label className="login__label">User</label>
                         <input
                             type="text"
                             value={userName}
+                            className="login__input"
                             onChange={(e) => setUserName(e.target.value)}
                         />
-                        <label className="">Password</label>
+                        <label className="login__label">Password</label>
                         <input
                             type="password"
                             value={userPsw}
+                            className="login__input"
                             onChange={(e) => setUserPsw(e.target.value)}
                         />
-                        <label className="">Repeat password</label>
+                        <label className="label">Repeat password</label>
                         <input
                             type="password"
                             value={userPsw2}
+                            className="login__input"
                             onChange={(e) => setUserPsw2(e.target.value)}
                         />
                     </div>
+                    <button className="login__button btn" onClick={register}>
+                        Register
+                    </button>
                 </div>
-                <button className="btn" onClick={register}>
-                    Register
-                </button>
             </div>
         </div>
     );

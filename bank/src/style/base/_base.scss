@@ -16,19 +16,12 @@ $color-yellow: #f2fe8d;
 $color-violet: #a99db6;
 $color-skyblue: #b2d0ce;
 
-$color-yellow-dark: #c2c975; /* A little more solid and darker */
-$color-violet-dark: #7c6f88; /* A little more solid and darker */
-$color-skyblue-dark: #8fa8a5; /* A little more solid and darker */
+$color-yellow-dark: #c2c975;
+$color-violet-dark: #7c6f88;
+$color-skyblue-dark: #8fa8a5;
 
 $color-grey-light-1: #e9e9e9;
 $color-grey-light-2: #615d64;
-
-//$color-grey-dark-1: ;
-//$color-grey-dark-2: ;
-
-// FONT VARIABLES
-$font-primary: 'Nunito', sans-serif;
-$font-display: 'Josefin Sans', sans-serif;
 
 html {
     font-size: 62.5%;
@@ -72,5 +65,4 @@ body {
 
 .container-home {
     grid-template-rows: 8vh 92vh;
-    background-color: bisque;
 }
