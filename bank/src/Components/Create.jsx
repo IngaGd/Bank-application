@@ -79,14 +79,14 @@ function Create() {
                     <button className="btn btn--create" onClick={create}>
                         Create account
                     </button>
-                    <div className="create-messages">
-                        {messages.map((message) => (
-                            <div key={message.id} className="message">
-                                {message.text}
-                            </div>
-                        ))}
-                    </div>
                 </div>
+            </div>
+            <div className="create-messages">
+                {messages.map((message) => (
+                    <div key={message.id} className="message">
+                        {message.text}
+                    </div>
+                ))}
             </div>
         </div>
     );

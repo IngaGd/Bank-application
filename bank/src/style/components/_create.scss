@@ -83,4 +83,10 @@
             outline: none;
         }
     }
+    .create-messages {
+        text-align: center;
+        .message {
+            color: $color-mint;
+        }
+    }
 }
