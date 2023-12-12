@@ -153,6 +153,7 @@ app.post('/bank', (req, res) => {
     connection.query(sql, [fileName, req.body.name, req.body.surname, req.body.balance], (err) => {
         if (err) throw err;
         res.json({ message: 'Account created successfully!' });
+        console.log("Account creation response sent"); // Add this line
     });
 });
 

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { useFile } from '../Use/useFile';
 import { GlobalContext } from './GlobalContext';
@@ -7,9 +7,13 @@ function Create() {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [balance, setBalance] = useState(0);
-    const [file, readFile, remFile] = useFile(); //nuskaitytas failas
+    const [file, readFile, remFile] = useFile();
 
-    const { setCreateData } = useContext(GlobalContext);
+    const { setCreateData, messages } = useContext(GlobalContext);
+
+    useEffect(() => {
+        console.log('Messages in Create Component:', messages);
+    }, [messages]);
 
     const create = (_) => {
         setCreateData({
@@ -75,6 +79,13 @@ function Create() {
                     <button className="btn btn--create" onClick={create}>
                         Create account
                     </button>
+                    <div className="create-messages">
+                        {messages.map((message) => (
+                            <div key={message.id} className="message">
+                                {message.text}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

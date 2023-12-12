@@ -54,10 +54,10 @@ function Totals() {
         },
     ];
 
-    console.log(
-        'Chart data values:',
-        chartData.map((data) => data.value)
-    );
+    // console.log(
+    //     'Chart data values:',
+    //     chartData.map((data) => data.value)
+    // );
 
     return (
         <div className="totals">

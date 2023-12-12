@@ -12,9 +12,11 @@ export const useMessages = init => {
             return;
         }
         const uuid = uuidv4();
+        console.log("Adding message:", message);
         setMessages(m => [...m, { ...message, id: uuid }]);
         setTimeout(() => {
             setMessages(m => m.filter(m => uuid !== m.id));
+            console.log("Removing message:", message);
         }, 5000);
 
     }, [message]);
