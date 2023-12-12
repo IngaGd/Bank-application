@@ -47,7 +47,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
     }
 
     const handleDelete = (account) => {
-        if (account.balance > 0) {
+        if (account.balance > 0 || account.balance < 0) {
             setDeleteModal({
                 message: 'Only accounts with 0 balance can be deleted',
             });
@@ -66,7 +66,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                 {},
                 { withCredentials: true }
             );
-            setLastUpdate(Date.now()); // Trigger a refresh of the account list
+            setLastUpdate(Date.now());
             setActiveButtons({ ...activeButtons, [accountId]: 'block' });
         } catch (error) {
             console.error(error);
@@ -80,7 +80,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                 {},
                 { withCredentials: true }
             );
-            setLastUpdate(Date.now()); // Trigger a refresh of the account list
+            setLastUpdate(Date.now());
             setActiveButtons({ ...activeButtons, [accountId]: 'unblock' });
         } catch (error) {
             console.error(error);
@@ -152,7 +152,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             <button
                                 className={`btn block${
                                     activeButtons[a.id] === 'block'
-                                        ? ' btn-list__block--active'
+                                        ? 'btn block--active'
                                         : ''
                                 }`}
                                 onClick={() => handleBlockAccount(a.id)}
@@ -163,7 +163,7 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                             <button
                                 className={`btn unblock${
                                     activeButtons[a.id] === 'unblock'
-                                        ? ' btn-list__unblock--active'
+                                        ? 'btn unblock--active'
                                         : ''
                                 }`}
                                 onClick={() => handleUnblockAccount(a.id)}
@@ -211,14 +211,17 @@ function List({ setEditData, filter, sort, errorMessage, setErrorMessage }) {
                         ) : null}
                     </div>
                 ))}
-                <div className="negative-msg">
-                    {deleteModal && deleteModal.message && (
-                        <div className="error">{deleteModal.message}</div>
-                    )}
-                    {blockedAccountError && (
-                        <div className="error">{blockedAccountError}</div>
-                    )}
-                </div>
+                {deleteModal && deleteModal.message && (
+                    <div className="error">
+                        <div className="text"> {deleteModal.message}</div>
+                    </div>
+                )}
+
+                {blockedAccountError && (
+                    <div className="error">
+                        <div className="text">{blockedAccountError}</div>
+                    </div>
+                )}
             </div>
         </div>
     );

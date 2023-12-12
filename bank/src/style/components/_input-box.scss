@@ -1,0 +1,21 @@
+.input-box {
+    display: flex;
+    flex-direction: column;
+    @include respond(tablet) {
+        width: 100%;
+
+        align-items: center;
+    }
+    .label {
+        padding: 1rem 0;
+    }
+    .input {
+        background-color: $color-yellow;
+        margin-bottom: 2rem;
+        width: 20rem;
+        height: 2.2rem;
+        border-radius: 2rem;
+        border: none;
+        @extend %create-inputs;
+    }
+}

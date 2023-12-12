@@ -60,41 +60,38 @@ function Edit({ setEditModal, editModal }) {
             <div className="edit-modal-container">
                 <div className="edit-modal">
                     <div className="buttons">
-                        <button className="edit-btn" onClick={handleAddFunds}>
+                        <button className="btn edit" onClick={handleAddFunds}>
                             Add amount
                         </button>
                         <button
-                            className="edit-btn"
+                            className="btn edit"
                             onClick={handleWithdrawFunds}
                         >
                             Withdraw
                         </button>
                     </div>
                     <div className="input-container">
-                        <div className="input-group">
-                            <label className="label-amount">
-                                Amount to change:
-                            </label>
+                        <div className="input-box">
+                            <label className="label">Amount to change:</label>
                             <input
-                                className="input-white"
-                                type="text"
+                                className="input active"
+                                type="number"
                                 value={amount}
                                 onChange={(e) =>
                                     setAmount(parseInt(e.target.value))
                                 }
                             />
                         </div>
-                        <div className="input-group">
-                            <label className="label-balance">
-                                Current balance:
-                            </label>
+                        <div className="input-box">
+                            <label className="label">Current balance:</label>
                             <input
-                                className="input-grey"
+                                className="input non-active"
                                 type="text"
                                 value={balance}
-                                onChange={(e) =>
-                                    setBalance(parseInt(e.target.value))
-                                }
+                                readOnly
+                                // onChange={(e) =>
+                                //     setBalance(parseInt(e.target.value))
+                                // }
                             />
                         </div>
                     </div>
@@ -104,56 +101,69 @@ function Edit({ setEditModal, editModal }) {
                                 Are you sure you want to add ${amount} to the
                                 account?
                             </p>
-                            <button onClick={handleConfirmLargeAmount}>
-                                Yes
-                            </button>
-                            <button
-                                onClick={() => setConfirmLargeAmount(false)}
-                            >
-                                No
-                            </button>
+                            <div className="buttons">
+                                <button
+                                    onClick={handleConfirmLargeAmount}
+                                    className="btn confirm"
+                                >
+                                    Yes
+                                </button>
+                                <button
+                                    onClick={() => setConfirmLargeAmount(false)}
+                                    className="btn confirm"
+                                >
+                                    No
+                                </button>
+                            </div>
                         </div>
                     )}
-                    <div className="input-group">
-                        <label className="label">Choose image</label>
-                        <input
-                            className="input-file"
-                            type="file"
-                            onChange={readFile}
-                        />
-                    </div>
-                    <div className="edit-img">
-                        {file ? (
-                            <img className="img" src={file} alt="upload" />
-                        ) : editModal.image ? (
-                            <img
-                                className="img"
-                                src={IMG + editModal.image}
-                                alt="upload"
+                    <div className="image-upload">
+                        <div className="file-upload__input-group">
+                            <label className="label">Choose image</label>
+                            <input
+                                className="input"
+                                type="file"
+                                onChange={readFile}
                             />
-                        ) : (
-                            <img
-                                className="img"
-                                src={IMG + 'default-profile-photo.png'}
-                                alt="upload"
-                            />
-                        )}
+                        </div>
+                        <div className="edit-img">
+                            {file ? (
+                                <img className="img" src={file} alt="upload" />
+                            ) : editModal.image ? (
+                                <img
+                                    className="img"
+                                    src={IMG + editModal.image}
+                                    alt="upload"
+                                />
+                            ) : (
+                                <img
+                                    className="img"
+                                    src={IMG + 'default-profile-photo.png'}
+                                    alt="upload"
+                                />
+                            )}
+                        </div>
                     </div>
 
-                    <button className="bottom-btn" onClick={saveChanges}>
-                        Save changes
-                    </button>
-                    <button
-                        className="bottom-btn"
-                        onClick={() => setEditModal(null)}
-                    >
-                        Cancel
-                    </button>
-
-                    <div className="msg">
-                        {errorMessage && (
-                            <div className="error-message">{errorMessage}</div>
-                        )}
+                    <div className="changes-handle">
+                        <div className="buttons">
+                            <button className="btn" onClick={saveChanges}>
+                                Save changes
+                            </button>
+                            <button
+                                className="btn"
+                                onClick={() => setEditModal(null)}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                        <div className="message">
+                            {errorMessage && (
+                                <div className="error-message">
+                                    {errorMessage}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>

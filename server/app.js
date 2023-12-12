@@ -153,7 +153,7 @@ app.post('/bank', (req, res) => {
     connection.query(sql, [fileName, req.body.name, req.body.surname, req.body.balance], (err) => {
         if (err) throw err;
         res.json({ message: 'Account created successfully!' });
-        console.log("Account creation response sent"); // Add this line
+        console.log("Account creation response sent");
     });
 });
 
@@ -178,7 +178,8 @@ app.delete('/bank/:id', (req, res) => {
     `;
     connection.query(deleteSql, [req.params.id], (err) => {
         if (err) throw err;
-        res.json({ message: 'Account created successfully!' });
+        res.json({ message: 'Account deleted successfully!' });
+        console.log("Account deleting response sent");
     });
 });
 

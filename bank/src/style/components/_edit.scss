@@ -7,22 +7,89 @@
     //background-color: rgba(0, 0, 0, 0.8);
     background-color: rgba(255, 255, 255, 0.1);
     background-color: transparent;
-    background-color: rgba($color-yellow, 0.1);
+    background-color: rgba(white, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
     /* Prevent scrolling in the body when the overlay is active */
     overflow: hidden;
+    font-size: 1.6rem;
     .edit-modal {
         background-color: $color-primary-dark;
-        width: 500px;
-        height: 500px;
-        padding: 20px;
-        border-radius: 10px;
+        width: 45rem;
+        height: 45rem;
+        padding: 5rem 5rem 3rem 5rem;
+        border-radius: 1rem;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        .img {
-            width: 10rem;
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            padding-bottom: 3rem;
+            .btn {
+                background-color: $color-skyblue;
+            }
+        }
+        .input-container {
+            display: flex;
+            justify-content: space-around;
+            .input-box {
+                .label {
+                    padding-bottom: 2rem;
+                }
+                .input {
+                    width: 18rem;
+                    &.active {
+                    }
+                    &.non-active {
+                        background-color: $color-grey-light-2;
+                    }
+                }
+            }
+        }
+        .confirmation {
+            color: $color-rose;
+            display: flex;
+            flex-direction: column;
+            p {
+                text-align: center;
+            }
+        }
+        .image-upload {
+            padding-top: 3rem;
+            display: flex;
+            .file-upload__input-group {
+                display: flex;
+                width: 50%;
+                padding-left: 1rem;
+                .label {
+                }
+                .input {
+                    width: 18rem;
+                }
+            }
+            .edit-img {
+                margin-left: 5rem;
+                margin-top: -2rem;
+                width: 13rem;
+                height: 13rem;
+                .img {
+                    width: 13rem;
+                    height: 13rem;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+            }
+        }
+        .changes-handle {
+            .buttons {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            .message {
+                color: $color-rose;
+                text-align: center;
+            }
         }
     }
 }

@@ -61,6 +61,8 @@
                 background-color: $color-yellow-dark;
             }
             &--active {
+                width: 11rem;
+                background-color: $color-violet;
             }
         }
         .delete,
@@ -86,7 +88,8 @@
             background-color: $color-violet-dark;
         }
     }
-    &.sort {
+    &.sort,
+    &.confirm {
         background-color: $color-skyblue;
         &:hover {
             transform: translateY(-4px);

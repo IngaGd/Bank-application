@@ -1,0 +1,72 @@
+.file-upload {
+    display: flex;
+    // @include respond(tablet) {
+    align-items: center;
+    justify-content: space-evenly;
+
+    // }
+    @include respond(phone) {
+        flex-direction: column;
+    }
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include respond(phone) {
+            flex-direction: column;
+            padding-top: 2rem;
+        }
+        .image-box {
+            background-color: $color-skyblue;
+            width: 17rem;
+            height: 17rem;
+            border-radius: 50%;
+            margin: 3rem;
+            @include respond(phone) {
+                width: 15rem;
+                height: 15rem;
+                border-radius: 25%;
+            }
+            .image {
+                background-color: white;
+                width: 17rem;
+                height: 17rem;
+                border-radius: 50%;
+                object-fit: cover;
+                @include respond(phone) {
+                    width: 15rem;
+                    height: 15rem;
+                    border-radius: 25%;
+                }
+            }
+        }
+    }
+    &__input-group {
+        display: flex;
+        // @include respond(tablet) {
+        flex-direction: column;
+        // }
+        margin-top: -2rem;
+        @include respond(phone) {
+            align-items: center;
+            padding: 2rem 0;
+        }
+        .label {
+            padding: 2rem 0;
+            @include respond(tablet) {
+            }
+        }
+        .input {
+            background-color: $color-yellow;
+            border-radius: 2rem;
+            color: $color-grey-light-2;
+            @extend %create-inputs;
+            @include respond(tablet) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+            }
+        }
+    }
+}
