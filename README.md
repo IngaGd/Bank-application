@@ -1,8 +1,10 @@
 # Bank-application
 
+BIT homework
+
 _website application project_
 One of 4 projects (folders bank and server) is deployed on Linux server, feel free to play on:
-http://wdp.lt:3003/
+https://inga-portfolio.lt/bank
 
 <br>
 
